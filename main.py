@@ -1,6 +1,15 @@
 from customtkinter import *
 from PIL import Image
-from animation import AnimatedButton
+from animation import Player
+
+def mistake():
+    global mistakes
+    mistakes += 1
+    if mistakes > 6:
+        btn.configure(state="disabled")
+        default.GameOverAnimation()
+    else:
+        default.WrongAnswer(mistakes)
 
 app = CTk()
 
@@ -12,10 +21,10 @@ app.minsize(width, height)
 set_appearance_mode("dark")
 app.title("Hangman")
 
-btn = CTkButton(app, text="Button")
-btn.pack()
+default = Player(app, "./assets/Animation_Game Over/default_player", "./assets/Animation_Wrong Answer/default_player", 10)
+default.pack()
 
-x = AnimatedButton(app, './assets/Animation_Game Over/default_player', './assets/Animation_Game Over/default_player')
-x.pack()
-x.trigger_animation()
+mistakes = 0
+btn = CTkButton(app, text="Next", command=mistake)
+btn.pack(pady=10)
 app.mainloop()
