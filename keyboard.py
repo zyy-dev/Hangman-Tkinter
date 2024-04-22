@@ -3,6 +3,7 @@ from customtkinter import *
 class Keyboard(CTkFrame):
     def __init__ (self, parent: object) -> None:
         super().__init__(master=parent, fg_color="transparent")
+        self.parent = parent
         
         self.button_address = {}
                             # key: character
@@ -47,17 +48,15 @@ class Keyboard(CTkFrame):
             
             # Using default arguments in lambda functions is a way to capture the value of a variable at the time the lambda function is defined.
         
-        parent.bind("<Key>", self.key_pressed)
+        self.parent.bind("<Key>", self.key_pressed)
         
     def on_hover(self, btn: object, event) -> None:
-        btn.configure(text_color="#350a66")
-        btn.configure(fg_color="#e757bc")
+        btn.configure(text_color="#350a66", fg_color="#e757bc")
         event.widget.configure(cursor="hand2")
 
         
     def off_hover(self, btn: object, event) -> None:
-        btn.configure(text_color="#FFFFFF")
-        btn.configure(fg_color="#520CA1")
+        btn.configure(text_color="#FFFFFF", fg_color="#520CA1")
         event.widget.configure(cursor="")
         
     def clicked(self, btn: object) -> None:
@@ -75,3 +74,13 @@ class Keyboard(CTkFrame):
         selected = event.char.upper()
         if selected in self.button_address:
             self.clicked(self.button_address[selected])
+            
+    def disabled(self):
+        print ("jhihiu")
+        self.parent.unbind("<Key>")
+        for char in self.button_address:
+            self.button_address[char].configure(state="disabled")
+            self.button_address[char].unbind("<Enter>")
+            self.button_address[char].unbind("<Leave>")
+        
+            
