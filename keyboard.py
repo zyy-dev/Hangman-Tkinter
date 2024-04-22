@@ -6,116 +6,40 @@ class Keyboard(CTkFrame):
         
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
         Upper_Button_Frame.pack(pady=(10, 5))
-        
-        self.btn_a = CTkButton(Upper_Button_Frame, text="A", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_a))
-        self.btn_a.pack(side="left", padx=5)
-        self.btn_a.bind("<Enter>", lambda e: self.on_hover(self.btn_a, e))
-        self.btn_a.bind("<Leave>", lambda e: self.off_hover(self.btn_a, e))
-        self.btn_b = CTkButton(Upper_Button_Frame, text="B", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_b))
-        self.btn_b.pack(side="left", padx=5)
-        self.btn_b.bind("<Enter>", lambda e: self.on_hover(self.btn_b, e))
-        self.btn_b.bind("<Leave>", lambda e: self.off_hover(self.btn_b, e))
-        self.btn_c = CTkButton(Upper_Button_Frame, text="C", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_c))
-        self.btn_c.pack(side="left", padx=5)
-        self.btn_c.bind("<Enter>", lambda e: self.on_hover(self.btn_c, e))
-        self.btn_c.bind("<Leave>", lambda e: self.off_hover(self.btn_c, e))
-        self.btn_d = CTkButton(Upper_Button_Frame, text="D", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_d))
-        self.btn_d.pack(side="left", padx=5)
-        self.btn_d.bind("<Enter>", lambda e: self.on_hover(self.btn_d, e))
-        self.btn_d.bind("<Leave>", lambda e: self.off_hover(self.btn_d, e))
-        self.btn_e = CTkButton(Upper_Button_Frame, text="E", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_e))
-        self.btn_e.pack(side="left", padx=5)
-        self.btn_e.bind("<Enter>", lambda e: self.on_hover(self.btn_e, e))
-        self.btn_e.bind("<Leave>", lambda e: self.off_hover(self.btn_e, e))
-        self.btn_f = CTkButton(Upper_Button_Frame, text="F", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_f))
-        self.btn_f.pack(side="left", padx=5)
-        self.btn_f.bind("<Enter>", lambda e: self.on_hover(self.btn_f, e))
-        self.btn_f.bind("<Leave>", lambda e: self.off_hover(self.btn_f, e))
-        self.btn_g = CTkButton(Upper_Button_Frame, text="G", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_g))
-        self.btn_g.pack(side="left", padx=5)
-        self.btn_g.bind("<Enter>", lambda e: self.on_hover(self.btn_g, e))
-        self.btn_g.bind("<Leave>", lambda e: self.off_hover(self.btn_g, e))
-        self.btn_h = CTkButton(Upper_Button_Frame, text="H", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_h))
-        self.btn_h.pack(side="left", padx=5)
-        self.btn_h.bind("<Enter>", lambda e: self.on_hover(self.btn_h, e))
-        self.btn_h.bind("<Leave>", lambda e: self.off_hover(self.btn_h, e))
-        self.btn_i = CTkButton(Upper_Button_Frame, text="I", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_i))
-        self.btn_i.pack(side="left", padx=5)
-        self.btn_i.bind("<Enter>", lambda e: self.on_hover(self.btn_i, e))
-        self.btn_i.bind("<Leave>", lambda e: self.off_hover(self.btn_i, e))
-        self.btn_j = CTkButton(Upper_Button_Frame, text="J", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_j))
-        self.btn_j.pack(side="left", padx=5)
-        self.btn_j.bind("<Enter>", lambda e: self.on_hover(self.btn_j, e))
-        self.btn_j.bind("<Leave>", lambda e: self.off_hover(self.btn_j, e))
-        self.btn_k = CTkButton(Upper_Button_Frame, text="K", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_k))
-        self.btn_k.pack(side="left", padx=5)
-        self.btn_k.bind("<Enter>", lambda e: self.on_hover(self.btn_k, e))
-        self.btn_k.bind("<Leave>", lambda e: self.off_hover(self.btn_k, e))
-        self.btn_l = CTkButton(Upper_Button_Frame, text="L", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_l))
-        self.btn_l.pack(side="left", padx=5)
-        self.btn_l.bind("<Enter>", lambda e: self.on_hover(self.btn_l, e))
-        self.btn_l.bind("<Leave>", lambda e: self.off_hover(self.btn_l, e))
-        self.btn_m = CTkButton(Upper_Button_Frame, text="M", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_m))
-        self.btn_m.pack(side="left", padx=5)
-        self.btn_m.bind("<Enter>", lambda e: self.on_hover(self.btn_m, e))
-        self.btn_m.bind("<Leave>", lambda e: self.off_hover(self.btn_m, e))
+        for char in "ABCDEFGHIJKLM":
+            btn = CTkButton(Upper_Button_Frame, 
+                            text=char, 
+                            width=70, 
+                            height=40, 
+                            fg_color="#520CA1", 
+                            corner_radius=5, 
+                            text_color="#FFFFFF", 
+                            font=("Arial", -16, "bold"))
+            
+            btn.pack(side="left", padx=5)
+            btn.bind("<Enter>", lambda event, btn=btn: self.on_hover(btn, event))
+            btn.bind("<Leave>", lambda event, btn=btn: self.off_hover(btn, event)) 
+            btn.configure(command=lambda btn=btn: self.clicked(btn))
         
 
         Lower_Button_Frame = CTkFrame(self, fg_color="transparent")
         Lower_Button_Frame.pack(pady=(5, 10))
-        
-        self.btn_n = CTkButton(Lower_Button_Frame, text="N", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_n))
-        self.btn_n.pack(side="left", padx=5)
-        self.btn_n.bind("<Enter>", lambda e: self.on_hover(self.btn_n, e))
-        self.btn_n.bind("<Leave>", lambda e: self.off_hover(self.btn_n, e))
-        self.btn_o = CTkButton(Lower_Button_Frame, text="O", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_o))
-        self.btn_o.pack(side="left", padx=5)
-        self.btn_o.bind("<Enter>", lambda e: self.on_hover(self.btn_o, e))
-        self.btn_o.bind("<Leave>", lambda e: self.off_hover(self.btn_o, e))
-        self.btn_p = CTkButton(Lower_Button_Frame, text="P", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_p))
-        self.btn_p.pack(side="left", padx=5)
-        self.btn_p.bind("<Enter>", lambda e: self.on_hover(self.btn_p, e))
-        self.btn_p.bind("<Leave>", lambda e: self.off_hover(self.btn_p, e))
-        self.btn_q = CTkButton(Lower_Button_Frame, text="Q", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_q))
-        self.btn_q.pack(side="left", padx=5)
-        self.btn_q.bind("<Enter>", lambda e: self.on_hover(self.btn_q, e))
-        self.btn_q.bind("<Leave>", lambda e: self.off_hover(self.btn_q, e))
-        self.btn_r = CTkButton(Lower_Button_Frame, text="R", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_r))
-        self.btn_r.pack(side="left", padx=5)
-        self.btn_r.bind("<Enter>", lambda e: self.on_hover(self.btn_r, e))
-        self.btn_r.bind("<Leave>", lambda e: self.off_hover(self.btn_r, e))
-        self.btn_s = CTkButton(Lower_Button_Frame, text="S", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_s))
-        self.btn_s.pack(side="left", padx=5)
-        self.btn_s.bind("<Enter>", lambda e: self.on_hover(self.btn_s, e))
-        self.btn_s.bind("<Leave>", lambda e: self.off_hover(self.btn_s, e))
-        self.btn_t = CTkButton(Lower_Button_Frame, text="T", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_t))
-        self.btn_t.pack(side="left", padx=5)
-        self.btn_t.bind("<Enter>", lambda e: self.on_hover(self.btn_t, e))
-        self.btn_t.bind("<Leave>", lambda e: self.off_hover(self.btn_t, e))
-        self.btn_u = CTkButton(Lower_Button_Frame, text="U", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_u))
-        self.btn_u.pack(side="left", padx=5)
-        self.btn_u.bind("<Enter>", lambda e: self.on_hover(self.btn_u, e))
-        self.btn_u.bind("<Leave>", lambda e: self.off_hover(self.btn_u, e))
-        self.btn_v = CTkButton(Lower_Button_Frame, text="V", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_v))
-        self.btn_v.pack(side="left", padx=5)
-        self.btn_v.bind("<Enter>", lambda e: self.on_hover(self.btn_v, e))
-        self.btn_v.bind("<Leave>", lambda e: self.off_hover(self.btn_v, e))
-        self.btn_w = CTkButton(Lower_Button_Frame, text="W", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_w))
-        self.btn_w.pack(side="left", padx=5)
-        self.btn_w.bind("<Enter>", lambda e: self.on_hover(self.btn_w, e))
-        self.btn_w.bind("<Leave>", lambda e: self.off_hover(self.btn_w, e))
-        self.btn_x = CTkButton(Lower_Button_Frame, text="X", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_x))
-        self.btn_x.pack(side="left", padx=5)
-        self.btn_x.bind("<Enter>", lambda e: self.on_hover(self.btn_x, e))
-        self.btn_x.bind("<Leave>", lambda e: self.off_hover(self.btn_x, e))
-        self.btn_y = CTkButton(Lower_Button_Frame, text="Y", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_y))
-        self.btn_y.pack(side="left", padx=5)
-        self.btn_y.bind("<Enter>", lambda e: self.on_hover(self.btn_y, e))
-        self.btn_y.bind("<Leave>", lambda e: self.off_hover(self.btn_y, e))
-        self.btn_z = CTkButton(Lower_Button_Frame, text="Z", width=70, height=40, fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", font=("Arial", -16, "bold"), command=lambda: self.clicked(self.btn_z))
-        self.btn_z.pack(side="left", padx=5)
-        self.btn_z.bind("<Enter>", lambda e: self.on_hover(self.btn_z, e))
-        self.btn_z.bind("<Leave>", lambda e: self.off_hover(self.btn_z, e))
+        for char in "NOPQRSTUVWXYZ":
+            btn = CTkButton(Upper_Button_Frame, 
+                            text=char, 
+                            width=70, 
+                            height=40, 
+                            fg_color="#520CA1", 
+                            corner_radius=5, 
+                            text_color="#FFFFFF", 
+                            font=("Arial", -16, "bold"))
+            
+            btn.pack(side="left", padx=5)
+            btn.bind("<Enter>", lambda event, btn=btn: self.on_hover(btn, event))
+            btn.bind("<Leave>", lambda event, btn=btn: self.off_hover(btn, event)) 
+            btn.configure(command=lambda btn=btn: self.clicked(btn))
+            
+            # Using default arguments in lambda functions is a way to capture the value of a variable at the time the lambda function is defined.
         
         parent.bind("<Key>", self.key_pressed)
         
@@ -123,6 +47,7 @@ class Keyboard(CTkFrame):
         btn.configure(text_color="#350a66")
         btn.configure(fg_color="#e757bc")
         event.widget.configure(cursor="hand2")
+
         
     def off_hover(self, btn: object, event) -> None:
         btn.configure(text_color="#FFFFFF")
@@ -140,7 +65,7 @@ class Keyboard(CTkFrame):
         btn.configure(border_width=1)
         btn.configure(border_color="red")
         
-    def key_pressed(self, event):
+    def key_pressed(self, event) -> None:
         if event.char.lower() == 'a': self.clicked(self.btn_a)
         if event.char.lower() == 'b': self.clicked(self.btn_b)
         if event.char.lower() == 'c': self.clicked(self.btn_c)
