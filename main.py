@@ -1,6 +1,6 @@
 from customtkinter import *
-from PIL import Image
 from animation import Player
+from keyboard import Keyboard
 
 def mistake():
     global mistakes
@@ -21,10 +21,23 @@ app.minsize(width, height)
 set_appearance_mode("dark")
 app.title("Hangman")
 
-default = Player(app, "./assets/Animation_Game Over/default_player", "./assets/Animation_Wrong Answer/default_player", 10)
+default = Player(app, "./assets/Animation_Game Over/default_player", "./assets/Animation_Wrong Answer/default_player")
 default.pack()
 
 mistakes = 0
 btn = CTkButton(app, text="Next", command=mistake)
 btn.pack(pady=10)
+
+keyboard = Keyboard(app)
+keyboard.place(rely=0.8, relx=0.5, anchor="center")
+
+
+
+
+
+
+
+
+
+# run
 app.mainloop()

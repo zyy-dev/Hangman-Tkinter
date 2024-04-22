@@ -3,7 +3,7 @@ from PIL import Image
 import os
 
 class Player(ctk.CTkLabel):
-    def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, delay: int) -> None:
+    def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, delay = 10) -> None:
         super().__init__(master = parent, text="")
         self.folder_path_gameover = folder_path_gameover
         self.folder_path_mistake = folder_path_mistake
