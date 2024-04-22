@@ -4,6 +4,10 @@ class Keyboard(CTkFrame):
     def __init__ (self, parent: object) -> None:
         super().__init__(master=parent, fg_color="transparent")
         
+        self.button_address = {}
+                            # key: character
+                            # value: reference address of Button Widgets
+        
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
         Upper_Button_Frame.pack(pady=(10, 5))
         for char in "ABCDEFGHIJKLM":
@@ -20,12 +24,13 @@ class Keyboard(CTkFrame):
             btn.bind("<Enter>", lambda event, btn=btn: self.on_hover(btn, event))
             btn.bind("<Leave>", lambda event, btn=btn: self.off_hover(btn, event)) 
             btn.configure(command=lambda btn=btn: self.clicked(btn))
+            self.button_address[char] = btn
         
 
         Lower_Button_Frame = CTkFrame(self, fg_color="transparent")
         Lower_Button_Frame.pack(pady=(5, 10))
         for char in "NOPQRSTUVWXYZ":
-            btn = CTkButton(Upper_Button_Frame, 
+            btn = CTkButton(Lower_Button_Frame, 
                             text=char, 
                             width=70, 
                             height=40, 
@@ -38,6 +43,7 @@ class Keyboard(CTkFrame):
             btn.bind("<Enter>", lambda event, btn=btn: self.on_hover(btn, event))
             btn.bind("<Leave>", lambda event, btn=btn: self.off_hover(btn, event)) 
             btn.configure(command=lambda btn=btn: self.clicked(btn))
+            self.button_address[char] = btn
             
             # Using default arguments in lambda functions is a way to capture the value of a variable at the time the lambda function is defined.
         
@@ -66,29 +72,6 @@ class Keyboard(CTkFrame):
         btn.configure(border_color="red")
         
     def key_pressed(self, event) -> None:
-        if event.char.lower() == 'a': self.clicked(self.btn_a)
-        if event.char.lower() == 'b': self.clicked(self.btn_b)
-        if event.char.lower() == 'c': self.clicked(self.btn_c)
-        if event.char.lower() == 'd': self.clicked(self.btn_d)
-        if event.char.lower() == 'e': self.clicked(self.btn_e)
-        if event.char.lower() == 'f': self.clicked(self.btn_f)
-        if event.char.lower() == 'g': self.clicked(self.btn_g)
-        if event.char.lower() == 'h': self.clicked(self.btn_h)
-        if event.char.lower() == 'i': self.clicked(self.btn_i)
-        if event.char.lower() == 'j': self.clicked(self.btn_j)
-        if event.char.lower() == 'k': self.clicked(self.btn_k)
-        if event.char.lower() == 'l': self.clicked(self.btn_l)
-        if event.char.lower() == 'm': self.clicked(self.btn_m)
-        if event.char.lower() == 'n': self.clicked(self.btn_n)
-        if event.char.lower() == 'o': self.clicked(self.btn_o)
-        if event.char.lower() == 'p': self.clicked(self.btn_p)
-        if event.char.lower() == 'q': self.clicked(self.btn_q)
-        if event.char.lower() == 'r': self.clicked(self.btn_r)
-        if event.char.lower() == 's': self.clicked(self.btn_s)
-        if event.char.lower() == 't': self.clicked(self.btn_t)
-        if event.char.lower() == 'u': self.clicked(self.btn_u)
-        if event.char.lower() == 'v': self.clicked(self.btn_v)
-        if event.char.lower() == 'w': self.clicked(self.btn_w)
-        if event.char.lower() == 'x': self.clicked(self.btn_x)
-        if event.char.lower() == 'y': self.clicked(self.btn_y)
-        if event.char.lower() == 'z': self.clicked(self.btn_z)
+        selected = event.char.upper()
+        if selected in self.button_address:
+            self.clicked(self.button_address[selected])
