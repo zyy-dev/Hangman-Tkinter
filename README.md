@@ -11,6 +11,3 @@
 * transition settings
 * main menu
 * game system
-
-
-![lastest update](image.png)
