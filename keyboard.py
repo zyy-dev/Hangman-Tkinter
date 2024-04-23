@@ -1,10 +1,10 @@
 from customtkinter import *
 
 class Keyboard(CTkFrame):
-    def __init__ (self, parent: object) -> None:
+    def __init__ (self, parent: object, connect_to: object) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
-        
+        self.connect_to = connect_to
         self.button_address = {}
                             # key: character
                             # value: reference address of Button Widgets
@@ -53,7 +53,6 @@ class Keyboard(CTkFrame):
     def on_hover(self, btn: object, event) -> None:
         btn.configure(text_color="#350a66", fg_color="#e757bc")
         event.widget.configure(cursor="hand2")
-
         
     def off_hover(self, btn: object, event) -> None:
         btn.configure(text_color="#FFFFFF", fg_color="#520CA1")
@@ -65,10 +64,13 @@ class Keyboard(CTkFrame):
         btn.configure(state="disabled")
         btn.configure(fg_color="#2f1947")
         btn.configure(text_color="#7A7381")
+        print(self.connect_to.validate_char(btn.cget("text")))
+            # if wrong key
+        if not self.connect_to.validate_char(btn.cget("text")):
+            btn.configure(border_width=1)
+            btn.configure(border_color="red")
         
-        # if wrong key
-        btn.configure(border_width=1)
-        btn.configure(border_color="red")
+        
         
     def key_pressed(self, event) -> None:
         selected = event.char.upper()
@@ -76,7 +78,6 @@ class Keyboard(CTkFrame):
             self.clicked(self.button_address[selected])
             
     def disabled(self):
-        print ("jhihiu")
         self.parent.unbind("<Key>")
         for char in self.button_address:
             self.button_address[char].configure(state="disabled")
