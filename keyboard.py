@@ -1,27 +1,30 @@
 from customtkinter import *
 
 class Keyboard(CTkFrame):
-    def __init__ (self, parent: object, connect_to: object) -> None:
+    def __init__ (self, parent: object, guess: object, animation: object) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
-        self.connect_to = connect_to
+        self.guess = guess
+        self.animation = animation
+        self.mistakes = 0
+        self.correct = 0
         self.button_address = {}
                             # key: character
                             # value: reference address of Button Widgets
         
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
-        Upper_Button_Frame.pack(pady=(10, 5))
-        for char in "ABCDEFGHIJKLM":
+        Upper_Button_Frame.pack(pady=8)
+        for char in "ABCDEFGHIJKLMN":
             btn = CTkButton(Upper_Button_Frame, 
                             text=char, 
-                            width=70, 
-                            height=40, 
+                            width=45,
+                            height=30, 
                             fg_color="#520CA1", 
                             corner_radius=5, 
                             text_color="#FFFFFF", 
-                            font=("Arial", -16, "bold"))
+                            font=("", -16, "bold"))
             
-            btn.pack(side="left", padx=5)
+            btn.pack(side="left", padx=8)
             btn.bind("<Enter>", lambda event, btn=btn: self.on_hover(btn, event))
             btn.bind("<Leave>", lambda event, btn=btn: self.off_hover(btn, event)) 
             btn.configure(command=lambda btn=btn: self.clicked(btn))
@@ -29,18 +32,18 @@ class Keyboard(CTkFrame):
         
 
         Lower_Button_Frame = CTkFrame(self, fg_color="transparent")
-        Lower_Button_Frame.pack(pady=(5, 10))
-        for char in "NOPQRSTUVWXYZ":
+        Lower_Button_Frame.pack(pady=8)
+        for char in "OPQRSTUVWXYZ":
             btn = CTkButton(Lower_Button_Frame, 
                             text=char, 
-                            width=70, 
-                            height=40, 
+                            width=45,
+                            height=30, 
                             fg_color="#520CA1", 
                             corner_radius=5, 
                             text_color="#FFFFFF", 
                             font=("Arial", -16, "bold"))
             
-            btn.pack(side="left", padx=5)
+            btn.pack(side="left", padx=8)
             btn.bind("<Enter>", lambda event, btn=btn: self.on_hover(btn, event))
             btn.bind("<Leave>", lambda event, btn=btn: self.off_hover(btn, event)) 
             btn.configure(command=lambda btn=btn: self.clicked(btn))
@@ -64,11 +67,27 @@ class Keyboard(CTkFrame):
         btn.configure(state="disabled")
         btn.configure(fg_color="#2f1947")
         btn.configure(text_color="#7A7381")
-        print(self.connect_to.validate_char(btn.cget("text")))
-            # if wrong key
-        if not self.connect_to.validate_char(btn.cget("text")):
+
+        # if wrong key
+        if not self.guess.validate_char(btn.cget("text")):
             btn.configure(border_width=1)
             btn.configure(border_color="red")
+            
+            self.mistakes += 1
+            if self.mistakes > 6:
+                btn.configure(state="disabled")
+                self.animation.GameOverAnimation()
+                self.disabled()
+            else:
+                self.animation.WrongAnswer(self.mistakes)
+        # if correct
+        else:
+            print (self.correct)
+            print (self.guess.word_to_guess)
+            self.correct += 1
+            if self.correct == len(self.guess.word_to_guess):
+                self.disabled()
+        
         
         
         

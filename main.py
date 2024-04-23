@@ -2,16 +2,7 @@ from customtkinter import *
 from animation import Player
 from keyboard import Keyboard
 from guess import Guess
-
-def mistake():
-    global mistakes
-    mistakes += 1
-    if mistakes > 6:
-        btn.configure(state="disabled")
-        default.GameOverAnimation()
-        keyboard.disabled()
-    else:
-        default.WrongAnswer(mistakes)
+from words import word_to_guess
 
 app = CTk()
 
@@ -22,17 +13,19 @@ app.geometry(f"{width}x{height}+-11+-5")
 app.minsize(width, height)
 set_appearance_mode("dark")
 app.title("Hangman")
+
+# assemble
 default = Player(app, "./assets/Animation_Game Over/default_player", "./assets/Animation_Wrong Answer/default_player")
-default.pack()
+default.place(rely=0.05, relx=0.5, anchor="n")
 
-mistakes = 0
-btn = CTkButton(app, text="Next", command=mistake)
-btn.pack(pady=10)
+random_word = word_to_guess.lvl_1()
+CTkLabel(app, text=random_word[0], font=("", -17, "bold")).place(rely=0.64, relx=0.5, anchor="n")
 
-guess = Guess(app, "hello")
-guess.pack()
+guess = Guess(app, random_word[1])
+guess.place(rely=0.7, relx=0.5, anchor="n")
 
-keyboard = Keyboard(app, guess)
-keyboard.place(rely=0.8, relx=0.5, anchor="center")
+keyboard = Keyboard(app, guess, default) #connects the guess and animation module to keyboard
+keyboard.place(rely=0.8, relx=0.5, anchor="n")
+
 # run
 app.mainloop()
