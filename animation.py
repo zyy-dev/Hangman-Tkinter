@@ -21,6 +21,7 @@ class Player(ctk.CTkLabel):
             image_paths.append(self.folder_path_gameover + "/" + file_name)
         return sorted(image_paths, key= lambda i: int(i.split("/")[4][:-4]))
     
+    # recursion
     def GameOverAnimation(self, i = 0):
         if i == len(self.frames):
             return

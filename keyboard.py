@@ -55,11 +55,9 @@ class Keyboard(CTkFrame):
         
     def on_hover(self, btn: object, event) -> None:
         btn.configure(text_color="#350a66", fg_color="#e757bc")
-        event.widget.configure(cursor="hand2")
         
     def off_hover(self, btn: object, event) -> None:
         btn.configure(text_color="#FFFFFF", fg_color="#520CA1")
-        event.widget.configure(cursor="")
         
     def clicked(self, btn: object) -> None:
         btn.unbind("<Enter>")
