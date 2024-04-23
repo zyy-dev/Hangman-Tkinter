@@ -11,4 +11,6 @@
 * transition settings
 * main menu
 * game system
-![Uploading image.png…]()
+
+![image](https://github.com/ZyyAlvez/hangman_project/assets/144290810/be34191d-9196-4e5d-a381-d2dee0b2ff19)
+
