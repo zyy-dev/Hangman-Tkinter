@@ -10,9 +10,11 @@ class Player(ctk.CTkLabel):
         self.parent = parent
         self.delay = delay
         
-        # initial methods
+        self.initial_image()
+    
+    def initial_image(self):
         self.frames = self.import_images()
-        image = ctk.CTkImage(light_image=Image.open(folder_path_mistake + "/" + "1.png"), dark_image=Image.open(folder_path_mistake + "/" + "1.png"), size=(640,360))
+        image = ctk.CTkImage(light_image=Image.open(self.folder_path_mistake + "/" + "1.png"), dark_image=Image.open(self.folder_path_mistake + "/" + "1.png"), size=(640,360))
         self.configure(image=image)
         
     def import_images(self) -> list[str]:
@@ -38,5 +40,7 @@ class Player(ctk.CTkLabel):
 
         image = ctk.CTkImage(light_image=Image.open(image_paths[mistakes]), dark_image=Image.open(image_paths[mistakes]), size=(640,360))
         self.configure(image=image)
+        
+
 
 

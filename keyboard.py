@@ -12,6 +12,7 @@ class Keyboard(CTkFrame):
         self.button_address = {}
                             # key: character
                             # value: reference address of Button Widgets
+        self.key_already_pressed = []
         
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
         Upper_Button_Frame.pack(pady=8)
@@ -89,8 +90,9 @@ class Keyboard(CTkFrame):
         
     def key_pressed(self, event) -> None:
         selected = event.char.upper()
-        if selected in self.button_address:
+        if selected in self.button_address and selected not in self.key_already_pressed:
             self.clicked(self.button_address[selected])
+            self.key_already_pressed.append(selected)
             
     def disabled(self):
         self.parent.unbind("<Key>")
@@ -100,12 +102,14 @@ class Keyboard(CTkFrame):
             self.button_address[char].unbind("<Leave>")
     
     def reset(self):
+        self.animation.initial_image()
         self.guess.next_level()
         self.parent.bind("<Key>", self.key_pressed)
         self.mistakes = 0
         self.correct = 0
+        self.key_already_pressed = []
         for char in self.button_address:                       
-            self.button_address[char].configure(state="normal", fg_color="#520CA1", text_color="#FFFFFF")
+            self.button_address[char].configure(state="normal", fg_color="#520CA1", text_color="#FFFFFF", border_width=0)
             self.button_address[char].bind("<Enter>", lambda event, btn=self.button_address[char]: self.on_hover(btn, event))
             self.button_address[char].bind("<Leave>", lambda event, btn=self.button_address[char]: self.off_hover(btn, event)) 
             
