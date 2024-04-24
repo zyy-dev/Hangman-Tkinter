@@ -1,4 +1,5 @@
 from customtkinter import *
+import time
 
 class Keyboard(CTkFrame):
     def __init__ (self, parent: object, guess: object, animation: object) -> None:
@@ -83,8 +84,7 @@ class Keyboard(CTkFrame):
             self.correct += 1
             if self.correct == len(set(self.guess.word_to_guess)):
                 self.disabled()
-        
-        
+                self.after(2000, self.reset) 
         
         
     def key_pressed(self, event) -> None:
@@ -98,5 +98,15 @@ class Keyboard(CTkFrame):
             self.button_address[char].configure(state="disabled")
             self.button_address[char].unbind("<Enter>")
             self.button_address[char].unbind("<Leave>")
-        
+    
+    def reset(self):
+        self.guess.next_level()
+        self.parent.bind("<Key>", self.key_pressed)
+        self.mistakes = 0
+        self.correct = 0
+        for char in self.button_address:                       
+            self.button_address[char].configure(state="normal", fg_color="#520CA1", text_color="#FFFFFF")
+            self.button_address[char].bind("<Enter>", lambda event, btn=self.button_address[char]: self.on_hover(btn, event))
+            self.button_address[char].bind("<Leave>", lambda event, btn=self.button_address[char]: self.off_hover(btn, event)) 
+            
             
