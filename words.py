@@ -4,13 +4,15 @@ class Words:
     def __init__(self):
         self.words = {
             1:{
-                "Animal": ['cat', 'dog', 'bat', 'fox', 'cow', 'owl', 'pig', 'bee', 'rat', 'ant'],
-                "Tool": ['saw', 'axe', 'pen', 'cup', 'jar', 'axe', 'mat', 'jar', 'tap', 'cut'],
-                "Body": ['arm', 'eye', 'lip', 'leg', 'toe', 'ear', 'jaw', 'rib', 'hip'],
-                "Food": ['pie', 'jam', 'tea', 'egg', 'pea', 'ham', 'jam', 'pie', 'nut', 'pot']}
-        }
+                "Animal": ['cat', 'dog', 'bat', 'fox', 'cow', 'owl', 'pig', 'lion', 'rat', 'bird', 'goat'],
+                "Body": ['arm', 'eye', 'head', 'leg', 'neck', 'ear', 'jaw', 'hand', 'hip', 'foot'],
+                "Food": ['pie', 'jam', 'tea', 'egg', 'pea', 'beef', 'tuna', 'mint', 'cake']},
+            2:{
+                "Country" : ['spain', 'france', 'mexico', 'india', 'norway'],
+                "Sports" : ['soccer', 'boxing', 'skating', 'hockey']
+        }}
         
-    def lvl_1(self) -> str:
+    def lvl_1(self) -> tuple[str, str]:
         random_category = random.choice(list(self.words[1].keys()))
         random_index = random.randrange(0, len(random_category))
         

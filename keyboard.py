@@ -80,8 +80,6 @@ class Keyboard(CTkFrame):
                 self.animation.WrongAnswer(self.mistakes)
         # if correct
         else:
-            print (self.correct)
-            print (self.guess.word_to_guess)
             self.correct += 1
             if self.correct == len(self.guess.word_to_guess):
                 self.disabled()

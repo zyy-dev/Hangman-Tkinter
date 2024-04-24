@@ -1,5 +1,4 @@
 from customtkinter import *
-from words import Words
 
 class Guess(CTkFrame):
     def __init__(self, parent: object, word_to_guess: str) -> None:
@@ -28,18 +27,7 @@ class Guess(CTkFrame):
                            width=58,
                            font=("", -17.6, "bold"))
             lbl.pack()
-            mistakes += 1
-            if mistakes > 6:
-                return "Game Over"
             return True
         return False
-            
-if __name__ == "__main__":
-    root = CTk()
-    root.geometry("500x500")
-    word = Words()
-    guess = Guess(root, word.lvl_1())
-    guess.pack()
-    root.mainloop()
         
         
