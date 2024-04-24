@@ -31,7 +31,6 @@ class Guess(CTkFrame):
         if char in self.word_to_guess:
             for letter, frame in self.frame_address:
                 if char == letter:
-                    #self.word_to_guess = self.word_to_guess.replace(char, "")
                     frame.configure(fg_color="#2f1947")
                     lbl = CTkLabel(frame, 
                                 text=char, 
