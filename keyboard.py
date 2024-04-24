@@ -81,7 +81,7 @@ class Keyboard(CTkFrame):
         # if correct
         else:
             self.correct += 1
-            if self.correct == len(self.guess.word_to_guess):
+            if self.correct == len(set(self.guess.word_to_guess)):
                 self.disabled()
         
         

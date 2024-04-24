@@ -5,9 +5,9 @@ class Guess(CTkFrame):
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
         self.word_to_guess = word_to_guess
-        self.frame_address = {}
-                        # key: character
-                        # value: reference address of Frame Widgets
+        self.frame_address = [] # list the will be used to store tuple combinations of
+                                # letter and reference address to the frame widget
+        
         for char in word_to_guess:
             lbl_frame = CTkFrame(self, 
                                  fg_color="#E6D439", 
@@ -15,17 +15,20 @@ class Guess(CTkFrame):
                                  height=38, 
                                  width=58)
             lbl_frame.pack(side="left", padx=5)
-            self.frame_address[char] = lbl_frame
+            self.frame_address.append((char, lbl_frame)) # appends a tuple
             
     def validate_char(self, char: str) -> bool:
         if char in self.word_to_guess:
-            self.frame_address[char].configure(fg_color="#2f1947")
-            lbl = CTkLabel(self.frame_address[char], 
-                           text=char, 
-                           height=38, 
-                           width=58,
-                           font=("", -17.6, "bold"))
-            lbl.pack()
+            for tuple in self.frame_address:
+                if char == tuple[0]: 
+                    tuple[1].configure(fg_color="#2f1947")
+                    lbl = CTkLabel(tuple[1], 
+                                text=char, 
+                                height=38, 
+                                width=58,
+                                font=("", -17.6, "bold"))
+                    lbl.pack()
+            
             return True
         return False
         

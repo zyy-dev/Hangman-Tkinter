@@ -20,7 +20,7 @@ class HangMan(CTk):
         default = Player(self, "./assets/Animation_Game Over/default_player", "./assets/Animation_Wrong Answer/default_player")
         default.place(rely=0.05, relx=0.5, anchor="n")
 
-        random_word = word_to_guess.lvl_1()
+        random_word = ["lol", "BEEB"]
         CTkLabel(self, text=random_word[0], font=("", -17, "bold")).place(rely=0.64, relx=0.5, anchor="n")
 
         guess = Guess(self, random_word[1])
