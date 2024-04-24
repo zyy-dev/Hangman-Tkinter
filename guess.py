@@ -18,7 +18,6 @@ class Guess(CTkFrame):
             self.frame_address[char] = lbl_frame
             
     def validate_char(self, char: str) -> bool:
-        mistakes = 0
         if char in self.word_to_guess:
             self.frame_address[char].configure(fg_color="#2f1947")
             lbl = CTkLabel(self.frame_address[char], 
