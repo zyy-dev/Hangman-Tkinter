@@ -3,10 +3,12 @@ from PIL import Image
 import os
 
 class Player(ctk.CTkLabel):
-    def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, delay = 11) -> None:
+    def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, width, height, delay = 11) -> None:
         super().__init__(master = parent, text="")
         self.folder_path_gameover = folder_path_gameover
         self.folder_path_mistake = folder_path_mistake
+        self.width = width
+        self.height = height
         self.parent = parent
         self.delay = delay
         
@@ -27,7 +29,7 @@ class Player(ctk.CTkLabel):
     def GameOverAnimation(self, i = 0):
         if i == len(self.frames):
             return
-        image = ctk.CTkImage(light_image=Image.open(self.frames[i]), dark_image=Image.open(self.frames[i]), size=(640,360))
+        image = ctk.CTkImage(light_image=Image.open(self.frames[i]), dark_image=Image.open(self.frames[i]), size=(self.width,self.height))
         self.configure(image=image)
         self.image = image
         self.parent.after(self.delay, lambda: self.GameOverAnimation((i + 1)))

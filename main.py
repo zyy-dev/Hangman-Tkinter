@@ -16,7 +16,7 @@ class HangMan(CTk):
         self.title("Hangman")
 
         # assemble
-        default = Player(self, "./assets/Animation_Main Menu", "./assets/Animation_Wrong Answer/default_player")
+        default = Player(self, "./assets/Animation_Game Over/default_player", "./assets/Animation_Wrong Answer/default_player")
         default.place(rely=0.05, relx=0.5, anchor="n")
 
         guess = Guess(self)
