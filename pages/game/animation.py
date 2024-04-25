@@ -3,7 +3,7 @@ from PIL import Image
 import os
 
 class Player(ctk.CTkLabel):
-    def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, width, height, delay = 11) -> None:
+    def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, width=640, height=360, delay = 11) -> None:
         super().__init__(master = parent, text="")
         self.folder_path_gameover = folder_path_gameover
         self.folder_path_mistake = folder_path_mistake
@@ -23,7 +23,8 @@ class Player(ctk.CTkLabel):
         image_paths = []
         for file_name in os.listdir(self.folder_path_gameover):
             image_paths.append(self.folder_path_gameover + "/" + file_name)
-        return sorted(image_paths, key= lambda i: int(i.split("/")[3][:-4]))
+        index = int(list(self.folder_path_gameover).count("/")) + 1
+        return sorted(image_paths, key= lambda item: int(item.split("/")[index][:-4]))
     
     # recursion
     def GameOverAnimation(self, i = 0):

@@ -1,12 +1,12 @@
 from customtkinter import *
-import time
 
 class Keyboard(CTkFrame):
-    def __init__ (self, parent: object, guess: object, animation: object) -> None:
+    def __init__ (self, parent: object, guess: object, animation: object, main_tk: object) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
         self.guess = guess
         self.animation = animation
+        self.main_tk = main_tk
         self.mistakes = 0
         self.correct = 0
         self.button_address = {}
@@ -53,7 +53,7 @@ class Keyboard(CTkFrame):
             
             # Using default arguments in lambda functions is a way to capture the value of a variable at the time the lambda function is defined.
         
-        self.parent.bind("<Key>", self.key_pressed)
+        self.main_tk.bind("<Key>", self.key_pressed)
         
     def on_hover(self, btn: object, event) -> None:
         btn.configure(text_color="#350a66", fg_color="#e757bc")
@@ -94,17 +94,17 @@ class Keyboard(CTkFrame):
             self.clicked(self.button_address[selected])
             self.key_already_pressed.append(selected)
             
-    def disabled(self):
-        self.parent.unbind("<Key>")
+    def disabled(self) -> None:
+        self.main_tk.unbind("<Key>")
         for char in self.button_address:
             self.button_address[char].configure(state="disabled")
             self.button_address[char].unbind("<Enter>")
             self.button_address[char].unbind("<Leave>")
     
-    def reset(self):
+    def reset(self) -> None:
         self.animation.initial_image()
         self.guess.next_level()
-        self.parent.bind("<Key>", self.key_pressed)
+        self.main_tk.bind("<Key>", self.key_pressed)
         self.mistakes = 0
         self.correct = 0
         self.key_already_pressed = []

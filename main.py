@@ -1,31 +1,37 @@
 from customtkinter import *
-from animation import Player
-from keyboard import Keyboard
-from guess import Guess
+from pages.game.HangMan import HangMan
+from pages.main_menu.menu import MainMenu
 
+# main window
+app = CTk()
 
-class HangMan(CTk):
-    def __init__(self):
-        super().__init__()
-        # window settings
-        width = self.winfo_screenwidth()
-        height = self.winfo_screenheight()       
-        self.geometry(f"{width}x{height}+-11+-5")
-        self.minsize(width, height)
-        set_appearance_mode("dark")
-        self.title("Hangman")
+# window settings
+width = app.winfo_screenwidth()
+height = app.winfo_screenheight()       
+app.geometry(f"{width}x{height}+-11+-5")
+app.minsize(width, height)
+set_appearance_mode("dark")
+app.title("Hangman")
 
-        # assemble
-        default = Player(self, "./assets/Animation_Game Over/default_player", "./assets/Animation_Wrong Answer/default_player")
-        default.place(rely=0.05, relx=0.5, anchor="n")
+def start_game():
+    y.pack_forget()
+    x = HangMan(app, width, height, app)
+    x.pack()
 
-        guess = Guess(self)
-        guess.place(rely=0.65, relx=0.5, anchor="n")
+y = MainMenu(app, width, height, start_game)
+y.pack()
 
-        keyboard = Keyboard(self, guess, default) #connects the guess and animation module to keyboard
-        keyboard.place(rely=0.8, relx=0.5, anchor="n")
-
-app = HangMan()
 app.mainloop()
 
 
+
+
+
+
+
+
+
+
+
+# run
+app.mainloop()

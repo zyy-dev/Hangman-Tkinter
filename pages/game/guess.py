@@ -1,5 +1,5 @@
 from customtkinter import *
-from words import words
+from pages.game.words import words
 
 class Guess(CTkFrame):
     def __init__(self, parent: object) -> None:
