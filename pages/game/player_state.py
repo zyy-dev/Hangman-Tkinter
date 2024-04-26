@@ -25,8 +25,16 @@ class Player(ctk.CTkLabel):
             image_paths.append(self.folder_path_gameover + "/" + file_name)
         index = int(list(self.folder_path_gameover).count("/")) + 1
         return sorted(image_paths, key= lambda item: int(item.split("/")[index][:-4]))
+        
+    def WrongAnswer(self, mistakes: int):
+        image_paths = [] 
+        for file_name in os.listdir(self.folder_path_mistake):
+            image_paths.append(self.folder_path_mistake + "/" + file_name)
+        image_paths = sorted(image_paths, key= lambda i: int(i.split("/")[4][:-4]))
+
+        image = ctk.CTkImage(light_image=Image.open(image_paths[mistakes]), dark_image=Image.open(image_paths[mistakes]), size=(640,360))
+        self.configure(image=image)
     
-    # recursion
     def GameOverAnimation(self, i = 0):
         if i == len(self.frames):
             return
@@ -34,15 +42,6 @@ class Player(ctk.CTkLabel):
         self.configure(image=image)
         self.image = image
         self.parent.after(self.delay, lambda: self.GameOverAnimation((i + 1)))
-        
-    def WrongAnswer(self, mistakes: int):
-        image_paths = []
-        for file_name in os.listdir(self.folder_path_mistake):
-            image_paths.append(self.folder_path_mistake + "/" + file_name)
-        image_paths = sorted(image_paths, key= lambda i: int(i.split("/")[4][:-4]))
-
-        image = ctk.CTkImage(light_image=Image.open(image_paths[mistakes]), dark_image=Image.open(image_paths[mistakes]), size=(640,360))
-        self.configure(image=image)
         
 
 

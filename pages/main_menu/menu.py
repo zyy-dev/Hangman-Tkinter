@@ -1,11 +1,11 @@
 from customtkinter import *
-from pages.game.animation import Player
+from animation import Animation
 from playsound import playsound
 
 def play_audio():
     while True:
         playsound("./assets/audios/horror_audio.mp3")
-        time.sleep(3)
+
 
 class MainMenu(CTkFrame):
     def __init__(self, parent: object, width: int, height: int, start_game_callback):
@@ -14,8 +14,7 @@ class MainMenu(CTkFrame):
         self.width = width
         self.height = height
 
-        default = Player(self, "./assets/Animation_try", "./assets/Animation_Wrong Answer/default_player", self.width, self.height)
-        default.GameOverAnimation()
+        default = Animation(self, "./assets/Animation_Open App", self.width, self.height)
         default.pack()
         
         self.btn = CTkButton(self, text="Start Game", font=("", -30, "bold"), corner_radius=0, command=start_game_callback)

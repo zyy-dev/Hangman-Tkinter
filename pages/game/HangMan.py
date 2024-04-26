@@ -1,5 +1,5 @@
 from customtkinter import *
-from pages.game.animation import Player
+from pages.game.player_state import Player
 from pages.game.keyboard import Keyboard
 from pages.game.guess import Guess
 
