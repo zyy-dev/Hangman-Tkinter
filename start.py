@@ -1,6 +1,6 @@
 from customtkinter import *
-from pages.game.HangMan import HangMan
-from pages.main_menu.menu import MainMenu
+from pages.game.main import HangMan
+from pages.main_menu.main import MainMenu
 from animation import Animation
 
 # main window
@@ -11,7 +11,7 @@ width = app.winfo_screenwidth()
 height = app.winfo_screenheight()       
 app.geometry(f"{width}x{height}+-11+-5")
 app.minsize(width, height)
-set_appearance_mode("light")
+set_appearance_mode("dark")
 app.title("Hangman")
 
 def start_game():
