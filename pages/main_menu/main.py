@@ -1,11 +1,5 @@
 from customtkinter import *
 from animation import Animation
-from playsound import playsound
-
-def play_audio():
-    while True:
-        playsound("./assets/audios/horror_audio.mp3")
-
 
 class MainMenu(CTkFrame):
     def __init__(self, parent: object, width: int, height: int, start_game_callback):

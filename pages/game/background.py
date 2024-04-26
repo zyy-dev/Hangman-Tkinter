@@ -3,7 +3,7 @@ from PIL import Image
 import os
 
 class Player(ctk.CTkLabel):
-    def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, width=640, height=360, delay = 11) -> None:
+    def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, width: int, height: int, delay = 11) -> None:
         super().__init__(master = parent, text="")
         self.folder_path_gameover = folder_path_gameover
         self.folder_path_mistake = folder_path_mistake
@@ -16,10 +16,11 @@ class Player(ctk.CTkLabel):
     
     def initial_image(self):
         self.frames = self.import_images()
-        image = ctk.CTkImage(light_image=Image.open(self.folder_path_mistake + "/" + "1.png"), dark_image=Image.open(self.folder_path_mistake + "/" + "1.png"), size=(640,360))
+        image = ctk.CTkImage(light_image=Image.open(self.folder_path_mistake + "/" + "1.png"), dark_image=Image.open(self.folder_path_mistake + "/" + "1.png"), size=(self.width, self.height))
         self.configure(image=image)
         
     def import_images(self) -> list[str]:
+        print (os.listdir(self.folder_path_gameover))
         image_paths = []
         for file_name in os.listdir(self.folder_path_gameover):
             image_paths.append(self.folder_path_gameover + "/" + file_name)
@@ -32,7 +33,7 @@ class Player(ctk.CTkLabel):
             image_paths.append(self.folder_path_mistake + "/" + file_name)
         image_paths = sorted(image_paths, key= lambda i: int(i.split("/")[4][:-4]))
 
-        image = ctk.CTkImage(light_image=Image.open(image_paths[mistakes]), dark_image=Image.open(image_paths[mistakes]), size=(640,360))
+        image = ctk.CTkImage(light_image=Image.open(image_paths[mistakes]), dark_image=Image.open(image_paths[mistakes]), size=(self.width,self.height))
         self.configure(image=image)
     
     def GameOverAnimation(self, i = 0):
