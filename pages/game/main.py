@@ -10,16 +10,11 @@ class SlideFrame(CTkFrame):
     def __init__(self, parent, start_pos, end_pos):
         super().__init__(master=parent, width=1000, height=1000, corner_radius=0, fg_color="transparent", border_width=5)
         
-        # general attributes 
         self.start_pos = start_pos + 0.04
         self.end_pos = end_pos - 0.03
-        self.width = abs(start_pos - end_pos)
 
-        # animation logic
         self.pos = self.start_pos
-        self.in_start_pos = True
 
-        # layout
         self.place(relx=0.05, rely=self.start_pos, anchor="n")
         self.animate()
 
@@ -28,8 +23,6 @@ class SlideFrame(CTkFrame):
             self.pos -= 0.006
             self.place(relx=0.5, rely=self.pos, anchor="n")
             self.after(10, self.animate)
-        else:
-            self.in_start_pos = False
 
 
 
@@ -43,7 +36,7 @@ class HangMan(CTkFrame):
         default = Player(parent_div, "./assets/Animation_Game Over/default_player", "./assets/Animation_Wrong Answer/default_player", width, height)
         default.pack()
         
-        frame = SlideFrame(parent_div, 1.1, 0.67)
+        frame = SlideFrame(parent_div, 1, 0.67)
         frame.pack_propagate(False)
         
         guess = Guess(frame)
