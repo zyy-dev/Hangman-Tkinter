@@ -1,11 +1,11 @@
 from customtkinter import *
 from PIL import Image
 from Frames.game.characters.default import default_character
-# from Frames.game.characters.allan import allan_character
-# from Frames.game.characters.zyrus import zyrus_character
+from Frames.game.characters.allan import allan_character
+from Frames.game.characters.zyrus import zyrus_character
 from Frames.game.characters.richard import richard_character
-# from Frames.game.characters.renzo import renzo_character
-# from Frames.game.characters.france import france_character
+from Frames.game.characters.renzo import renzo_character
+from Frames.game.characters.france import france_character
 
 class Choices(CTkFrame):
     def __init__(self, parent: object, width:int, height: int):
@@ -57,16 +57,22 @@ class Choices(CTkFrame):
             default.pack()
             self.pack_forget()
         if self.index == 1:
-            # allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer")
-            # allan.pack()
+            allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer")
+            allan.pack()
             self.pack_forget()
         if self.index == 2:
-            return "renzo"
+            renzo = renzo_character(self.parent, self.width, self.height, "./assets/Characters/renzo/game_over", "./assets/Characters/renzo/wrong_answer")
+            renzo.pack()
+            self.pack_forget()
         if self.index == 3:
-            return "france"
+            france = france_character(self.parent, self.width, self.height, "./assets/Characters/france/game_over", "./assets/Characters/france/wrong_answer")
+            france.pack()
+            self.pack_forget()
         if self.index == 4:
-            richard= richard_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer")
+            richard = richard_character(self.parent, self.width, self.height, "./assets/Characters/richard/game_over", "./assets/Characters/richard/wrong_answer")
             richard.pack()
             self.pack_forget()
         if self.index == 5:
-            return "zyrus"
+            zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer")
+            zyrus.pack()
+            self.pack_forget()

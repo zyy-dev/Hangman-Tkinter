@@ -7,6 +7,7 @@ class Time(CTkFrame):
         self.keyboard = keyboard
         self.start_pos = start_pos
         self.end_pos = end_pos
+        
         self.active = True
         self.time_speed = 1000
         self.pack_propagate(False)
@@ -25,10 +26,11 @@ class Time(CTkFrame):
             self.after(10, self.animate)
             
     def activate_time(self):
-        if self.seconds > 0 and self.active:
-            self.seconds -= 1
-            self.lbl_time.configure(text=str(self.seconds))
-            self.after(self.time_speed, self.activate_time)
-        else:
-            self.player_state.GameOverAnimation()
-            self.keyboard.disabled()
+        if self.active:
+            if self.seconds > 0:
+                self.seconds -= 1
+                self.lbl_time.configure(text=str(self.seconds))
+                self.after(self.time_speed, self.activate_time)
+            else:
+                self.player_state.GameOverAnimation()
+                self.keyboard.disabled()

@@ -74,7 +74,7 @@ class Keyboard(CTkFrame):
             btn.configure(border_color="red")
             
             self.mistakes += 1
-            if self.mistakes > 6:
+            if self.mistakes > 5:
                 btn.configure(state="disabled")
                 self.animation.GameOverAnimation()
                 self.disabled()
