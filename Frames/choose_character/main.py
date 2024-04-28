@@ -1,6 +1,11 @@
 from customtkinter import *
 from PIL import Image
-from Frames.game.main import HangMan
+from Frames.game.characters.allan import allan_character
+from Frames.game.characters.default import default_character
+from Frames.game.characters.zyrus import HangMan
+from Frames.game.characters.richard import HangMan
+from Frames.game.characters.renzo import HangMan
+from Frames.game.characters.france import HangMan
 
 class Choices(CTkFrame):
     def __init__(self, parent: object, width:int, height: int):
@@ -45,11 +50,13 @@ class Choices(CTkFrame):
     
     def play(self):
         if self.index == 0:
-            default = HangMan(self.parent, self.width, self.height, "./assets/Animation_Game Over/default", "./assets/Animation_Wrong Answer/default")
+            default = default_character(self.parent, self.width, self.height, "./assets/Animation_Game Over/default", "./assets/Animation_Wrong Answer/default")
             default.pack()
             self.pack_forget()
         if self.index == 1:
-            return "allan"
+            allan = allan_character(self.parent, self.width, self.height, "./assets/Animation_Game Over/default", "./assets/Animation_Wrong Answer/default")
+            allan.pack()
+            self.pack_forget()
         if self.index == 2:
             return "renzo"
         if self.index == 3:

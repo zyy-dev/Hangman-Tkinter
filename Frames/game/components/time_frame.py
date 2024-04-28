@@ -8,7 +8,7 @@ class Time(CTkFrame):
         self.start_pos = start_pos
         self.end_pos = end_pos
         self.active = True
-        
+        self.time_speed = 1000
         self.pack_propagate(False)
         self.place(relx=self.start_pos, rely=0.1, anchor="e")
         self.seconds = 100
@@ -28,7 +28,7 @@ class Time(CTkFrame):
         if self.seconds > 0 and self.active:
             self.seconds -= 1
             self.lbl_time.configure(text=str(self.seconds))
-            self.after(1000, self.activate_time)
+            self.after(self.time_speed, self.activate_time)
         else:
             self.player_state.GameOverAnimation()
             self.keyboard.disabled()

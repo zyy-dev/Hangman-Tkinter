@@ -1,8 +1,8 @@
 from customtkinter import CTkFrame
-from Frames.game.player import Player
-from Frames.game.keyboard import Keyboard
-from Frames.game.guess import Guess
-from Frames.game.time_frame import Time
+from Frames.game.components.player_state import Player
+from Frames.game.components.keyboard import Keyboard
+from Frames.game.components.guess import Guess
+from Frames.game.components.time_frame import Time
 
 
 class SlideFrame(CTkFrame):
@@ -24,7 +24,7 @@ class SlideFrame(CTkFrame):
             self.after(10, self.animate)
             
 
-class HangMan(CTkFrame):
+class default_character(CTkFrame):
     def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str):
         super().__init__(master=parent, width=width, height=height, fg_color="transparent")
         
@@ -33,9 +33,7 @@ class HangMan(CTkFrame):
 
         player_state = Player(parent_div, path_game_over, path_wrong_answer, width, height, self.stop_time)
         player_state.pack()
-        
-        
-        
+      
         frame = SlideFrame(parent_div, 1, 0.64)
 
         guess = Guess(frame)
@@ -48,4 +46,3 @@ class HangMan(CTkFrame):
         
     def stop_time(self):
         self.time.active = False
-        
