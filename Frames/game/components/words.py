@@ -4,25 +4,43 @@ class Words:
     def __init__(self):
         self.words = {
            1: {
-        "Animals 1": ['cat', 'dog', 'bat', 'fox', 'cow', 'owl', 'pig', 'goat', 'rat', 'bird', 'lion'],
-        "Body Parts": ['arm', 'eye', 'head', 'neck', 'jaw', 'ear', 'hand', 'foot', 'hip'],
-        "Food": ['pie', 'jam', 'tea', 'egg', 'beef', 'rice', 'jam', 'pie', 'pork', 'cake']},
+        "Colors 1": ['red', 'blue', 'green', 'black', 'white', 'pink', 'cyan'],
+        "Numbers": ['two', 'one', 'ten', 'nine', 'five', 'six'],
+        "Animals 1": ['cat', 'dog', 'bat', 'fox', 'cow', 'owl', 'pig', 'goat', 'rat', 'bird', 'lion']},       
            2: {
-        "Country": ['spain', 'france', 'mexico', 'india', 'norway', 'china', 'japan'],
-        "Sports": ['soccer', 'boxing', 'hockey', 'skating', 'archery', 'bowling'],
-        "Musical Instruments": ['violin', 'guitar', 'piano', 'flute', 'trumpet', 'ukulele', 'triangle']},
+        "Animals 2": ['wolf', 'deer', 'lion', 'seal', 'bear', 'worm', 'frog', 'hawk', 'crow', 'duck', 'crab'],
+        "Body Parts": ['arm', 'eye', 'head', 'neck', 'jaw', 'ear', 'hand', 'foot', 'hip'],
+        "Food": ['pie', 'jam', 'tea', 'egg', 'beef', 'rice', 'jam', 'pork', 'cake']},
            3: {
-        "Animals 2": ['sloth', 'skunk', 'otter', 'goose', 'raven', 'moose', 'llama', 'koala', 'hyena', 'bison'],
-        "Professions": ['firefighter', 'politician', 'musician', 'journalist', 'surgeon', 'psychiatrist', 'astronomer'],
-        "Superheroes": ['flash', 'darna', 'groot', 'rocket', 'batman', 'hawkeye', 'shazam']},
+        "Relatives": ['sister', 'brother', 'father', 'mother', 'aunt', 'uncle'],
+        "Colors 2": ['brown', 'magenta', 'indigo', 'yellow', 'maroon', 'purple'],
+        "Fruit": ['apple', 'lemon', 'banana', 'mango', 'orange', 'cherry', 'peach', 'guava', 'grapes', 'pear']},
            4: {
+        "Country": ['spain', 'france', 'mexico', 'india', 'norway', 'china', 'japan'],
+        "Sports 1": ['basketball', 'volleyball', 'tennis', 'baseball', 'golf', 'football'],
+        "Musical Instruments 1": ['violin', 'guitar', 'piano', 'flute', 'trumpet', 'ukulele', 'triangle']},
+           5: {
+        "Professions 1": ['doctor', 'police', 'dentist', 'teacher', 'lawyer', 'chef', 'artist', 'barber', 'baker', 'tailor'],
+        "Sports 2": ['soccer', 'boxing', 'hockey', 'skating', 'archery', 'bowling'],
+        "Marvel Characters": ['vision', 'punisher', 'wolverine', 'deadpool', 'hulk', 'daredevil', 'hawkeye']},
+           6: {
+        "Animals 3": ['sloth', 'skunk', 'otter', 'goose', 'raven', 'moose', 'llama', 'koala', 'hyena', 'bison'],
+        "Professions 2": ['firefighter', 'politician', 'musician', 'journalist', 'surgeon', 'psychiatrist', 'astronomer'],
+        "DC Characters": ['flash', 'cyborg', 'darkseid', 'deadshot', 'doomsday', 'deathstroke', 'shazam']},
+           7: {
         "Fast Food Chains": ['jollibee', 'chowking', 'greenwich', 'kfc', 'subway', 'mcdonald', 'starbucks', 'chipotle', 'popeyes'],
         "Greek Gods 1": ['poseidon', 'hera', 'athena', 'zeus', 'apollo', 'ares', 'aphrodite', 'hades'],
         "Car Brands": ['porsche', 'chevrolet', 'cadillac', 'dodge', 'bugatti', 'volkswagen', 'mclaren', 'maserati']},
-           5: {
+           8: {
         "Greek Gods 2": ['demeter', 'dionysus', 'persephone', 'hestia', 'hephaestus', 'artemis', 'cronus', 'prometheus'],
         "Alcohol Brands": ['bacardi', 'hennessy', 'smirnoff', 'baileys', 'emperador', 'ginebra', 'fundador'],
         "Mythology": ['phoenix', 'cerberus', 'werewolf', 'sphinx', 'centaur', 'minotaur', 'chimera', 'unicorn']},
+           9: {
+        "Dog Breeds": ['dalmatian', 'poodle', 'beagle', 'chihuahua', 'rottweiler', 'pomeranian', 'corgi', 'dobermann'],
+        "Cat Breeds": ['siamese', 'burmese', 'persian', 'sphynx', 'siberian', 'balinese'],
+        "Programming Languages": ['python', 'javascript', 'rust', 'swift', 'go', 'sql', 'assembly', 'php']},
+          10: {
+        "Movies": ['titanic', 'twilight', 'alladin', 'jumanji', 'ghostbusters', 'saw', 'godzilla', 'transformers']},
     }
         
     def random_word(self, level: int) -> tuple[str, str]:
