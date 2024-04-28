@@ -1,11 +1,11 @@
 from customtkinter import *
 from PIL import Image
-from Frames.game.characters.allan import allan_character
 from Frames.game.characters.default import default_character
-from Frames.game.characters.zyrus import HangMan
-from Frames.game.characters.richard import HangMan
-from Frames.game.characters.renzo import HangMan
-from Frames.game.characters.france import HangMan
+# from Frames.game.characters.allan import allan_character
+# from Frames.game.characters.zyrus import zyrus_character
+from Frames.game.characters.richard import richard_character
+# from Frames.game.characters.renzo import renzo_character
+# from Frames.game.characters.france import france_character
 
 class Choices(CTkFrame):
     def __init__(self, parent: object, width:int, height: int):
@@ -13,12 +13,12 @@ class Choices(CTkFrame):
         self.parent = parent
         self.width = width
         self.height = height
-        self.image_paths = ["./assets/Characters/default.png",
-                            "./assets/Characters/allan.png",
-                            "./assets/Characters/renzo.png",
-                            "./assets/Characters/france.png",
-                            "./assets/Characters/richard.png",
-                            "./assets/Characters/zyrus.png"]
+        self.image_paths = ["assets/Characters/default/default.png",
+                            "assets/Characters/allan/allan.png",
+                            "assets/Characters/renzo/renzo.png",
+                            "assets/Characters/france/france.png",
+                            "assets/Characters/richard/richard.png",
+                            "assets/Characters/zyrus/zyrus.png"]
         self.index = 0
         
         self.image = CTkImage(light_image=Image.open(self.image_paths[self.index]), dark_image=Image.open(self.image_paths[self.index]), size=(self.width, self.height))
@@ -35,33 +35,38 @@ class Choices(CTkFrame):
         self.btn_play.place(relx=0.5, rely=0.8, anchor="center")
         
     def right(self):
+        print ("right ffdsagesgetgwWRGwegrsgrsgwetgweggsdfsdf")
         if self.index == len(self.image_paths) - 1:
-            self.index -= 1
+            self.index = 0
         else:
             self.index += 1
-        self.lbl.configure(image=self.image_paths[self.index])
+        self.image = CTkImage(light_image=Image.open(self.image_paths[self.index]), dark_image=Image.open(self.image_paths[self.index]), size=(self.width, self.height))
+        self.lbl.configure(image=self.image)
     
     def left(self):
         if self.index == 0:
             self.index = len(self.image_paths) - 1
         else:
             self.index -= 1
-        self.lbl.configure(image=self.image_paths[self.index])
+        self.image = CTkImage(light_image=Image.open(self.image_paths[self.index]), dark_image=Image.open(self.image_paths[self.index]), size=(self.width, self.height))
+        self.lbl.configure(image=self.image)
     
     def play(self):
         if self.index == 0:
-            default = default_character(self.parent, self.width, self.height, "./assets/Animation_Game Over/default", "./assets/Animation_Wrong Answer/default")
+            default = default_character(self.parent, self.width, self.height, "./assets/Characters/default/game_over", "./assets/Characters/default/wrong_answer")
             default.pack()
             self.pack_forget()
         if self.index == 1:
-            allan = allan_character(self.parent, self.width, self.height, "./assets/Animation_Game Over/default", "./assets/Animation_Wrong Answer/default")
-            allan.pack()
+            # allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer")
+            # allan.pack()
             self.pack_forget()
         if self.index == 2:
             return "renzo"
         if self.index == 3:
             return "france"
         if self.index == 4:
-            return "richard"
+            richard= richard_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer")
+            richard.pack()
+            self.pack_forget()
         if self.index == 5:
             return "zyrus"

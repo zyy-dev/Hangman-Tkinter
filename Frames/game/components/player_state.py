@@ -24,8 +24,7 @@ class Player(ctk.CTkLabel):
         image_paths = []
         for file_name in os.listdir(self.folder_path_gameover):
             image_paths.append(self.folder_path_gameover + "/" + file_name)
-        index = int(list(self.folder_path_gameover).count("/")) + 1
-        return sorted(image_paths, key= lambda item: int(item.split("/")[index][:-4]))
+        return sorted(image_paths, key= lambda item: int(item.split("/")[-1][:-4]))
         
     def WrongAnswer(self, mistakes: int):
         image_paths = [] 

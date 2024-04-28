@@ -18,10 +18,9 @@ def start_game():
     main.pack_forget()
     animation = Animation(app, "./assets/Animation_Start Game", width=width, height=height, delay=20)
     animation.pack()
-    app.after(3000, lambda: animation.pack_forget())
     x = Choices(app, width, height)
     x.pack()
-
+    app.after(2000, lambda: animation.pack_forget())
 main = MainMenu(app, width, height, start_game)
 main.pack()
 
