@@ -1,6 +1,6 @@
 from customtkinter import *
-from pages.game.main import HangMan
-from pages.main_menu.main import MainMenu
+from Frames.choose_character.main import Choices
+from Frames.main_menu.main import MainMenu
 from animation import Animation
 
 # main window
@@ -15,15 +15,15 @@ set_appearance_mode("dark")
 app.title("Hangman")
 
 def start_game():
-    y.pack_forget()
+    main.pack_forget()
     animation = Animation(app, "./assets/Animation_Start Game", width=width, height=height, delay=20)
     animation.pack()
-    app.after(2000, lambda: animation.pack_forget())
-    x = HangMan(app, width, height, app)
+    app.after(3000, lambda: animation.pack_forget())
+    x = Choices(app, width, height)
     x.pack()
 
-y = MainMenu(app, width, height, start_game)
-y.pack()
+main = MainMenu(app, width, height, start_game)
+main.pack()
 
 app.mainloop()
 
