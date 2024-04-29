@@ -57,9 +57,9 @@ class Choices(CTkFrame):
             default.pack()
             self.pack_forget()
         if self.index == 1:
+            self.pack_forget()
             allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer", "allan")
             allan.pack()
-            self.pack_forget()
         if self.index == 2:
             renzo = renzo_character(self.parent, self.width, self.height, "./assets/Characters/renzo/game_over", "./assets/Characters/renzo/wrong_answer", "renzo")
             renzo.pack()

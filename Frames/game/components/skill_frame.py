@@ -13,7 +13,7 @@ class skill_frame(CTkFrame):
         
     def animate(self):
         if self.start_pos_x > self.end_pos_x:
-            self.start_pos_x -= 0.006
+            self.start_pos_x -= 0.004
             self.place(relx=self.start_pos_x, rely=self.pos_y, anchor="w")
-            self.after(10, self.animate)
+            self.after(20, self.animate)
             

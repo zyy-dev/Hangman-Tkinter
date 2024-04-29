@@ -24,7 +24,5 @@ def start_game():
 main = MainMenu(app, width, height, start_game)
 main.pack()
 
-app.mainloop()
-
 # run
 app.mainloop()

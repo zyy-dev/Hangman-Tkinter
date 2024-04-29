@@ -21,9 +21,9 @@ class Time(CTkFrame):
         
     def animate(self):
         if self.start_pos < self.end_pos:
-            self.start_pos += 0.006
+            self.start_pos += 0.004
             self.place(relx=self.start_pos, rely=0.1, anchor="e")
-            self.after(10, self.animate)
+            self.after(20, self.animate)
             
     def activate_time(self):
         if self.active:

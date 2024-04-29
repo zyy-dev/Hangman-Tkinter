@@ -1,11 +1,12 @@
 from customtkinter import *
+from PIL import Image
 
 class Keyboard(CTkFrame):
-    def __init__ (self, parent: object, guess: object, animation: object, main_tk: object, character: str, character_object: object) -> None:
+    def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
         self.guess = guess
-        self.animation = animation
+        self.player_state = player_state
         self.main_tk = main_tk
         self.character = character
         self.character_object = character_object
@@ -15,7 +16,6 @@ class Keyboard(CTkFrame):
                             # key: character
                             # value: reference address of Button Widgets
         self.key_already_pressed = []
-        self.available_key = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
         Upper_Button_Frame.pack(pady=8)
@@ -70,27 +70,30 @@ class Keyboard(CTkFrame):
         btn.configure(state="disabled")
         btn.configure(fg_color="#2f1947")
         btn.configure(text_color="#7A7381")
-        self.available_key.remove(btn.cget("text"))
 
         # if wrong key
         if not self.guess.validate_char(btn.cget("text")):
             btn.configure(border_width=1)
             btn.configure(border_color="red")
             
-            if self.character == "allan" and self.mistakes == 5:
-                self.character_object.skill_1()
-            if self.character == "allan" and self.character_object.skill_2_active:
-                self.character_object.skill_2_active = False
-                print ("skill 2 disabled")
-                return
+            self.mistakes += 1  
             
-            self.mistakes += 1    
+            if self.character == "allan":
+                self.cooldown = self.guess.current_level + 1
+                if self.mistakes == 5:
+                    self.character_object.skill_1()
+                    
+                if self.character_object.skill_2_active:
+                    self.character_object.skill_2_active = False
+                    self.cooldown = self.guess.current_level + 2
+                    return
+              
             if self.mistakes > 5:
                 btn.configure(state="disabled")
-                self.animation.GameOverAnimation()
+                self.player_state.GameOverAnimation()
                 self.disabled()
             else:
-                self.animation.WrongAnswer(self.mistakes)
+                self.player_state.WrongAnswer(self.mistakes)
         # if correct
         else:
             self.correct += 1
@@ -113,13 +116,20 @@ class Keyboard(CTkFrame):
             self.button_address[char].unbind("<Leave>")
     
     def reset(self) -> None:
-        self.animation.initial_image()
+        self.player_state.WrongAnswer(0)
         self.guess.next_level()
         self.main_tk.bind("<Key>", self.key_pressed)
+        self.character_object.lbl_lvl.configure(text=f"Level: {self.guess.current_level}")
         self.mistakes = 0
         self.correct = 0
         self.key_already_pressed = []
         for char in self.button_address:                       
             self.button_address[char].configure(state="normal", fg_color="#520CA1", text_color="#FFFFFF", border_width=0)
             self.button_address[char].bind("<Enter>", lambda event, btn=self.button_address[char]: self.on_hover(btn, event))
-            self.button_address[char].bind("<Leave>", lambda event, btn=self.button_address[char]: self.off_hover(btn, event)) 
+            self.button_address[char].bind("<Leave>", lambda event, btn=self.button_address[char]: self.off_hover(btn, event))
+         
+        if self.character == "allan":   
+            self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
+            self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
+            if self.guess.current_level == self.cooldown:
+                self.character_object.lbl_skill_2.bind("<Button-1>", self.character_object.skill_2)
