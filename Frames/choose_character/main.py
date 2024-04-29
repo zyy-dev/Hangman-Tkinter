@@ -53,23 +53,23 @@ class Choices(CTkFrame):
     
     def play(self):
         if self.index == 0:
-            default = default_character(self.parent, self.width, self.height, "./assets/Characters/default/game_over", "./assets/Characters/default/wrong_answer")
+            default = default_character(self.parent, self.width, self.height, "./assets/Characters/default/game_over", "./assets/Characters/default/wrong_answer", "default")
             default.pack()
             self.pack_forget()
         if self.index == 1:
-            allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer")
+            allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer", "allan")
             allan.pack()
             self.pack_forget()
         if self.index == 2:
-            renzo = renzo_character(self.parent, self.width, self.height, "./assets/Characters/renzo/game_over", "./assets/Characters/renzo/wrong_answer")
+            renzo = renzo_character(self.parent, self.width, self.height, "./assets/Characters/renzo/game_over", "./assets/Characters/renzo/wrong_answer", "renzo")
             renzo.pack()
             self.pack_forget()
         if self.index == 3:
-            france = france_character(self.parent, self.width, self.height, "./assets/Characters/france/game_over", "./assets/Characters/france/wrong_answer")
+            france = france_character(self.parent, self.width, self.height, "./assets/Characters/france/game_over", "./assets/Characters/france/wrong_answer", "france")
             france.pack()
             self.pack_forget()
         if self.index == 4:
-            richard = richard_character(self.parent, self.width, self.height, "./assets/Characters/richard/game_over", "./assets/Characters/richard/wrong_answer")
+            richard = richard_character(self.parent, self.width, self.height, "./assets/Characters/richard/game_over", "./assets/Characters/richard/wrong_answer", "richard")
             richard.pack()
             self.pack_forget()
         if self.index == 5:

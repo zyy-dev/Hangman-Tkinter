@@ -4,8 +4,8 @@ from PIL import Image
 from customtkinter import *
 
 class richard_character(default_character):
-    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str):
-        super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer)
+    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str):
+        super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer, character=character)
         
         self.frame1 = skill_frame(self, 0.1)
         logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_1.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_1.jpeg"), size=(85, 85))

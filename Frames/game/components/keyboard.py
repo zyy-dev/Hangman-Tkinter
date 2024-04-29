@@ -1,18 +1,21 @@
 from customtkinter import *
 
 class Keyboard(CTkFrame):
-    def __init__ (self, parent: object, guess: object, animation: object, main_tk: object) -> None:
+    def __init__ (self, parent: object, guess: object, animation: object, main_tk: object, character: str, character_object: object) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
         self.guess = guess
         self.animation = animation
         self.main_tk = main_tk
+        self.character = character
+        self.character_object = character_object
         self.mistakes = 0
         self.correct = 0
         self.button_address = {}
                             # key: character
                             # value: reference address of Button Widgets
         self.key_already_pressed = []
+        self.available_key = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
         Upper_Button_Frame.pack(pady=8)
@@ -67,13 +70,21 @@ class Keyboard(CTkFrame):
         btn.configure(state="disabled")
         btn.configure(fg_color="#2f1947")
         btn.configure(text_color="#7A7381")
+        self.available_key.remove(btn.cget("text"))
 
         # if wrong key
         if not self.guess.validate_char(btn.cget("text")):
             btn.configure(border_width=1)
             btn.configure(border_color="red")
             
-            self.mistakes += 1
+            if self.character == "allan" and self.mistakes == 5:
+                self.character_object.skill_1()
+            if self.character == "allan" and self.character_object.skill_2_active:
+                self.character_object.skill_2_active = False
+                print ("skill 2 disabled")
+                return
+            
+            self.mistakes += 1    
             if self.mistakes > 5:
                 btn.configure(state="disabled")
                 self.animation.GameOverAnimation()
@@ -112,5 +123,3 @@ class Keyboard(CTkFrame):
             self.button_address[char].configure(state="normal", fg_color="#520CA1", text_color="#FFFFFF", border_width=0)
             self.button_address[char].bind("<Enter>", lambda event, btn=self.button_address[char]: self.on_hover(btn, event))
             self.button_address[char].bind("<Leave>", lambda event, btn=self.button_address[char]: self.off_hover(btn, event)) 
-            
-            

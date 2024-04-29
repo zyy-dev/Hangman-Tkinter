@@ -25,7 +25,7 @@ class SlideFrame(CTkFrame):
             
 
 class default_character(CTkFrame):
-    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str):
+    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str):
         super().__init__(master=parent, width=width, height=height, fg_color="transparent")
         
         parent_div = CTkFrame(self)
@@ -36,13 +36,13 @@ class default_character(CTkFrame):
       
         frame = SlideFrame(parent_div, 1, 0.64)
 
-        guess = Guess(frame)
-        guess.pack(pady=20)
+        self.guess = Guess(frame)
+        self.guess.pack(pady=20)
 
-        keyboard = Keyboard(frame, guess, player_state, parent)
-        keyboard.pack()
+        self.keyboard = Keyboard(frame, self.guess, player_state, parent, character, self)
+        self.keyboard.pack()
         
-        self.time = Time(parent_div, 0, 0.08, player_state, keyboard)
+        self.time = Time(parent_div, 0, 0.08, player_state, self.keyboard)
         
     def stop_time(self):
         self.time.active = False
