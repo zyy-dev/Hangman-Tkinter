@@ -27,14 +27,5 @@ main.pack()
 app.mainloop()
 
 
-
-
-
-
-
-
-
-
-
 # run
 app.mainloop()
