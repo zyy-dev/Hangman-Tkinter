@@ -55,7 +55,8 @@ class Guess(CTkFrame):
         self.generate_boxes()
         
         if self.character == "richard":
-            self.character_object.lbl_skill_2.configure(text="")
+            print (self.character_object.skill_2_remaining_time)
+            self.character_object.skill_2_remaining_time = 0
             self.character_object.frame2.configure(border_color="red")
             if self.character_object.cooldown == self.current_level:
                 self.character_object.lbl_skill_2.unbind("<Button-1>")

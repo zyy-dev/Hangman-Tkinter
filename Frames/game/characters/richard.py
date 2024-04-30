@@ -17,7 +17,7 @@ class richard_character(default_character):
         self.lbl_skill_2 = CTkLabel(self.frame2, text="", image=self.logo_skill_2)
         self.lbl_skill_2.pack(padx=7, side="left")
         self.lbl_skill_2.bind("<Button-1>", lambda e: self.skill_2_clicked(e))
-        
+        self.skill_2_remaining_time = 20
         self.skill_2_name = "tap tap tap"
         
         self.skill_1()
@@ -34,12 +34,14 @@ class richard_character(default_character):
         print(self.time.active)
         self.skill_activated()
 
-        
-    def skill_activated(self, remaining_time = 20):
-        if remaining_time:
-            self.lbl_skill_2.configure(text=str(remaining_time), font=("courier", -25, "bold"))
-            self.after(1200, lambda: self.skill_activated(remaining_time - 1))
+        # this is a recursion if u want to stop the time, then set the attribute of self.skill_2_remaining_time = 0
+    def skill_activated(self):
+        if self.skill_2_remaining_time:
+            self.lbl_skill_2.configure(text=str(self.skill_2_remaining_time), font=("courier", -25, "bold"))
+            self.skill_2_remaining_time -= 1
+            self.after(1200, self.skill_activated)
         else:
+            self.skill_2_remaining_time = 20
             self.lbl_skill_2.configure(text="")
             self.frame2.configure(border_color="red")
             
