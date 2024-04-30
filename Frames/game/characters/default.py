@@ -53,7 +53,7 @@ class default_character(CTkFrame):
         self.keyboard = Keyboard(frame, self.guess, player_state, parent, character, self)
         self.keyboard.pack()
         
-        self.time = Time(parent_div, 0, 0.07, player_state, self.keyboard, character, self)
+        self.time = Time(parent_div, 0, 0.08, player_state, self.keyboard, character, self)
         
         frm_lvl = SlideFrame(parent_div, 0, 0.05, 200)
         self.lbl_lvl = CTkLabel(frm_lvl, text=f"Level: {self.guess.current_level}", font=("courier", -20, "bold"))

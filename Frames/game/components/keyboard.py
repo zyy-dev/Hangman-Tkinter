@@ -17,8 +17,6 @@ class Keyboard(CTkFrame):
                             # value: reference address of Button Widgets
         self.key_already_pressed = []
         
-        self.france_skill = False
-        
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
         Upper_Button_Frame.pack(pady=8)
         for char in "ABCDEFGHIJKLMN":
@@ -67,15 +65,16 @@ class Keyboard(CTkFrame):
         btn.configure(text_color="#FFFFFF", fg_color="#520CA1")
         
     def clicked(self, btn: object) -> None:
-        print (btn.cget("text"))
+        char = btn.cget("text")
         btn.unbind("<Enter>")
         btn.unbind("<Leave>")
         btn.configure(state="disabled")
         btn.configure(fg_color="#2f1947")
         btn.configure(text_color="#7A7381")
+        self.key_already_pressed.append(char)
 
         # if wrong key
-        if not self.guess.validate_char(btn.cget("text")):
+        if not self.guess.validate_char(char):
             btn.configure(border_width=1)
             btn.configure(border_color="red")
             
@@ -84,13 +83,20 @@ class Keyboard(CTkFrame):
             if self.character == "allan":
                 if self.mistakes == 4:
                     self.character_object.skill_1()
+                    
+                # this will make the wrong key to dont reflect with the counts of mistake    
                 if self.character_object.skill_2_active:
+                    # re-declare it because we only want the skill to take effect once
                     self.character_object.skill_2_active = False
-                    self.cooldown = self.guess.current_level + 2
-                    return
+                    # stop the method before it reflect the increment to self.mistakes
+                    return 
                 
             if self.character == "france":
-                if self.france_skill:
+                if self.character_object.skill_2_state:
+                    return
+                
+            if self.character == "zyrus":
+                if self.character_object.skill_1_state:
                     return
                     
             
@@ -113,7 +119,8 @@ class Keyboard(CTkFrame):
         selected = event.char.upper()
         if selected in self.button_address and selected not in self.key_already_pressed:
             self.clicked(self.button_address[selected])
-            self.key_already_pressed.append(selected)
+
+            
             
     def disabled(self) -> None:
         self.main_tk.unbind("<Key>")
@@ -134,12 +141,15 @@ class Keyboard(CTkFrame):
             self.button_address[char].configure(state="normal", fg_color="#520CA1", text_color="#FFFFFF", border_width=0)
             self.button_address[char].bind("<Enter>", lambda event, btn=self.button_address[char]: self.on_hover(btn, event))
             self.button_address[char].bind("<Leave>", lambda event, btn=self.button_address[char]: self.off_hover(btn, event))
-         
-        if self.character == "allan":   
-            self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
-            self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
-            try:
-                if self.guess.current_level == self.cooldown:
+                
+        if self.character == "allan":
+            if self.character_object.cooldown == self.guess.current_level:
                     self.character_object.lbl_skill_2.bind("<Button-1>", self.character_object.skill_2)
-            except:
-                print ("skill not used")
+                    self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
+                    self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
+                    
+        if self.character == "zyrus":
+            if self.character_object.cooldown == self.guess.current_level:
+                    self.character_object.lbl_skill_1.bind("<Button-1>", self.character_object.skill_1)
+                    self.character_object.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), size=(85, 85))
+                    self.character_object.lbl_skill_1.configure(image=self.character_object.logo_skill_1)  

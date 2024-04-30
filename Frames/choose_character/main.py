@@ -7,6 +7,8 @@ from Frames.game.characters.richard import richard_character
 from Frames.game.characters.renzo import renzo_character
 from Frames.game.characters.france import france_character
 
+from Frames.choose_character.info import SlideFrame
+
 class Choices(CTkFrame):
     def __init__(self, parent: object, width:int, height: int):
         super().__init__(master=parent, width=width, height=height)
@@ -34,8 +36,10 @@ class Choices(CTkFrame):
         self.btn_play = CTkButton(self, text="play", command=self.play)
         self.btn_play.place(relx=0.5, rely=0.8, anchor="center")
         
+        # description = SlideFrame(self)
+        # description.frame_description(0)
+        
     def right(self):
-        print ("right ffdsagesgetgwWRGwegrsgrsgwetgweggsdfsdf")
         if self.index == len(self.image_paths) - 1:
             self.index = 0
         else:
@@ -73,6 +77,8 @@ class Choices(CTkFrame):
             richard.pack()
             self.pack_forget()
         if self.index == 5:
-            zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer")
+            zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer", "zyrus")
             zyrus.pack()
             self.pack_forget()
+            
+        

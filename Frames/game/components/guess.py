@@ -51,6 +51,7 @@ class Guess(CTkFrame):
         self.category, self.word_to_guess = words.random_word(self.current_level)
         self.correct_characters = set(self.word_to_guess)
         self.lbl_category.configure(text=self.category)
+        
         self.frm.pack_forget()
         self.generate_boxes()
         
