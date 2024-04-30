@@ -65,6 +65,7 @@ class Keyboard(CTkFrame):
         btn.configure(text_color="#FFFFFF", fg_color="#520CA1")
         
     def clicked(self, btn: object) -> None:
+        print (btn.cget("text"))
         btn.unbind("<Enter>")
         btn.unbind("<Leave>")
         btn.configure(state="disabled")
@@ -79,10 +80,8 @@ class Keyboard(CTkFrame):
             self.mistakes += 1  
             
             if self.character == "allan":
-                self.cooldown = self.guess.current_level + 1
                 if self.mistakes == 5:
                     self.character_object.skill_1()
-                    
                 if self.character_object.skill_2_active:
                     self.character_object.skill_2_active = False
                     self.cooldown = self.guess.current_level + 2
@@ -131,5 +130,8 @@ class Keyboard(CTkFrame):
         if self.character == "allan":   
             self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
             self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
-            if self.guess.current_level == self.cooldown:
-                self.character_object.lbl_skill_2.bind("<Button-1>", self.character_object.skill_2)
+            try:
+                if self.guess.current_level == self.cooldown:
+                    self.character_object.lbl_skill_2.bind("<Button-1>", self.character_object.skill_2)
+            except:
+                print ("skill not used")

@@ -24,7 +24,8 @@ class Time(CTkFrame):
             self.start_pos += 0.004
             self.place(relx=self.start_pos, rely=0.1, anchor="e")
             self.after(20, self.animate)
-            
+    
+    # this is a recursion so if u want to stop the time, just change the self.active attribute
     def activate_time(self):
         if self.active:
             if self.seconds > 0:

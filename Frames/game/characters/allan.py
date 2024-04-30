@@ -22,7 +22,7 @@ class allan_character(default_character):
         
     def skill_1(self):
         print ("skill 1 activated")
-        random_letter = random.choices(self.guess.word_to_guess)[0].upper()
+        random_letter = random.choices(list(self.guess.correct_characters))[0].upper()
         print (random_letter)
         self.keyboard.clicked(self.keyboard.button_address[random_letter])
         
@@ -31,3 +31,4 @@ class allan_character(default_character):
         self.lbl_skill_2.unbind("<Button-1>")
         self.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2_activate.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2_activate.png"), size=(85, 85))
         self.lbl_skill_2.configure(image=self.logo_skill_2)
+        

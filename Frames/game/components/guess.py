@@ -1,12 +1,16 @@
 from customtkinter import *
 from Frames.game.components.words import words
+from PIL import Image
 
 class Guess(CTkFrame):
-    def __init__(self, parent: object) -> None:
+    def __init__(self, parent: object, character_object: object, character: str) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
+        self.character_object = character_object
+        self.character = character
         self.current_level = 1
         self.category, self.word_to_guess = words.random_word(self.current_level)
+        self.correct_characters = set(self.word_to_guess)
         self.frame_address = [] # list the will be used to store tuple combinations of
                                 # letter and reference address to the frame widget
                                 
@@ -29,6 +33,7 @@ class Guess(CTkFrame):
     def validate_char(self, char: str) -> bool:
         
         if char in self.word_to_guess:
+            self.correct_characters.remove(char)
             for letter, frame in self.frame_address:
                 if char == letter:
                     frame.configure(fg_color="#2f1947")
@@ -44,9 +49,21 @@ class Guess(CTkFrame):
     def next_level(self):
         self.current_level += 1
         self.category, self.word_to_guess = words.random_word(self.current_level)
+        self.correct_characters = set(self.word_to_guess)
         self.lbl_category.configure(text=self.category)
         self.frm.pack_forget()
         self.generate_boxes()
+        
+        if self.character == "richard":
+            self.character_object.lbl_skill_2.configure(text="")
+            self.character_object.frame2.configure(border_color="red")
+            if self.character_object.cooldown == self.current_level:
+                self.character_object.lbl_skill_2.unbind("<Button-1>")
+                self.character_object.frame2.configure(border_color="")
+                
+                self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), size=(85, 85))
+                self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
+                self.character_object.lbl_skill_2.bind("<Button-1>", lambda e: self.character_object.skill_2_clicked(e))
             
         
         

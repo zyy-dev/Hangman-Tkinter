@@ -42,12 +42,12 @@ class default_character(CTkFrame):
         parent_div = CTkFrame(self)
         parent_div.pack()
 
-        player_state = Player(parent_div, path_game_over, path_wrong_answer, width, height, self.stop_time)
+        player_state = Player(parent_div, path_game_over, path_wrong_answer, width, height, self)
         player_state.pack()
       
         frame = SlideFrame(parent_div, 1, 0.64, 1000)
 
-        self.guess = Guess(frame)
+        self.guess = Guess(frame, self, character)
         self.guess.pack(pady=20)
 
         self.keyboard = Keyboard(frame, self.guess, player_state, parent, character, self)
@@ -58,6 +58,3 @@ class default_character(CTkFrame):
         frm_lvl = SlideFrame(parent_div, 0, 0.05, 200)
         self.lbl_lvl = CTkLabel(frm_lvl, text=f"Level: {self.guess.current_level}", font=("courier", -20, "bold"))
         self.lbl_lvl.pack(side="bottom", pady=7)
-        
-    def stop_time(self):
-        self.time.active = False
