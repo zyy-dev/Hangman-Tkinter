@@ -22,9 +22,10 @@ class richard_character(default_character):
         
         self.skill_1()
     def skill_1(self):
-        self.time.time_speed = 2000
+        self.time.time_speed = 1200
 
     def skill_2_clicked(self, event):
+        self.skill_2_remaining_time = 20
         self.cooldown : int = self.guess.current_level + 2
         self.lbl_skill_2.unbind("<Button-1>")
         self.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_2_activate.jpg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_2_activate.jpg"), size=(85, 85))
@@ -55,4 +56,4 @@ class richard_character(default_character):
         notif = CTkLabel(self, text=f"{self.skill_2_name} is on cooldown...")
         notif.place(relx=0.5, rely=0.5, anchor="center")
     
-        notif.after(2000, lambda: notif.configure(text=""))
+        notif.after(2000, lambda: notif.destroy())

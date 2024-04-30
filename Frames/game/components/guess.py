@@ -56,11 +56,9 @@ class Guess(CTkFrame):
         
         if self.character == "richard":
             self.character_object.skill_2_remaining_time = 0
-            self.character_object.frame2.configure(border_color="red")
             try:
                 if self.character_object.cooldown == self.current_level:
                     self.character_object.lbl_skill_2.unbind("<Button-1>")
-                    self.character_object.frame2.configure(border_color="")
                     
                     self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), size=(85, 85))
                     self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)

@@ -14,7 +14,7 @@ class Time(CTkFrame):
         self.time_speed = 1000
         self.pack_propagate(False)
         self.place(relx=self.start_pos, rely=0.1, anchor="e")
-        self.seconds = 100
+        self.seconds = 200
         self.lbl_time = CTkLabel(self, text=str(self.seconds), font=("courier", -40, "bold"))
         self.lbl_time.pack(side="right", padx=20)
         
@@ -43,3 +43,4 @@ class Time(CTkFrame):
             else:
                 self.player_state.GameOverAnimation()
                 self.keyboard.disabled()
+                

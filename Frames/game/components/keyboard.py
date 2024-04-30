@@ -17,6 +17,8 @@ class Keyboard(CTkFrame):
                             # value: reference address of Button Widgets
         self.key_already_pressed = []
         
+        self.france_skill = False
+        
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
         Upper_Button_Frame.pack(pady=8)
         for char in "ABCDEFGHIJKLMN":
@@ -86,6 +88,11 @@ class Keyboard(CTkFrame):
                     self.character_object.skill_2_active = False
                     self.cooldown = self.guess.current_level + 2
                     return
+                
+            if self.character == "france":
+                if self.france_skill:
+                    return
+                    
             
             self.mistakes += 1    
             if self.mistakes > 5:
