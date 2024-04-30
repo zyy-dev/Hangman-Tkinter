@@ -1,12 +1,14 @@
 from customtkinter import *
 
 class Time(CTkFrame):
-    def __init__ (self, parent, start_pos, end_pos, player_state: object, keyboard: object):
+    def __init__ (self, parent, start_pos, end_pos, player_state: object, keyboard: object, character: str, character_object: object):
         super().__init__(master=parent, width=1000, height=80, corner_radius=0, border_width=5)
         self.player_state = player_state
         self.keyboard = keyboard
         self.start_pos = start_pos
         self.end_pos = end_pos
+        self.character = character
+        self.character_object = character_object
         
         self.active = True
         self.time_speed = 1000
@@ -31,6 +33,12 @@ class Time(CTkFrame):
             if self.seconds > 0:
                 self.seconds -= 1
                 self.lbl_time.configure(text=str(self.seconds))
+                
+                if self.character == "france":
+            
+                    if self.seconds == 0:
+                        self.character_object.skill_1()
+                
                 self.after(self.time_speed, self.activate_time)
             else:
                 self.player_state.GameOverAnimation()
