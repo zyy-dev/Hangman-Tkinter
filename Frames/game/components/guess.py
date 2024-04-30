@@ -55,17 +55,19 @@ class Guess(CTkFrame):
         self.generate_boxes()
         
         if self.character == "richard":
-            print (self.character_object.skill_2_remaining_time)
             self.character_object.skill_2_remaining_time = 0
             self.character_object.frame2.configure(border_color="red")
-            if self.character_object.cooldown == self.current_level:
-                self.character_object.lbl_skill_2.unbind("<Button-1>")
-                self.character_object.frame2.configure(border_color="")
-                
-                self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), size=(85, 85))
-                self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
-                self.character_object.lbl_skill_2.bind("<Button-1>", lambda e: self.character_object.skill_2_clicked(e))
-            
+            try:
+                if self.character_object.cooldown == self.current_level:
+                    self.character_object.lbl_skill_2.unbind("<Button-1>")
+                    self.character_object.frame2.configure(border_color="")
+                    
+                    self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), size=(85, 85))
+                    self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
+                    self.character_object.lbl_skill_2.bind("<Button-1>", lambda e: self.character_object.skill_2_clicked(e))
+                    self.character_object.skill_2_remaining_time = 20
+            except:
+                print ("skill 2 not used")
         
         
                     

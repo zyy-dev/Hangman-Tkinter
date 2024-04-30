@@ -29,13 +29,13 @@ class richard_character(default_character):
         self.lbl_skill_2.unbind("<Button-1>")
         self.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_2_activate.jpg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_2_activate.jpg"), size=(85, 85))
         self.lbl_skill_2.configure(image=self.logo_skill_2)
-        print(self.time.active)
+
         self.time.active = False
-        print(self.time.active)
         self.skill_activated()
 
         # this is a recursion if u want to stop the time, then set the attribute of self.skill_2_remaining_time = 0
     def skill_activated(self):
+        print ("activated", self.skill_2_remaining_time)
         if self.skill_2_remaining_time:
             self.lbl_skill_2.configure(text=str(self.skill_2_remaining_time), font=("courier", -25, "bold"))
             self.skill_2_remaining_time -= 1
