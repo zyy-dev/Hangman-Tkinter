@@ -77,16 +77,17 @@ class Keyboard(CTkFrame):
             btn.configure(border_width=1)
             btn.configure(border_color="red")
             
-            self.mistakes += 1  
+            
             
             if self.character == "allan":
-                if self.mistakes == 5:
+                if self.mistakes == 4:
                     self.character_object.skill_1()
                 if self.character_object.skill_2_active:
                     self.character_object.skill_2_active = False
                     self.cooldown = self.guess.current_level + 2
                     return
-              
+            
+            self.mistakes += 1    
             if self.mistakes > 5:
                 btn.configure(state="disabled")
                 self.player_state.GameOverAnimation()
