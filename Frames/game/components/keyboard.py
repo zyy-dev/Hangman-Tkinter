@@ -148,7 +148,10 @@ class Keyboard(CTkFrame):
                     self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
                     
         if self.character == "zyrus":
-            if self.character_object.cooldown == self.guess.current_level:
-                    self.character_object.lbl_skill_1.bind("<Button-1>", self.character_object.skill_1)
-                    self.character_object.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), size=(85, 85))
-                    self.character_object.lbl_skill_1.configure(image=self.character_object.logo_skill_1)  
+            try:
+                if self.character_object.cooldown == self.guess.current_level:
+                        self.character_object.lbl_skill_1.bind("<Button-1>", self.character_object.skill_1)
+                        self.character_object.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), size=(85, 85))
+                        self.character_object.lbl_skill_1.configure(image=self.character_object.logo_skill_1)
+            except:
+                print ("skill 1 not used yet")  
