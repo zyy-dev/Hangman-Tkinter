@@ -10,8 +10,9 @@ class richard_character(default_character):
         # Skill 1
         self.frame1 = skill_frame(self, 0.1)
         logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_1.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_1.jpeg"), size=(85, 85))
-        lbl_skill_1 = CTkLabel(self.frame1, text="", image=logo_skill_1)
-        lbl_skill_1.pack(padx=7, side="left")
+        self.lbl_skill_1 = CTkLabel(self.frame1, text="", image=logo_skill_1)
+        self.lbl_skill_1.pack(padx=7, side="left")
+        self.lbl_skill_1.bind("<Button-1>", lambda e: self.skill_1_notif(e))
         
         # Skill 2
         self.frame2 = skill_frame(self, 0.25)
