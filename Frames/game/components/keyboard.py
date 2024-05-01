@@ -142,16 +142,25 @@ class Keyboard(CTkFrame):
             self.button_address[char].bind("<Leave>", lambda event, btn=self.button_address[char]: self.off_hover(btn, event))
                 
         if self.character == "allan":
-            if self.character_object.cooldown == self.guess.current_level:
+            try:
+                if self.character_object.cooldown == self.guess.current_level:
+                    # unbind to the notification
+                    self.character_object.lbl_skill_2.unbind("<Button-1>")
                     self.character_object.lbl_skill_2.bind("<Button-1>", self.character_object.skill_2)
                     self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
                     self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
+            except:
+                print ("skill 2 not used yet")
                     
         if self.character == "zyrus":
             try:
                 if self.character_object.cooldown == self.guess.current_level:
-                        self.character_object.lbl_skill_1.bind("<Button-1>", self.character_object.skill_1)
-                        self.character_object.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), size=(85, 85))
-                        self.character_object.lbl_skill_1.configure(image=self.character_object.logo_skill_1)
+                    # unbind to the notification
+                    self.lbl_skill_1.unbind("<Button-1>")
+                    
+                    # bind again
+                    self.character_object.lbl_skill_1.bind("<Button-1>", self.character_object.skill_1)
+                    self.character_object.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), size=(85, 85))
+                    self.character_object.lbl_skill_1.configure(image=self.character_object.logo_skill_1)
             except:
                 print ("skill 1 not used yet")  

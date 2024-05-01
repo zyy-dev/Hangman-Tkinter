@@ -22,6 +22,8 @@ class allan_character(default_character):
         self.lbl_skill_2.pack(padx=7, side="left")
         self.lbl_skill_2.bind("<Button-1>", lambda e: self.skill_2(e))
         
+        self.skill_1_name = "The Last Minute Man"
+        
         # initialize that the skill 2 wasn't yet activated, this will be used under the keyboard module
         self.skill_2_active = False
 
