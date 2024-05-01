@@ -41,6 +41,9 @@ class france_character(default_character):
             notice.place(relx=0.5, rely=0.5, anchor="center")
             notice.after(2000, lambda: notice.destroy())
             
+            self.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/france/skills_icon/skill_1_activate.jpg"), dark_image=Image.open("./assets/Characters/france/skills_icon/skill_1_activate.jpg"), size=(85, 85))
+            self.lbl_skill_1.configure(image=self.logo_skill_1)
+            
     def skill_1_notif(self, event):
         # Just incase if the user is dumb enough to realize that passice skill doesn't need to be clicked
         notif = CTkLabel(self, text=f"This is a passive skill")

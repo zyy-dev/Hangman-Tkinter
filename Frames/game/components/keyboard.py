@@ -78,8 +78,6 @@ class Keyboard(CTkFrame):
             btn.configure(border_width=1)
             btn.configure(border_color="red")
             
-            
-            
             if self.character == "allan":
                 if self.mistakes == 4:
                     self.character_object.skill_1()
@@ -129,6 +127,7 @@ class Keyboard(CTkFrame):
             self.button_address[char].unbind("<Enter>")
             self.button_address[char].unbind("<Leave>")
     
+    # this means proceed to next level
     def reset(self) -> None:
         self.player_state.WrongAnswer(0)
         self.guess.next_level()
