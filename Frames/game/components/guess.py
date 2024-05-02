@@ -1,5 +1,5 @@
 from customtkinter import *
-from Frames.game.components.words import words
+from Data.words import words
 from PIL import Image
 
 class Guess(CTkFrame):

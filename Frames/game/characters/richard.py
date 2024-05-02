@@ -1,11 +1,13 @@
 from Frames.game.characters.default import default_character
 from Frames.game.components.skill_frame import skill_frame
+from Frames.game.components.hover_frame import hover_frame
 from PIL import Image
 from customtkinter import *
 
 class richard_character(default_character):
     def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str):
         super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer, character=character)
+        self.character = character
         
         # Skill 1
         self.frame1 = skill_frame(self, 0.1)
@@ -13,6 +15,8 @@ class richard_character(default_character):
         self.lbl_skill_1 = CTkLabel(self.frame1, text="", image=logo_skill_1)
         self.lbl_skill_1.pack(padx=7, side="left")
         self.lbl_skill_1.bind("<Button-1>", lambda e: self.skill_1_notif(e))
+        self.lbl_skill_1.bind("<Enter>", lambda e: self.on_hover_skill_1(e))
+        self.lbl_skill_1.bind("<Leave>", lambda e: self.off_hover_skill_1(e))
         
         # Skill 2
         self.frame2 = skill_frame(self, 0.25)
@@ -20,9 +24,29 @@ class richard_character(default_character):
         self.lbl_skill_2 = CTkLabel(self.frame2, text="", image=self.logo_skill_2)
         self.lbl_skill_2.pack(padx=7, side="left")
         self.lbl_skill_2.bind("<Button-1>", lambda e: self.skill_2_clicked(e))
+        self.lbl_skill_2.bind("<Enter>", lambda e: self.on_hover_skill_2(e))
+        self.lbl_skill_2.bind("<Leave>", lambda e: self.off_hover_skill_2(e))
         
         # Skills Initialization
         self.skill_1()
+        
+        
+        
+    def on_hover_skill_1(self, event):
+        self.hover_skill_1 = hover_frame(self, 250, 80, 1, self.character)
+        
+    def off_hover_skill_1(self, event):
+        self.hover_skill_1.destroy()
+        
+    def on_hover_skill_2(self, event):
+        self.hover_skill_2 = hover_frame(self, 400, 90, 2, self.character)
+        
+    def off_hover_skill_2(self, event):
+        self.hover_skill_2.destroy()
+        
+        
+        
+        
     
         # this method will re_assign the time_speed of the time_frame module
     def skill_1(self):
