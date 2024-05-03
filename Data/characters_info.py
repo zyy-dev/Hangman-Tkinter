@@ -52,7 +52,17 @@ class CharacterInfo:
             "cooldown" : "1 round"
             }}
         
-        
+        self.renzo = {
+            1 : {
+            "name" : "Pwede po parevert?",
+            "description" : "This ability grants players the ability to change the word given by Renzo, offering significant assistance when they struggle to guess the original word.",
+            "cooldown" : "Passive Skill"
+                },
+            2 : {
+            "name" : "Shinigami Eyes!",
+            "description" : "Players have the choice to spend 10 points in exchange for acquiring Renzo's Eyes (Shinigami Eyes) power. This newfound ability allows them to predict half of the letters needed to complete the level's word.",
+            "cooldown" : "2 round"
+            }}
         
     def skill_info(self, skill_number: int, character: str) -> tuple[str, str, str]:
         if character == "zyrus":
