@@ -40,8 +40,39 @@ class Words:
         "Cat Breeds": ['siamese', 'burmese', 'persian', 'sphynx', 'siberian', 'balinese'],
         "Programming Languages": ['python', 'javascript', 'rust', 'swift', 'go', 'sql', 'assembly', 'php']},
           10: {
-        "Movies": ['titanic', 'twilight', 'alladin', 'jumanji', 'ghostbusters', 'saw', 'godzilla', 'transformers']},
-    }
+        "Movies": ['titanic', 'twilight', 'alladin', 'jumanji', 'ghostbusters', 'saw', 'godzilla', 'transformers'],
+        "Anime": ['hunterxhunter','fairytale','naruto','onepiece','kakeguruui','bleach','haikyu','chainsawman'],},
+          11: {
+        "Desserts": ['bibingka','lecheplan','macarons','icecream','pastillas','yema','brownies','cookies','muffins'],
+        "Scientist": ['rutherford','curie','galilei','edison','mandeleev','einstein','chomsky','goodall','newton']},
+          12: {
+        "Painters": ['picasso','michaelangelo','leonardo','vincent','rembrandt'],
+        "Music Artists": ['taylor','rihhana','justin','britney','bruno']},
+          13: {
+        "Pokemons": ["charmander","pikachu","meowth","charizard","blastoise","squirtle"],
+        "Cartoon Characters": ['garfield','shrek','dora','woody','elsa','squidward']},
+          14: {
+        "Professions 2": ["astronaut","biologist","nutritionist","cryptographer","archaeologist"],
+        "Hormones": ["insulin","glucagon","cortisol","dopamine","testosterone","melatonin","estrogen"]},
+         15: {
+        "Mathematical Theorem": ["pythagorean","fibonacci","quadratic","derivative","integral","polynomial"],
+        "Greek Mythology": ["hephaestus","hercules","odysseus","hermes","aphrodite","athena","pandora"]},
+         16: {
+        "Natural Phenomena": ["borealis","bioluminescent","rainbow","lightning","baselt","sinkholes"],
+        "Gem stones": ["sapphire","ruby","amethyst","aquamarines","diamond","emerald","jade"]},
+         17: {
+        "Martial Arts": ["muaythai","jiujitsu","taekwondo","ninjutsu","karate","judo"],
+        "Ancient Civilizations": ["mesopotamia","sumer","persia","egypt","aztec","indus"]},
+         18: {
+        "Dance Styles": ["ballet","jazz","tango","salsa","ballroom","swing","flamenco","contemporary","foxtrot"],
+        "World Religions": ["christianity","buddhism","hinduism","judaism","taoism","sikhism"]},
+         19: {
+        "Types of Flowers": ["orchid","hydrangea","carnation","marigold","dahlia","hyacinth"],
+        "Mythical Creatures": ["unicorn","phoenix","centaur","cyclops","minataur","medusa","werewolf"]},
+         20: {
+        "Historical Events": ["holocaust","enlightenment","colonialism","revolution","exploration","crusades"],
+        "Social Problems": ["marginalization","Stigmatization","exploitation","discrimination","degradation"]},
+        }
         
     def random_word(self, level: int) -> tuple[str, str]:
         try:
