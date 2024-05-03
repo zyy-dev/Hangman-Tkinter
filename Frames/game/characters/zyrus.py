@@ -27,6 +27,8 @@ class zyrus_character(default_character):
         self.lbl_skill_2.bind("<Enter>", lambda e: self.on_hover_skill_2(e))
         self.lbl_skill_2.bind("<Leave>", lambda e: self.off_hover_skill_2(e))
         
+        self.skill_1_state = False
+        
     def on_hover_skill_1(self, event):
         self.hover_skill_1 = hover_frame(self, 400, 100, 1, self.character)
         
@@ -38,10 +40,7 @@ class zyrus_character(default_character):
         
     def off_hover_skill_2(self, event):
         self.hover_skill_2.destroy()
-        
-        
-        
-        
+            
 
     def skill_1(self, event):
         # set this True to make the pressed keys to dont reflect with the count of mistakes
