@@ -1,13 +1,11 @@
 from customtkinter import *
 from PIL import Image
-from Frames.game.characters.default import default_character
+from Frames.game.characters.default import default_character, slide_frame
 from Frames.game.characters.allan import allan_character
 from Frames.game.characters.zyrus import zyrus_character
 from Frames.game.characters.richard import richard_character
 from Frames.game.characters.renzo import renzo_character
 from Frames.game.characters.france import france_character
-
-from Frames.choose_character.info import SlideFrame
 
 class Choices(CTkFrame):
     def __init__(self, parent: object, width:int, height: int):
@@ -36,9 +34,18 @@ class Choices(CTkFrame):
         self.btn_play = CTkButton(self, text="play", command=self.play)
         self.btn_play.place(relx=0.5, rely=0.8, anchor="center")
         
-        # description = SlideFrame(self)
-        # description.frame_description(0)
+        # character_information_frame = slide_frame(self, 1, 0.64, 1000)
+        # character_information_frame.animate_upwards()
         
+        # sub_frm = CTkFrame(character_information_frame, corner_radius=0, bg_color="transparent", border_width=0)
+        # sub_frm.pack_propagate(False)
+        # sub_frm.pack()
+        
+        
+        parent.bind('<Return>', lambda e: self.play())
+        parent.bind('<Left>', lambda e: self.left())
+        parent.bind('<Right>', lambda e: self.right())
+
     def right(self):
         if self.index == len(self.image_paths) - 1:
             self.index = 0
