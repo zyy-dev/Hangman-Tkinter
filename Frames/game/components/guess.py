@@ -48,6 +48,12 @@ class Guess(CTkFrame):
                     
     def next_level(self):
         self.current_level += 1
+        
+        if self.character == "renzo":
+            if self.character_object.skill_1_state:
+                self.current_level -= 1
+                self.character_object.skill_1_state = False
+        
         self.category, self.word_to_guess = words.random_word(self.current_level)
         self.correct_characters = set(self.word_to_guess)
         self.lbl_category.configure(text=self.category)
@@ -67,6 +73,8 @@ class Guess(CTkFrame):
                     self.character_object.skill_2_remaining_time = 20
             except:
                 print ("skill 2 not used")
+                
+
         
         
                     

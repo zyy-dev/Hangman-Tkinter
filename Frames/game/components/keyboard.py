@@ -163,4 +163,26 @@ class Keyboard(CTkFrame):
                     self.character_object.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), size=(85, 85))
                     self.character_object.lbl_skill_1.configure(image=self.character_object.logo_skill_1)
             except:
-                print ("skill 1 not used yet")  
+                print ("skill 1 not used yet")
+        
+        if self.character == "renzo":
+            if self.character_object.cooldown2 == self.guess.current_level:
+                
+                # unbind to the notification
+                self.character_object.lbl_skill_2.unbind("<Button-1>")
+                
+                # bind again
+                self.character_object.lbl_skill_2.bind("<Button-1>", self.character_object.skill_2)
+                self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/renzo/skills_icon/skill_2.jpg"), dark_image=Image.open("./assets/Characters/renzo/skills_icon/skill_2.jpg"), size=(85, 85))
+                self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
+                
+                
+            if self.character_object.cooldown1 == self.guess.current_level:
+                
+                # unbind to the notification
+                self.character_object.lbl_skill_1.unbind("<Button-1>")
+                
+                # bind again
+                self.character_object.lbl_skill_1.bind("<Button-1>", self.character_object.skill_1)
+                self.character_object.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/renzo/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/renzo/skills_icon/skill_1.jpg"), size=(85, 85))
+                self.character_object.lbl_skill_1.configure(image=self.character_object.logo_skill_1)

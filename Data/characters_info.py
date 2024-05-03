@@ -56,12 +56,12 @@ class CharacterInfo:
             1 : {
             "name" : "Pwede po parevert?",
             "description" : "This ability grants players the ability to change the word given by Renzo, offering significant assistance when they struggle to guess the original word.",
-            "cooldown" : "Passive Skill"
+            "cooldown" : "1 round"
                 },
             2 : {
             "name" : "Shinigami Eyes!",
-            "description" : "Players have the choice to spend 10 points in exchange for acquiring Renzo's Eyes (Shinigami Eyes) power. This newfound ability allows them to predict half of the letters needed to complete the level's word.",
-            "cooldown" : "2 round"
+            "description" : "Players have the choice to spend 50 points in exchange for acquiring Renzo's Eyes (Shinigami Eyes) power. This newfound ability allows them to predict half of the letters needed to complete the level's word.",
+            "cooldown" : "3 rounds"
             }}
         
     def skill_info(self, skill_number: int, character: str) -> tuple[str, str, str]:
@@ -73,5 +73,7 @@ class CharacterInfo:
             return (self.richard[skill_number]["name"], self.richard[skill_number]["description"], self.richard[skill_number]["cooldown"])
         if character == "allan":
             return (self.allan[skill_number]["name"], self.allan[skill_number]["description"], self.allan[skill_number]["cooldown"])
+        if character == "renzo":
+            return (self.renzo[skill_number]["name"], self.renzo[skill_number]["description"], self.renzo[skill_number]["cooldown"])
         
 characters_info = CharacterInfo()
