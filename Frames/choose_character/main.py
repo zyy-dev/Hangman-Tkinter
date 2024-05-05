@@ -6,6 +6,7 @@ from Frames.game.characters.zyrus import zyrus_character
 from Frames.game.characters.richard import richard_character
 from Frames.game.characters.renzo import renzo_character
 from Frames.game.characters.france import france_character
+from Frames.game.components.hover_frame import hover_frame
 
 class Choices(CTkFrame):
     def __init__(self, parent: object, width:int, height: int):
@@ -34,12 +35,14 @@ class Choices(CTkFrame):
         self.btn_play = CTkButton(self, text="play", command=self.play)
         self.btn_play.place(relx=0.5, rely=0.8, anchor="center")
         
-        # character_information_frame = slide_frame(self, 1, 0.64, 1000)
-        # character_information_frame.animate_upwards()
+        self.character_information_frame = slide_frame(self, 1, 0.55, 1000)
+        self.character_information_frame.animate_upwards()
         
-        # sub_frm = CTkFrame(character_information_frame, corner_radius=0, bg_color="transparent", border_width=0)
-        # sub_frm.pack_propagate(False)
-        # sub_frm.pack()
+        self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+        self.sub_frm.pack_propagate(False)
+        self.sub_frm.pack(pady=5)
+        
+        CTkLabel(self.sub_frm, text="The Default Guy", font=("courier", -30, "bold")).pack(pady=10)
         
         
         parent.bind('<Return>', lambda e: self.play())
@@ -53,6 +56,7 @@ class Choices(CTkFrame):
             self.index += 1
         self.image = CTkImage(light_image=Image.open(self.image_paths[self.index]), dark_image=Image.open(self.image_paths[self.index]), size=(self.width, self.height))
         self.lbl.configure(image=self.image)
+        self.config_skill_showcase(self.index)
     
     def left(self):
         if self.index == 0:
@@ -61,6 +65,7 @@ class Choices(CTkFrame):
             self.index -= 1
         self.image = CTkImage(light_image=Image.open(self.image_paths[self.index]), dark_image=Image.open(self.image_paths[self.index]), size=(self.width, self.height))
         self.lbl.configure(image=self.image)
+        self.config_skill_showcase(self.index)
     
     def play(self):
         if self.index == 0:
@@ -87,5 +92,192 @@ class Choices(CTkFrame):
             zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer", "zyrus")
             zyrus.pack()
             self.pack_forget()
+            
+    def config_skill_showcase(self, index: int) -> None:
+        if index == 0:
+            self.sub_frm.pack_forget()
+            
+            self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+            self.sub_frm.pack_propagate(False)
+            self.sub_frm.pack(pady=5)
+        
+            CTkLabel(self.sub_frm, text="The Default Guy", font=("courier", -30, "bold")).pack(pady=10)
+        
+        if index == 1:
+            self.sub_frm.pack_forget()
+            
+            self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+            self.sub_frm.pack_propagate(False)
+            self.sub_frm.pack(pady=10)
+            
+            # Character name
+            CTkLabel(self.sub_frm, text="Allan", font=("courier", -30, "bold")).pack(pady=5)
+            
+            # Frame for skill 1 showcase
+            frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm1.pack(pady=10)
+            
+            # Skill icon/image for skill 1
+            logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_1.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_1.png"), size=(85, 85))
+            lbl_skill_1 = CTkLabel(frm1, text="", image=logo_skill_1)
+            lbl_skill_1.pack(side="left")
+            
+            # skill 1 information
+            hover_frame(frm1, 780, 90, 1, "allan").pack(side="left", padx=20)
+            
+            
+            # Frame for skill 2 showcase
+            frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm2.pack(pady=10)
+            
+            # Skill icon/image for skill 2
+            logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
+            lbl_skill_2 = CTkLabel(frm2, text="", image=logo_skill_2)
+            lbl_skill_2.pack(side="left")
+            
+            # skill 2 information
+            hover_frame(frm2, 780, 90, 2, "allan").pack(side="left", padx=20)
+            
+        if index == 2:
+            self.sub_frm.pack_forget()
+            
+            self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+            self.sub_frm.pack_propagate(False)
+            self.sub_frm.pack(pady=10)
+            
+            # Character name
+            CTkLabel(self.sub_frm, text="Renzo", font=("courier", -30, "bold")).pack(pady=5)
+            
+            # Frame for skill 1 showcase
+            frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm1.pack(pady=10)
+            
+            # Skill icon/image for skill 1
+            logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/renzo/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/renzo/skills_icon/skill_1.jpg"), size=(85, 85))
+            lbl_skill_1 = CTkLabel(frm1, text="", image=logo_skill_1)
+            lbl_skill_1.pack(side="left")
+            
+            # skill 1 information
+            hover_frame(frm1, 780, 90, 1, "renzo").pack(side="left", padx=20)
+            
+            
+            # Frame for skill 2 showcase
+            frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm2.pack(pady=10)
+            
+            # Skill icon/image for skill 2
+            logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/renzo/skills_icon/skill_2.jpg"), dark_image=Image.open("./assets/Characters/renzo/skills_icon/skill_2.jpg"), size=(85, 85))
+            lbl_skill_2 = CTkLabel(frm2, text="", image=logo_skill_2)
+            lbl_skill_2.pack(side="left")
+            
+            # skill 2 information
+            hover_frame(frm2, 780, 90, 2, "renzo").pack(side="left", padx=20)
+            
+        if index == 3:
+            self.sub_frm.pack_forget()
+            
+            self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+            self.sub_frm.pack_propagate(False)
+            self.sub_frm.pack(pady=10)
+            
+            # Character name
+            CTkLabel(self.sub_frm, text="France", font=("courier", -30, "bold")).pack(pady=5)
+            
+            # Frame for skill 1 showcase
+            frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm1.pack(pady=10)
+            
+            # Skill icon/image for skill 1
+            logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/france/skills_icon/skill_1.png"), dark_image=Image.open("./assets/Characters/france/skills_icon/skill_1.png"), size=(85, 85))
+            lbl_skill_1 = CTkLabel(frm1, text="", image=logo_skill_1)
+            lbl_skill_1.pack(side="left")
+            
+            # skill 1 information
+            hover_frame(frm1, 780, 90, 1, "france").pack(side="left", padx=20)
+            
+            
+            # Frame for skill 2 showcase
+            frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm2.pack(pady=10)
+            
+            # Skill icon/image for skill 2
+            logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/france/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/france/skills_icon/skill_2.png"), size=(85, 85))
+            lbl_skill_2 = CTkLabel(frm2, text="", image=logo_skill_2)
+            lbl_skill_2.pack(side="left")
+            
+            # skill 2 information
+            hover_frame(frm2, 780, 90, 2, "france").pack(side="left", padx=20)
+            
+        if index == 4:
+            self.sub_frm.pack_forget()
+            
+            self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+            self.sub_frm.pack_propagate(False)
+            self.sub_frm.pack(pady=10)
+            
+            # Character name
+            CTkLabel(self.sub_frm, text="Richard", font=("courier", -30, "bold")).pack(pady=5)
+            
+            # Frame for skill 1 showcase
+            frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm1.pack(pady=10)
+            
+            # Skill icon/image for skill 1
+            logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_1.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_1.jpeg"), size=(85, 85))
+            lbl_skill_1 = CTkLabel(frm1, text="", image=logo_skill_1)
+            lbl_skill_1.pack(side="left")
+            
+            # skill 1 information
+            hover_frame(frm1, 780, 90, 1, "richard").pack(side="left", padx=20)
+            
+            
+            # Frame for skill 2 showcase
+            frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm2.pack(pady=10)
+            
+            # Skill icon/image for skill 2
+            logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), size=(85, 85))
+            lbl_skill_2 = CTkLabel(frm2, text="", image=logo_skill_2)
+            lbl_skill_2.pack(side="left")
+            
+            # skill 2 information
+            hover_frame(frm2, 780, 90, 2, "richard").pack(side="left", padx=20)
+            
+        if index == 5:
+            self.sub_frm.pack_forget()
+            
+            self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+            self.sub_frm.pack_propagate(False)
+            self.sub_frm.pack(pady=10)
+            
+            # Character name
+            CTkLabel(self.sub_frm, text="Zyrus", font=("courier", -30, "bold")).pack(pady=5)
+            
+            # Frame for skill 1 showcase
+            frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm1.pack(pady=10)
+            
+            # Skill icon/image for skill 1
+            logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), size=(85, 85))
+            lbl_skill_1 = CTkLabel(frm1, text="", image=logo_skill_1)
+            lbl_skill_1.pack(side="left")
+            
+            # skill 1 information
+            hover_frame(frm1, 780, 90, 1, "richard").pack(side="left", padx=20)
+            
+            
+            # Frame for skill 2 showcase
+            frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
+            frm2.pack(pady=10)
+            
+            # Skill icon/image for skill 2
+            logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_2.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_2.jpg"), size=(85, 85))
+            lbl_skill_2 = CTkLabel(frm2, text="", image=logo_skill_2)
+            lbl_skill_2.pack(side="left")
+            
+            # skill 2 information
+            hover_frame(frm2, 780, 90, 2, "richard").pack(side="left", padx=20)
+            
+            
             
         
