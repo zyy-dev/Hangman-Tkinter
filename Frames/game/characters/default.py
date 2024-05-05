@@ -21,13 +21,18 @@ class default_character(CTkFrame):
         self.guess = Guess(frame, self, character)
         self.guess.pack(pady=20)
 
-        self.keyboard = Keyboard(frame, self.guess, player_state, parent, character, self)
+        self.keyboard = Keyboard(frame, self.guess, player_state, parent, character, self, self.time_callback)
         self.keyboard.pack()
         
+        
         self.time = Time(parent_div, 0, 0.08, player_state, self.keyboard, character, self)
+        self.time_callback()
         
         frm_lvl = slide_frame(parent_div, 0, 0.05, 200)
         frm_lvl.animate_downwards()
         
         self.lbl_lvl = CTkLabel(frm_lvl, text=f"Level: {self.guess.current_level}", font=("courier", -20, "bold"))
         self.lbl_lvl.pack(side="bottom", pady=7)
+        
+    def time_callback(self):
+        self.keyboard.time_callback = self.time

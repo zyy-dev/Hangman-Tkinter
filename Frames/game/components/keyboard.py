@@ -2,7 +2,7 @@ from customtkinter import *
 from PIL import Image
 
 class Keyboard(CTkFrame):
-    def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object) -> None:
+    def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object, time_callback) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
         self.guess = guess
@@ -16,6 +16,7 @@ class Keyboard(CTkFrame):
                             # key: character
                             # value: reference address of Button Widgets
         self.key_already_pressed = []
+        self.time_callback = time_callback
         
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
         Upper_Button_Frame.pack(pady=8)
@@ -65,6 +66,7 @@ class Keyboard(CTkFrame):
         btn.configure(text_color="#FFFFFF", fg_color="#520CA1")
         
     def clicked(self, btn: object) -> None:
+        print (self.time_callback.seconds)
         char = btn.cget("text")
         btn.unbind("<Enter>")
         btn.unbind("<Leave>")

@@ -32,18 +32,31 @@ class Choices(CTkFrame):
         self.btn_right = CTkButton(self, text="<", command=self.left)
         self.btn_right.place(relx=0.2, rely=0.5, anchor="center")
         
-        self.btn_play = CTkButton(self, text="play", command=self.play)
-        self.btn_play.place(relx=0.5, rely=0.8, anchor="center")
-        
         self.character_information_frame = slide_frame(self, 1, 0.55, 1000)
         self.character_information_frame.animate_upwards()
         
-        self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+        self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=250)
         self.sub_frm.pack_propagate(False)
         self.sub_frm.pack(pady=5)
         
         CTkLabel(self.sub_frm, text="The Default Guy", font=("courier", -30, "bold")).pack(pady=10)
         
+        # play button
+        btn_play = CTkButton(self,
+                            text="Play!", 
+                            font=("courier", -18, "bold"),
+                            corner_radius=0,
+                            border_width=0,
+                            width=200,
+                            height=30,
+                            fg_color="#E6D439",
+                            text_color="#110320",
+                            command=self.play)
+        
+        btn_play.bind("<Enter>", lambda e : self.on_hover(e, btn_play))
+        btn_play.bind("<Leave>", lambda e: self.off_hover(e, btn_play))
+        
+        self.after(500, lambda: btn_play.place(anchor="s", relx=0.5, rely=0.95))
         
         parent.bind('<Return>', lambda e: self.play())
         parent.bind('<Left>', lambda e: self.left())
@@ -90,8 +103,9 @@ class Choices(CTkFrame):
             self.pack_forget()
         if self.index == 5:
             zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer", "zyrus")
-            zyrus.pack()
-            self.pack_forget()
+            self.character_information_frame.animate_downwards()
+            # self.after(500, lambda: zyrus.pack())
+            # self.pack_forget()
             
     def config_skill_showcase(self, index: int) -> None:
         if index == 0:
@@ -111,11 +125,11 @@ class Choices(CTkFrame):
             self.sub_frm.pack(pady=10)
             
             # Character name
-            CTkLabel(self.sub_frm, text="Allan", font=("courier", -30, "bold")).pack(pady=5)
+            CTkLabel(self.sub_frm, text="Allan", font=("courier", -30, "bold")).pack(pady=(5, 0))
             
             # Frame for skill 1 showcase
             frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm1.pack(pady=10)
+            frm1.pack(pady=5)
             
             # Skill icon/image for skill 1
             logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_1.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_1.png"), size=(85, 85))
@@ -128,7 +142,7 @@ class Choices(CTkFrame):
             
             # Frame for skill 2 showcase
             frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm2.pack(pady=10)
+            frm2.pack(pady=5)
             
             # Skill icon/image for skill 2
             logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
@@ -146,11 +160,11 @@ class Choices(CTkFrame):
             self.sub_frm.pack(pady=10)
             
             # Character name
-            CTkLabel(self.sub_frm, text="Renzo", font=("courier", -30, "bold")).pack(pady=5)
+            CTkLabel(self.sub_frm, text="Renzo", font=("courier", -30, "bold")).pack(pady=(5, 0))
             
             # Frame for skill 1 showcase
             frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm1.pack(pady=10)
+            frm1.pack(pady=5)
             
             # Skill icon/image for skill 1
             logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/renzo/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/renzo/skills_icon/skill_1.jpg"), size=(85, 85))
@@ -163,7 +177,7 @@ class Choices(CTkFrame):
             
             # Frame for skill 2 showcase
             frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm2.pack(pady=10)
+            frm2.pack(pady=5)
             
             # Skill icon/image for skill 2
             logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/renzo/skills_icon/skill_2.jpg"), dark_image=Image.open("./assets/Characters/renzo/skills_icon/skill_2.jpg"), size=(85, 85))
@@ -181,11 +195,11 @@ class Choices(CTkFrame):
             self.sub_frm.pack(pady=10)
             
             # Character name
-            CTkLabel(self.sub_frm, text="France", font=("courier", -30, "bold")).pack(pady=5)
+            CTkLabel(self.sub_frm, text="France", font=("courier", -30, "bold")).pack(pady=(5, 0))
             
             # Frame for skill 1 showcase
             frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm1.pack(pady=10)
+            frm1.pack(pady=5)
             
             # Skill icon/image for skill 1
             logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/france/skills_icon/skill_1.png"), dark_image=Image.open("./assets/Characters/france/skills_icon/skill_1.png"), size=(85, 85))
@@ -198,7 +212,7 @@ class Choices(CTkFrame):
             
             # Frame for skill 2 showcase
             frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm2.pack(pady=10)
+            frm2.pack(pady=5)
             
             # Skill icon/image for skill 2
             logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/france/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/france/skills_icon/skill_2.png"), size=(85, 85))
@@ -216,11 +230,11 @@ class Choices(CTkFrame):
             self.sub_frm.pack(pady=10)
             
             # Character name
-            CTkLabel(self.sub_frm, text="Richard", font=("courier", -30, "bold")).pack(pady=5)
+            CTkLabel(self.sub_frm, text="Richard", font=("courier", -30, "bold")).pack(pady=(5, 0))
             
             # Frame for skill 1 showcase
             frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm1.pack(pady=10)
+            frm1.pack(pady=5)
             
             # Skill icon/image for skill 1
             logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_1.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_1.jpeg"), size=(85, 85))
@@ -233,7 +247,7 @@ class Choices(CTkFrame):
             
             # Frame for skill 2 showcase
             frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm2.pack(pady=10)
+            frm2.pack(pady=5)
             
             # Skill icon/image for skill 2
             logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), dark_image=Image.open("./assets/Characters/richard/skills_icon/skill_2.jpeg"), size=(85, 85))
@@ -251,11 +265,11 @@ class Choices(CTkFrame):
             self.sub_frm.pack(pady=10)
             
             # Character name
-            CTkLabel(self.sub_frm, text="Zyrus", font=("courier", -30, "bold")).pack(pady=5)
+            CTkLabel(self.sub_frm, text="Zyrus", font=("courier", -30, "bold")).pack(pady=(5, 0))
             
             # Frame for skill 1 showcase
             frm1 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm1.pack(pady=10)
+            frm1.pack(pady=5)
             
             # Skill icon/image for skill 1
             logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_1.jpg"), size=(85, 85))
@@ -268,7 +282,7 @@ class Choices(CTkFrame):
             
             # Frame for skill 2 showcase
             frm2 = CTkFrame(self.sub_frm, fg_color="transparent")
-            frm2.pack(pady=10)
+            frm2.pack(pady=5)
             
             # Skill icon/image for skill 2
             logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_2.jpg"), dark_image=Image.open("./assets/Characters/zyrus/skills_icon/skill_2.jpg"), size=(85, 85))
@@ -277,7 +291,20 @@ class Choices(CTkFrame):
             
             # skill 2 information
             hover_frame(frm2, 780, 90, 2, "richard").pack(side="left", padx=20)
+        
+    def on_hover(self, event, btn):
+        btn.configure(
+                    text_color="white",
+                    fg_color="#520ca1",
+                    font=("", -19, "bold"))
+    
+    
+    def off_hover(self, event, btn):
+        btn.configure(
+                        text_color="#110320",
+                        fg_color="#E6D439",
+                        font=("", -18, "bold"))
             
             
-            
+                
         
