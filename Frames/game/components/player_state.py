@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from PIL import Image
 import os
+from Frames.game.components.audio import play_audio
 
 class Player(ctk.CTkLabel):
     def __init__(self, parent: object, folder_path_gameover :str, folder_path_mistake: str, width: int, height: int, character_object: object, delay: int = 11) -> None:
@@ -33,6 +34,7 @@ class Player(ctk.CTkLabel):
     
     def GameOverAnimation(self, i=0):
         if i == 0: 
+            play_audio.lose()
             self.character_object.time.active = False
             self.character_object.lbl_skill_1.unbind("<Button-1>")
             self.character_object.lbl_skill_2.unbind("<Button-1>")

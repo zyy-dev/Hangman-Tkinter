@@ -7,6 +7,7 @@ from Frames.game.characters.richard import richard_character
 from Frames.game.characters.renzo import renzo_character
 from Frames.game.characters.france import france_character
 from Frames.game.components.hover_frame import hover_frame
+from Frames.game.components.audio import play_audio
 
 class Choices(CTkFrame):
     def __init__(self, parent: object, width:int, height: int):
@@ -63,6 +64,7 @@ class Choices(CTkFrame):
         parent.bind('<Right>', lambda e: self.right())
 
     def right(self):
+        play_audio.click()
         if self.index == len(self.image_paths) - 1:
             self.index = 0
         else:
@@ -72,6 +74,7 @@ class Choices(CTkFrame):
         self.config_skill_showcase(self.index)
     
     def left(self):
+        play_audio.click()
         if self.index == 0:
             self.index = len(self.image_paths) - 1
         else:
@@ -81,8 +84,8 @@ class Choices(CTkFrame):
         self.config_skill_showcase(self.index)
     
     def play(self):
+        play_audio.click()
         if self.index == 0:
-            
             self.character_information_frame.animate_downwards()
             default = default_character(self.parent, self.width, self.height, "./assets/Characters/default/game_over", "./assets/Characters/default/wrong_answer", "default")
             default.pack()
@@ -284,7 +287,7 @@ class Choices(CTkFrame):
             lbl_skill_1.pack(side="left")
             
             # skill 1 information
-            hover_frame(frm1, 780, 90, 1, "richard").pack(side="left", padx=20)
+            hover_frame(frm1, 780, 90, 1, "zyrus").pack(side="left", padx=20)
             
             
             # Frame for skill 2 showcase
@@ -297,7 +300,7 @@ class Choices(CTkFrame):
             lbl_skill_2.pack(side="left")
             
             # skill 2 information
-            hover_frame(frm2, 780, 90, 2, "richard").pack(side="left", padx=20)
+            hover_frame(frm2, 780, 90, 2, "zyrus").pack(side="left", padx=20)
         
     def on_hover(self, event, btn):
         btn.configure(

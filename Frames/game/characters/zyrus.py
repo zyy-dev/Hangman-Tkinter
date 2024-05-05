@@ -1,6 +1,7 @@
 from Frames.game.characters.default import default_character
 from Frames.game.components.skill_frame import skill_frame
 from Frames.game.components.hover_frame import hover_frame
+from Frames.game.components.audio import play_audio
 from PIL import Image
 from customtkinter import *
 import random
@@ -43,6 +44,9 @@ class zyrus_character(default_character):
             
 
     def skill_1(self, event):
+        # skill's sound effect
+        play_audio.skill(self.character, "1")
+        
         # set this True to make the pressed keys to dont reflect with the count of mistakes
         self.skill_1_state = True
         
@@ -81,6 +85,8 @@ class zyrus_character(default_character):
 
         
     def skill_2(self, event):
+        # skill's sound effect
+        play_audio.skill(self.character, "2")
         
         # disabled the skill button
         self.lbl_skill_2.unbind("<Button-1>")

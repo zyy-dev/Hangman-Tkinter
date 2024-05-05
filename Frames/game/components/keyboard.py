@@ -1,5 +1,6 @@
 from customtkinter import *
 from PIL import Image
+from Frames.game.components.audio import play_audio
 
 class Keyboard(CTkFrame):
     def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object, time_callback) -> None:
@@ -77,6 +78,7 @@ class Keyboard(CTkFrame):
 
         # if wrong key
         if not self.guess.validate_char(char):
+            
             btn.configure(border_width=1)
             btn.configure(border_color="red")
             
@@ -106,11 +108,14 @@ class Keyboard(CTkFrame):
                 self.player_state.GameOverAnimation()
                 self.disabled()
             else:
+                play_audio.wrong()
                 self.player_state.WrongAnswer(self.mistakes)
         # if correct
         else:
+            play_audio.correct()
             self.correct += 1
             if self.correct == len(set(self.guess.word_to_guess)):
+                play_audio.win()
                 self.disabled()
                 self.after(2000, self.reset) 
         
