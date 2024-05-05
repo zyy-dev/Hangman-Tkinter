@@ -27,11 +27,35 @@ class Choices(CTkFrame):
         self.lbl = CTkLabel(self, text="", image=self.image)
         self.lbl.pack()
         
-        self.btn_right = CTkButton(self, text=">", command=self.right)
+        # right button
+        self.btn_right = CTkButton(self,
+                            text=">", 
+                            font=("courier", -18, "bold"),
+                            corner_radius=0,
+                            border_width=0,
+                            width=50,
+                            height=50,
+                            fg_color="#E6D439",
+                            text_color="#110320",
+                            command=self.right)
         self.btn_right.place(relx=0.8, rely=0.5, anchor="center")
+        self.btn_right.bind("<Enter>", lambda e : self.on_hover(e, self.btn_right))
+        self.btn_right.bind("<Leave>", lambda e: self.off_hover(e, self.btn_right))
         
-        self.btn_right = CTkButton(self, text="<", command=self.left)
-        self.btn_right.place(relx=0.2, rely=0.5, anchor="center")
+        # left button
+        self.btn_left = CTkButton(self,
+                            text="<", 
+                            font=("courier", -18, "bold"),
+                            corner_radius=0,
+                            border_width=0,
+                            width=50,
+                            height=50,
+                            fg_color="#E6D439",
+                            text_color="#110320",
+                            command=self.left)
+        self.btn_left.place(relx=0.2, rely=0.5, anchor="center")
+        self.btn_left.bind("<Enter>", lambda e : self.on_hover(e, self.btn_left))
+        self.btn_left.bind("<Leave>", lambda e: self.off_hover(e, self.btn_left))
         
         self.character_information_frame = slide_frame(self, 1, 0.55, 1000)
         self.character_information_frame.animate_upwards()
@@ -40,10 +64,10 @@ class Choices(CTkFrame):
         self.sub_frm.pack_propagate(False)
         self.sub_frm.pack(pady=5)
         
-        CTkLabel(self.sub_frm, text="The Default Guy", font=("courier", -30, "bold")).pack(pady=10)
+        CTkLabel(self.sub_frm, text="The Default Guy", font=("courier", -50, "bold")).place(rely=0.5, relx=0.5, anchor="center")
         
         # play button
-        btn_play = CTkButton(self,
+        self.btn_play = CTkButton(self,
                             text="Play!", 
                             font=("courier", -18, "bold"),
                             corner_radius=0,
@@ -54,14 +78,14 @@ class Choices(CTkFrame):
                             text_color="#110320",
                             command=self.play)
         
-        btn_play.bind("<Enter>", lambda e : self.on_hover(e, btn_play))
-        btn_play.bind("<Leave>", lambda e: self.off_hover(e, btn_play))
+        self.btn_play.bind("<Enter>", lambda e : self.on_hover(e, self.btn_play))
+        self.btn_play.bind("<Leave>", lambda e: self.off_hover(e, self.btn_play))
         
-        self.after(500, lambda: btn_play.place(anchor="s", relx=0.5, rely=0.95))
+        self.after(500, lambda: self.btn_play.place(anchor="s", relx=0.5, rely=0.95))
         
-        parent.bind('<Return>', lambda e: self.play())
-        parent.bind('<Left>', lambda e: self.left())
-        parent.bind('<Right>', lambda e: self.right())
+        self.parent.bind('<Return>', lambda e: self.play())
+        self.parent.bind('<Left>', lambda e: self.left())
+        self.parent.bind('<Right>', lambda e: self.right())
 
     def right(self):
         play_audio.click()
@@ -71,6 +95,8 @@ class Choices(CTkFrame):
             self.index += 1
         self.image = CTkImage(light_image=Image.open(self.image_paths[self.index]), dark_image=Image.open(self.image_paths[self.index]), size=(self.width, self.height))
         self.lbl.configure(image=self.image)
+        
+        # change the skill description
         self.config_skill_showcase(self.index)
     
     def left(self):
@@ -81,10 +107,21 @@ class Choices(CTkFrame):
             self.index -= 1
         self.image = CTkImage(light_image=Image.open(self.image_paths[self.index]), dark_image=Image.open(self.image_paths[self.index]), size=(self.width, self.height))
         self.lbl.configure(image=self.image)
+        
+        # change the skill description
         self.config_skill_showcase(self.index)
     
     def play(self):
+        # disabled the button to avoid multiple creation of the next frame
+        self.parent.unbind('<Return>')
+        self.parent.unbind('<Left>')
+        self.parent.unbind('<Right>')
+        self.btn_play.place_forget()
+        self.btn_right.place_forget()
+        self.btn_left.place_forget()
+
         play_audio.click()
+        
         if self.index == 0:
             self.character_information_frame.animate_downwards()
             default = default_character(self.parent, self.width, self.height, "./assets/Characters/default/game_over", "./assets/Characters/default/wrong_answer", "default")
@@ -120,12 +157,11 @@ class Choices(CTkFrame):
     def config_skill_showcase(self, index: int) -> None:
         if index == 0:
             self.sub_frm.pack_forget()
-            
-            self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=1000)
+            self.sub_frm = CTkFrame(self.character_information_frame, corner_radius=0, fg_color="transparent", border_width=0, width=980, height=250)
             self.sub_frm.pack_propagate(False)
             self.sub_frm.pack(pady=5)
         
-            CTkLabel(self.sub_frm, text="The Default Guy", font=("courier", -30, "bold")).pack(pady=10)
+            CTkLabel(self.sub_frm, text="The Default Guy", font=("courier", -50, "bold")).place(rely=0.5, relx=0.5, anchor="center")
         
         if index == 1:
             self.sub_frm.pack_forget()
@@ -303,17 +339,11 @@ class Choices(CTkFrame):
             hover_frame(frm2, 780, 90, 2, "zyrus").pack(side="left", padx=20)
         
     def on_hover(self, event, btn):
-        btn.configure(
-                    text_color="white",
-                    fg_color="#520ca1",
-                    font=("", -19, "bold"))
+        btn.configure(text_color="white", fg_color="#520ca1")
     
     
     def off_hover(self, event, btn):
-        btn.configure(
-                        text_color="#110320",
-                        fg_color="#E6D439",
-                        font=("", -18, "bold"))
+        btn.configure(text_color="#110320", fg_color="#E6D439")
             
             
                 

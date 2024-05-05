@@ -67,7 +67,6 @@ class Keyboard(CTkFrame):
         btn.configure(text_color="#FFFFFF", fg_color="#520CA1")
         
     def clicked(self, btn: object) -> None:
-        print (self.time_callback.seconds)
         char = btn.cget("text")
         btn.unbind("<Enter>")
         btn.unbind("<Leave>")
@@ -117,14 +116,13 @@ class Keyboard(CTkFrame):
             if self.correct == len(set(self.guess.word_to_guess)):
                 play_audio.win()
                 self.disabled()
-                self.after(2000, self.reset) 
+                self.after(800, self.reset) 
         
         
     def key_pressed(self, event) -> None:
         selected = event.char.upper()
         if selected in self.button_address and selected not in self.key_already_pressed:
             self.clicked(self.button_address[selected])
-
             
             
     def disabled(self) -> None:

@@ -9,7 +9,7 @@ class slide_frame(CTkFrame):
         self.pos = self.start_pos
         self.anchor = "n" if self.start_pos == 1 else "s"
 
-        self.place(relx=0.05, rely=self.start_pos, anchor=self.anchor)
+        self.place(relx=0.5, rely=self.start_pos, anchor=self.anchor)
         self.pack_propagate(False)
 
     def animate_upwards(self):
@@ -19,7 +19,6 @@ class slide_frame(CTkFrame):
             self.after(10, self.animate_upwards)
 
     def animate_downwards(self):
-        print (self.pos)
         if self.pos < self.start_pos:
             self.pos += 0.016
             self.place(relx=0.5, rely=self.pos, anchor=self.anchor)
