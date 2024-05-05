@@ -21,6 +21,6 @@ class slide_frame(CTkFrame):
     def animate_downwards(self):
         print (self.pos)
         if self.pos < self.start_pos:
-            self.pos += 0.013
+            self.pos += 0.016
             self.place(relx=0.5, rely=self.pos, anchor=self.anchor)
             self.after(10, self.animate_downwards)

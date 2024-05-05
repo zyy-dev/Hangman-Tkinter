@@ -82,30 +82,37 @@ class Choices(CTkFrame):
     
     def play(self):
         if self.index == 0:
+            
+            self.character_information_frame.animate_downwards()
             default = default_character(self.parent, self.width, self.height, "./assets/Characters/default/game_over", "./assets/Characters/default/wrong_answer", "default")
             default.pack()
-            self.pack_forget()
+            self.after(500, lambda: self.pack_forget())
         if self.index == 1:
-            self.pack_forget()
+            self.character_information_frame.animate_downwards()
             allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer", "allan")
             allan.pack()
+            self.after(500, lambda: self.pack_forget())
         if self.index == 2:
+            self.character_information_frame.animate_downwards()
             renzo = renzo_character(self.parent, self.width, self.height, "./assets/Characters/renzo/game_over", "./assets/Characters/renzo/wrong_answer", "renzo")
             renzo.pack()
-            self.pack_forget()
+            self.after(500, lambda: self.pack_forget())
         if self.index == 3:
+            self.character_information_frame.animate_downwards()
             france = france_character(self.parent, self.width, self.height, "./assets/Characters/france/game_over", "./assets/Characters/france/wrong_answer", "france")
             france.pack()
-            self.pack_forget()
+            self.after(500, lambda: self.pack_forget())
         if self.index == 4:
+            self.character_information_frame.animate_downwards()
             richard = richard_character(self.parent, self.width, self.height, "./assets/Characters/richard/game_over", "./assets/Characters/richard/wrong_answer", "richard")
             richard.pack()
             self.pack_forget()
         if self.index == 5:
-            zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer", "zyrus")
             self.character_information_frame.animate_downwards()
-            # self.after(500, lambda: zyrus.pack())
-            # self.pack_forget()
+            zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer", "zyrus")
+            zyrus.pack()
+            self.after(500, lambda: self.pack_forget())
+            
             
     def config_skill_showcase(self, index: int) -> None:
         if index == 0:
