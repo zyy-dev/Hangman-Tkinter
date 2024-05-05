@@ -1,6 +1,6 @@
 from customtkinter import *
-from Frames.choose_character.main import Choices
-from Frames.main_menu.main import MainMenu
+from Frames.choose_character import Choices
+from Frames.main_menu import MainMenu
 from animation import Animation
 
 # main window
