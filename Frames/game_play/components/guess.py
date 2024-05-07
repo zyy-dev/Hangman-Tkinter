@@ -18,6 +18,7 @@ class Guess(CTkFrame):
         self.lbl_category = CTkLabel(self, text=self.category, font=("", -17, "bold"))
         self.lbl_category.pack(pady=(0, 20))
         self.generate_boxes()
+        
     def generate_boxes(self):
         self.frm = CTkFrame(self, fg_color="transparent")
         self.frm.pack()
@@ -45,7 +46,17 @@ class Guess(CTkFrame):
                     lbl.pack()
             return True
         return False
-                    
+    
+    def reveal_answer(self):
+        for letter, frame in self.frame_address:
+            if letter in self.correct_characters:
+                frame.configure(fg_color="#2f1947")
+                CTkLabel(frame, 
+                        text=letter, 
+                        height=38, 
+                        width=58,
+                        font=("", -17.6, "bold")).pack()
+        
     def next_level(self):
         self.current_level += 1
         
