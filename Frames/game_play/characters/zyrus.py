@@ -57,9 +57,7 @@ class zyrus_character(default_character):
         # algorithm to disable wrong keys from the keybaord module
         available_characters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         for char in available_characters.copy():
-            if char in self.keyboard.key_already_pressed:
-                available_characters.remove(char)
-            if char in self.guess.word_to_guess:
+            if char in self.keyboard.key_already_pressed or char in self.guess.word_to_guess:
                 available_characters.remove(char)
         for _ in range(5):
             random_letter = random.choice(available_characters)[0]

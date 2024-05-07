@@ -1,6 +1,7 @@
 from Frames.game_play.characters.default import default_character
 from Frames.game_play.components.skill_frame import skill_frame
 from Frames.game_play.components.hover_frame import hover_frame
+from Frames.game_play.components.audio import play_audio
 from PIL import Image
 from customtkinter import *
 
@@ -53,6 +54,9 @@ class france_character(default_character):
         # passive skill
         # this method will be called under certain condition in the time_frame module
     def skill_1(self):
+        # skill's sound effect
+        play_audio.skill(self.character, "1")
+        
         # to make sure that this skill will only be triggered once
         self.triggered += 1
         if self.triggered == 1:
@@ -74,6 +78,9 @@ class france_character(default_character):
         notif.after(2000, lambda: notif.destroy())
             
     def skill_2(self, event):
+        # skill's sound effect
+        play_audio.skill(self.character, "2")
+        
         # disabled the skill button
         self.lbl_skill_2.unbind("<Button-1>")
         self.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/france/skills_icon/skill_2_activate.png"), dark_image=Image.open("./assets/Characters/france/skills_icon/skill_2_activate.png"), size=(85, 85))

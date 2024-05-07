@@ -1,6 +1,7 @@
 from Frames.game_play.characters.default import default_character
 from Frames.game_play.components.skill_frame import skill_frame
 from Frames.game_play.components.hover_frame import hover_frame
+from Frames.game_play.components.audio import play_audio
 from PIL import Image
 from customtkinter import *
 import random
@@ -46,6 +47,9 @@ class renzo_character(default_character):
         self.hover_skill_2.destroy()
     
     def skill_1(self, event):
+        # skill's sound effect
+        play_audio.skill(self.character, "1")
+        
         # this will retain the current level by manipulating the guess module
         self.skill_1_state = True
         
@@ -87,6 +91,9 @@ class renzo_character(default_character):
         
         # to visually show that the skill is on cooldown
         self.lbl_skill_2.bind("<Button-1>", lambda e: self.skill_2_notif(e))
+        
+        # skill's sound effect
+        play_audio.skill(self.character, "2")
             
     def skill_2_notif(self, event):
         notif = CTkLabel(self, text=f"This skill can be used again on Level {self.cooldown2}")

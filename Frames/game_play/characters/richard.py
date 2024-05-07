@@ -1,6 +1,7 @@
 from Frames.game_play.characters.default import default_character
 from Frames.game_play.components.skill_frame import skill_frame
 from Frames.game_play.components.hover_frame import hover_frame
+from Frames.game_play.components.audio import play_audio
 from PIL import Image
 from customtkinter import *
 
@@ -60,6 +61,8 @@ class richard_character(default_character):
 
         
     def skill_2_clicked(self, event):
+        play_audio.skill(self.character, "2")
+        
         # setting up the active cooldown
         self.skill_2_remaining_time = 20
         

@@ -60,7 +60,7 @@ class CharacterInfo:
                 },
             2 : {
             "name" : "Shinigami Eyes!",
-            "description" : "Players have the choice to spend 50 points in exchange for acquiring Renzo's Eyes (Shinigami Eyes) power. This newfound ability allows them to predict half of the letters needed to complete the level's word.",
+            "description" : "This ability activates Renzo's Eyes (Shinigami Eyes) power. This newfound ability allows them to predict half of the letters needed to complete the level's word in exchange for the half of the points on that round",
             "cooldown" : "3 rounds"
             }}
         
