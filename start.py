@@ -18,7 +18,6 @@ class HangmanApp(CTk):
         self.title("Hangman")
         self.iconbitmap("./assets/Icons/game_logo.ico")
         
-        
         self.main_menu = MainMenu(self, self.width, self.height, self.start_game, self.show_leaderboards)
         self.main_menu.pack()
 

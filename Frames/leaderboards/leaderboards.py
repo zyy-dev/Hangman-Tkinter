@@ -2,16 +2,6 @@ from customtkinter import *
 import sqlite3
 from PIL import Image
 
-conn = sqlite3.connect('./Frames/leaderboards/leaderboards.db')
-cursor = conn.cursor()
-
-cursor.execute("Select * FROM scores ORDER BY score DESC")
-data = cursor.fetchall()
-
-cursor.execute(f"SELECT Score, RANK() OVER (ORDER BY Score DESC) Ranking FROM scores")
-ranked_data = cursor.fetchall()
-
-
 class Leaderboards(CTkFrame):
     def __init__(self, parent):
         super().__init__(master= parent, width= 800, height= 600,bg_color= "#110320", fg_color= "#110320", border_color= "violet", border_width= 5)
@@ -20,12 +10,19 @@ class Leaderboards(CTkFrame):
         
         self.pack_propagate(False)
 
-
-
         leaderboards_frame = CTkFrame(self, fg_color= "#110320")
         leaderboards_lbl = CTkLabel(leaderboards_frame, text= "Leaderboards", font= ("Times", 120) ,bg_color= "#110320")
         leaderboards_lbl.pack(pady = 20)
         leaderboards_frame.pack(pady = 20)
+        
+        conn = sqlite3.connect('./Frames/leaderboards/leaderboards.db')
+        cursor = conn.cursor()
+
+        cursor.execute("Select * FROM scores ORDER BY score DESC")
+        data = cursor.fetchall()
+
+        cursor.execute(f"SELECT Score, RANK() OVER (ORDER BY Score DESC) Ranking FROM scores")
+        ranked_data = cursor.fetchall()
 
 
         frame5 = CTkScrollableFrame(self, width=340, height=350, fg_color="#110320" )
