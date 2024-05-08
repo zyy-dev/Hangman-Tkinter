@@ -95,6 +95,10 @@ class Keyboard(CTkFrame):
                 if self.character_object.skill_2_active:
                     # re-declare it because we only want the skill to take effect once
                     self.character_object.skill_2_active = False
+                    
+                    self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
+                    self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2 )
+                    
                     # stop the method before it reflect the increment to self.mistakes
                     return 
                 

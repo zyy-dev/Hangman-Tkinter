@@ -48,9 +48,7 @@ class Guess(CTkFrame):
     
     def reveal_answer(self):
         for letter, frame in self.frame_address:
-            if letter in self.correct_characters:
-                self.correct_characters.remove(letter)
-                
+            if letter in self.correct_characters:                
                 frame.configure(fg_color="#3a002f")
                 lbl = CTkLabel(frame, 
                             text=letter, 

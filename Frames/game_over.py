@@ -92,7 +92,7 @@ class game_over(CTkFrame):
         name = self.name_entry.get()
         cursor.execute(
             f'INSERT INTO scores (Name, Score, Character, Date) VALUES  (?, ?, ?, ?)',(name, sum(self.points), self.character, date))
-
+    
         conn.commit()
         # cursor.execute('SELECT Name, Score FROM scores ORDER BY Score DESC LIMIT 5')
         cursor.execute(f"SELECT Score, RANK() OVER (ORDER BY Score DESC) Ranking FROM scores")
