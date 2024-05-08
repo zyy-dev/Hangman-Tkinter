@@ -1,6 +1,7 @@
 from Frames.game_play.characters.default import default_character
 from Frames.game_play.components.skill_frame import skill_frame
 from Frames.game_play.components.hover_frame import hover_frame
+from Frames.game_play.components.audio import play_audio
 from PIL import Image
 from customtkinter import *
 
@@ -64,6 +65,9 @@ class france_character(default_character):
             self.logo_skill_1 = CTkImage(light_image=Image.open("./assets/Characters/france/skills_icon/skill_1_activate.jpg"), dark_image=Image.open("./assets/Characters/france/skills_icon/skill_1_activate.jpg"), size=(85, 85))
             self.lbl_skill_1.configure(image=self.logo_skill_1)
             
+        # skill's sound effect
+        play_audio.skill(self.character, "1")
+            
     def skill_1_notif(self, event):
         # Just incase if the user is dumb enough to realize that passice skill doesn't need to be clicked
         notif = CTkLabel(self, text=f"This is a passive skill")
@@ -78,6 +82,9 @@ class france_character(default_character):
         
         # called out the logic (this is a recursion therefore we have to do it in another method)
         self.skill_activated()
+        
+        # skill's sound effect
+        play_audio.skill(self.character, "2")
         
         
     # this is a recursion if u want to stop the time, then set the attribute of self.skill_2_remaining_time = 0

@@ -46,9 +46,6 @@ class zyrus_character(default_character):
             
 
     def skill_1(self, event):
-        # skill's sound effect
-        play_audio.skill(self.character, "1")
-        
         # set this True to make the pressed keys to dont reflect with the count of mistakes
         self.skill_1_state = True
         
@@ -79,6 +76,8 @@ class zyrus_character(default_character):
         # to visually show that the skill is on cooldown
         self.lbl_skill_1.bind("<Button-1>", lambda e: self.skill_1_notif(e))
         
+        # skill's sound effect
+        play_audio.skill(self.character, "1")
     def skill_1_notif(self, event):
         notif = CTkLabel(self, text=f"This skill can be used again on Level {self.cooldown}")
         notif.place(relx=0.5, rely=0.5, anchor="center")

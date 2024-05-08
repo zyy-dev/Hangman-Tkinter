@@ -77,7 +77,7 @@ class MainMenu(CTkFrame):
     def play(self):
         print ("called")
         play_audio.click()
-        self.start_game_callback()
+        self.start_game_callback(True)
 
     def score(self):
         play_audio.click()

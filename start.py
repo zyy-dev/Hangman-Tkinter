@@ -22,22 +22,23 @@ class HangmanApp(CTk):
         self.main_menu = MainMenu(self, self.width, self.height, self.start_game, self.show_leaderboards)
         self.main_menu.pack()
 
-    def start_game(self):
+    def start_game(self, do_animation: bool):
         print ("called")
         # remove the current frame
         self.main_menu.pack_forget()
         
-        # animation proceeds
-        # animation = Animation(self, "./assets/Animation_Start Game", width=self.width,
-        #                       height=self.height, delay=20)
-        # animation.pack()
+        #animation proceeds
+        if do_animation:
+            animation = Animation(self, "./assets/Animation_Start Game", width=self.width,
+                                height=self.height, delay=20)
+            animation.pack()
+            
+            # remove the animating frame
+            self.after(2000, lambda: animation.pack_forget())
         
         # adds the next frame
         x = Choices(self, self.width, self.height, self.show_mainmenu)
         x.pack()
-        
-        # remove the animating frame
-        # self.after(2000, lambda: animation.pack_forget())
         
     def show_mainmenu(self):
         self.main_menu = MainMenu(self, self.width, self.height, self.start_game, self.show_leaderboards)

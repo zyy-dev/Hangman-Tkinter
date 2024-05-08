@@ -32,13 +32,13 @@ class default_character(CTkFrame):
         self.lbl_lvl = CTkLabel(frm_lvl, text=f"Level: {self.guess.current_level}", font=("courier", -20, "bold"))
         self.lbl_lvl.pack(side="bottom", pady=7)
         
-        btn_back_to_choose = CTkButton(self, text="Back", command=self.back_to_choose)
-        btn_back_to_choose.place(relx=0.05, rely=0.9, anchor="w")
+        btn_back_to_choose = CTkButton(self, text="Back", fg_color="#520CA1", corner_radius=5, text_color="#FFFFFF", width=50, height=30, font=("Arial", -16, "bold"), command=self.back_to_choose)
+        btn_back_to_choose.place(relx=0.005, rely=0.92, anchor="w")
         
     def time_callback(self):
         self.keyboard.time_callback = self.time
         
     def back_to_choose(self):
-        self.parent.start_game()
+        self.parent.start_game(False)
         self.destroy()
         

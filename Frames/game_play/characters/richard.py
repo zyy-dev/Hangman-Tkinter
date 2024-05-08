@@ -1,6 +1,7 @@
 from Frames.game_play.characters.default import default_character
 from Frames.game_play.components.skill_frame import skill_frame
 from Frames.game_play.components.hover_frame import hover_frame
+from Frames.game_play.components.audio import play_audio
 from PIL import Image
 from customtkinter import *
 
@@ -76,7 +77,10 @@ class richard_character(default_character):
         
         # called out the logic (this is a recursion therefore we have to do it in another method)
         self.skill_activated()
-
+        
+        # skill's sound effect
+        play_audio.skill(self.character, "2")
+        
     # this is a recursion if u want to stop the time, then set the attribute of self.skill_2_remaining_time = 0
     def skill_activated(self):
         if self.skill_2_remaining_time:
