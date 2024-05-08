@@ -53,6 +53,7 @@ class Time(CTkFrame):
     def ending_take_time(self, storage, current_lvl):
         storage.append((self.starting_time - self.seconds) * current_lvl)
         if current_lvl == 20:
+            self.active = False
             storage.append(self.seconds*25)
             game_over(self.keyboard.main_tk, self.keyboard, self.keyboard.time_callback, self.keyboard.points,
-                     self.keyboard.character, self.mainmenu_callback, self.guess)
+                     self.keyboard.character, self.mainmenu_callback, self.guess, self.choose_callback)

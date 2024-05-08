@@ -167,7 +167,7 @@ class Keyboard(CTkFrame):
         self.guess.next_level()
         self.main_tk.bind("<Key>", self.key_pressed)
         self.finished = "Game Finished!"
-        self.character_object.lbl_lvl.configure(text=f"Level: {self.guess.current_level if self.guess.current_level < 21 else self.finished}")
+        self.character_object.lbl_lvl.configure(text=f"{self.guess.current_level if self.guess.current_level < 21 else self.finished}")
         self.mistakes = 0
         self.correct = 0
         self.key_already_pressed = []
