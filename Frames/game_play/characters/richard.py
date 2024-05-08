@@ -1,13 +1,12 @@
 from Frames.game_play.characters.default import default_character
 from Frames.game_play.components.skill_frame import skill_frame
 from Frames.game_play.components.hover_frame import hover_frame
-from Frames.game_play.components.audio import play_audio
 from PIL import Image
 from customtkinter import *
 
 class richard_character(default_character):
-    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str, mainmenu_callback, choose_callback):
-        super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer, character=character, main_menu_callback = mainmenu_callback, choose_callback=choose_callback)
+    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str, mainmenu_callback):
+        super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer, character=character, main_menu_callback = mainmenu_callback)
         self.character = character
         
         # Skill 1
