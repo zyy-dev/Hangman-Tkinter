@@ -16,10 +16,14 @@ class HangmanApp(CTk):
         self.minsize(self.width, self.height)
         set_appearance_mode("dark")
         self.title("Hangman")
+        self.iconbitmap("./assets/Icons/game_logo.ico")
+        
+        
         self.main_menu = MainMenu(self, self.width, self.height, self.start_game, self.show_leaderboards)
         self.main_menu.pack()
 
     def start_game(self):
+        print ("called")
         # remove the current frame
         self.main_menu.pack_forget()
         
@@ -40,7 +44,8 @@ class HangmanApp(CTk):
         self.main_menu.pack()
         
     def show_leaderboards(self):
-        Leaderboards(self)
+        leaderboards = Leaderboards(self)
+        leaderboards.place(relx=0.5, rely=0.5, anchor=CENTER)
 
 
 # Create an instance of HangmanApp
@@ -48,3 +53,4 @@ app = HangmanApp()
 
 # Run the application
 app.mainloop()
+

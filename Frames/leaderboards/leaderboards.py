@@ -17,7 +17,7 @@ class Leaderboards(CTkFrame):
         super().__init__(master= parent, width= 800, height= 600,bg_color= "#110320", fg_color= "#110320", border_color= "violet", border_width= 5)
         self.HEIGHT = 600
         self.WIDTH = 800
-        self.place(relx=0.5, rely=0.5, anchor=CENTER)
+        
         self.pack_propagate(False)
 
 
@@ -63,7 +63,7 @@ class Leaderboards(CTkFrame):
             lbl_frame5_date_info.grid(row=num + 1, column=4, padx=10, pady=5)
             frame5.grid_columnconfigure(num + 1, weight=1)
 
-        icon = Image.open(r"./assets/Leaderboards/exit.png")
+        icon = Image.open(r"./assets/Icons/exit.png")
         python_icon = CTkImage(light_image= icon, dark_image= icon, size= (80,76))
         icon_btn = CTkButton(self, text="", image=python_icon, fg_color="#110320", width= 80 , height=76, command= self.close_window)
         icon_btn.place(x=695, y=5)

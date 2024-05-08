@@ -4,7 +4,7 @@ from datetime import datetime
 from PIL import Image
 # from start import app
 date = datetime.now().strftime("%d/%m/%y")
-conn = sqlite3.connect('leaderboards.db')
+conn = sqlite3.connect('./Frames/leaderboards/leaderboards.db')
 cursor = conn.cursor()
 
 cursor.execute('CREATE TABLE IF NOT EXISTS scores ('
@@ -21,7 +21,7 @@ if data == None:
 
 
 class game_over(CTkFrame):
-    def __init__(self, parent, keyboard, time, storage, character, guess, mainmenu_callback):
+    def __init__(self, parent, keyboard, time, storage, character, guess, mainmenu_callback, choose_callback):
         super().__init__(master= parent , width= 800, height= 600, border_width= 4, fg_color= "#110320", border_color= "violet")
         self.points = storage
         self.keyboard = keyboard
@@ -30,6 +30,7 @@ class game_over(CTkFrame):
         self.character = character
         self.guess = guess
         self.mainmenu_callback = mainmenu_callback
+        self.choose_callback = choose_callback
         print (self.points)
 
         self.place(relx=0.5, rely=0.5, anchor=CENTER)
@@ -63,12 +64,12 @@ class game_over(CTkFrame):
         self.interactable_frame = CTkFrame(self, fg_color="#110320")
         self.interactable_frame.pack(pady = 20)
         
-        self.icon = Image.open("./assets/Game Over/reload.png")
+        self.icon = Image.open("./assets/Icons/reload.png")
         self.python_icon = CTkImage(light_image=self.icon, dark_image=self.icon)
         self.icon_btn = CTkButton(self.interactable_frame, text="", image=self.python_icon, bg_color="#110320", fg_color="#110320", width=20, command=self.restart)
         self.icon_btn.pack(side= LEFT, padx = 50)
 
-        self.icon2 = Image.open("./assets/Game Over/menu-button.png")
+        self.icon2 = Image.open("./assets/Icons/menu-button.png")
         self.python_icon2 = CTkImage(light_image=self.icon2, dark_image=self.icon2)
         self.icon_btn2 = CTkButton(self.interactable_frame, text="", image=self.python_icon2, bg_color="#110320", fg_color="#110320", width=10, command=self.return_to_mainmenu)
         self.icon_btn2.pack(side= LEFT, padx = 50)
@@ -102,6 +103,10 @@ class game_over(CTkFrame):
         self.points.clear()
         self.guess.current_level = 0
         self.keyboard.reset()
+
+        self.keyboard.character_object.destroy()
+        self.choose_callback.play()
+        
         self.time.seconds = 200
         self.time.active = True
         self.time.activate_time()

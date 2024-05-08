@@ -3,7 +3,7 @@ from PIL import Image
 from Frames.game_play.components.audio import play_audio
 from Frames.game_over import game_over
 class Keyboard(CTkFrame):
-    def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object, time_callback, main_menu_callback) -> None:
+    def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object, time_callback, main_menu_callback, choose_callback) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
         self.guess = guess
@@ -12,6 +12,7 @@ class Keyboard(CTkFrame):
         self.character = character
         self.character_object = character_object
         self.main_menu_callback = main_menu_callback
+        self.choose_callback = choose_callback
         self.mistakes = 0
         self.correct = 0
         self.button_address = {}
@@ -115,7 +116,7 @@ class Keyboard(CTkFrame):
                 btn.configure(state="disabled")
                 self.player_state.GameOverAnimation()
                 self.disabled()
-                self.after(2000, lambda: game_over(self.main_tk, self, self.time_callback, self.points, self.character, self.guess, self.main_menu_callback))
+                self.after(2000, lambda: game_over(self.main_tk, self, self.time_callback, self.points, self.character, self.guess, self.main_menu_callback, self.choose_callback))
             else:
                 # if wrong
                 play_audio.wrong()

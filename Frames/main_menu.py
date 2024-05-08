@@ -75,6 +75,7 @@ class MainMenu(CTkFrame):
                       font=("", -18, "bold"))
         
     def play(self):
+        print ("called")
         play_audio.click()
         self.start_game_callback()
 
