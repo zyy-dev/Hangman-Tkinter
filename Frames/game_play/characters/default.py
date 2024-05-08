@@ -6,10 +6,11 @@ from Frames.game_play.components.time_frame import Time
 from Frames.game_play.components.slide_frame import slide_frame  
 
 class default_character(CTkFrame):
-    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str, main_menu_callback: object):
+    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str, main_menu_callback: object, show_choices):
         super().__init__(master=parent, width=width, height=height, fg_color="transparent")
 
         self.main_menu_callback = main_menu_callback
+        self.show_choices = show_choices
         # placement of the background image or the character
         player_state = Player(self, path_game_over, path_wrong_answer, width, height, self)
         player_state.pack()
@@ -21,10 +22,10 @@ class default_character(CTkFrame):
         self.guess = Guess(frame, self, character)
         self.guess.pack(pady=20)
 
-        self.keyboard = Keyboard(frame, self.guess, player_state, parent, character, self, self.time_callback, self.main_menu_callback)
+        self.keyboard = Keyboard(frame, self.guess, player_state, parent, character, self, self.time_callback, self.main_menu_callback, self.show_choices)
         self.keyboard.pack()
         
-        self.time = Time(self, 0, 0.08, player_state, self.keyboard, character, self, self.main_menu_callback, self.guess)
+        self.time = Time(self, 0, 0.08, player_state, self.keyboard, character, self, self.main_menu_callback, self.guess, self.show_choices)
         self.time_callback()
         
         frm_lvl = slide_frame(self, 0.05, 0, 200)
