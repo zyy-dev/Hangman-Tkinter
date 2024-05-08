@@ -20,8 +20,8 @@ if data == None:
     data = [(0)]
 
 
-class game_over(CTkFrame):
-    def __init__(self, parent, keyboard, time, storage, character, guess, mainmenu_callback):
+class endScore(CTkFrame):
+    def __init__(self, parent, keyboard, time, storage, character, guess, mainmenu_callback, show_choices):
         super().__init__(master= parent , width= 800, height= 600, border_width= 4, fg_color= "#110320", border_color= "violet")
         self.points = storage
         self.keyboard = keyboard
@@ -30,6 +30,7 @@ class game_over(CTkFrame):
         self.character = character
         self.guess = guess
         self.mainmenu_callback = mainmenu_callback
+        self.show_choices = show_choices
         print (self.points)
 
         self.place(relx=0.5, rely=0.5, anchor=CENTER)
@@ -72,7 +73,11 @@ class game_over(CTkFrame):
         self.python_icon2 = CTkImage(light_image=self.icon2, dark_image=self.icon2)
         self.icon_btn2 = CTkButton(self.interactable_frame, text="", image=self.python_icon2, bg_color="#110320", fg_color="#110320", width=10, command=self.return_to_mainmenu)
         self.icon_btn2.pack(side= LEFT, padx = 50)
-        
+
+        self.back_to_choices = CTkButton(self.interactable_frame, text="Choices", bg_color="blue",
+                                   command=self.into_choices)
+        self.back_to_choices.pack(side=LEFT, padx=50)
+        self.interactable_frame.pack(pady = 20)
         
     def on_hover(self, e):
         self.save_button.configure(text_color="#350a66", fg_color="#e757bc")
@@ -111,4 +116,9 @@ class game_over(CTkFrame):
         self.keyboard.character_object.destroy()
         self.mainmenu_callback()
         self.destroy()
-        
+    def into_choices(self):
+        self.destroy()
+        self.points.clear()
+        self.guess.current_level = 0
+        self.keyboard.character_object.destroy()
+        self.show_choices()
