@@ -1,7 +1,7 @@
 from customtkinter import *
 from PIL import Image
 from Frames.game_play.components.audio import play_audio
-from Frames.game_over import endScore
+from Frames.game_over import game_over
 class Keyboard(CTkFrame):
     def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object, time_callback, main_menu_callback) -> None:
         super().__init__(master=parent, fg_color="transparent")
@@ -69,6 +69,7 @@ class Keyboard(CTkFrame):
         btn.configure(text_color="#FFFFFF", fg_color="#520CA1")
         
     def clicked(self, btn: object) -> None:
+        # visual changes and unbinding
         char = btn.cget("text")
         btn.unbind("<Enter>")
         btn.unbind("<Leave>")
@@ -79,10 +80,12 @@ class Keyboard(CTkFrame):
 
         # if wrong key
         if not self.guess.validate_char(char):
-            
+            # visual changes
             btn.configure(border_width=1)
             btn.configure(border_color="red")
             
+            
+            # skill related 
             if self.character == "allan":
                 if self.mistakes == 4:
                     self.character_object.skill_1()
@@ -96,20 +99,25 @@ class Keyboard(CTkFrame):
                 
             if self.character == "france":
                 if self.character_object.skill_2_state:
+                    # stop the method before it reflect the increment to self.mistakes
                     return
                 
             if self.character == "zyrus":
                 if self.character_object.skill_1_state:
+                    # stop the method before it reflect the increment to self.mistakes
                     return
                     
             
-            self.mistakes += 1    
+            self.mistakes += 1
+                
+            # if game over
             if self.mistakes > 5:
                 btn.configure(state="disabled")
                 self.player_state.GameOverAnimation()
                 self.disabled()
-                endScore(self.main_tk, self, self.time_callback, self.points, self.character, self.guess, self.main_menu_callback)
+                self.after(2000, lambda: game_over(self.main_tk, self, self.time_callback, self.points, self.character, self.guess, self.main_menu_callback))
             else:
+                # if wrong
                 play_audio.wrong()
                 self.player_state.WrongAnswer(self.mistakes)
         # if correct
@@ -131,7 +139,7 @@ class Keyboard(CTkFrame):
                         
                 self.after(800, self.reset) 
         
-        
+    # for key binding or using the physical keyboard
     def key_pressed(self, event) -> None:
         selected = event.char.upper()
         if selected in self.button_address and selected not in self.key_already_pressed:
@@ -139,6 +147,7 @@ class Keyboard(CTkFrame):
             
             
     def disabled(self) -> None:
+        print ("disabeld all")
         self.main_tk.unbind("<Key>")
         for char in self.button_address:
             self.button_address[char].configure(state="disabled")
@@ -159,17 +168,16 @@ class Keyboard(CTkFrame):
             self.button_address[char].configure(state="normal", fg_color="#520CA1", text_color="#FFFFFF", border_width=0)
             self.button_address[char].bind("<Enter>", lambda event, btn=self.button_address[char]: self.on_hover(btn, event))
             self.button_address[char].bind("<Leave>", lambda event, btn=self.button_address[char]: self.off_hover(btn, event))
-                
+        
+        # skill related        
         if self.character == "allan":
-            try:
-                if self.character_object.cooldown == self.guess.current_level:
-                    # unbind to the notification
-                    self.character_object.lbl_skill_2.unbind("<Button-1>")
-                    self.character_object.lbl_skill_2.bind("<Button-1>", self.character_object.skill_2)
-                    self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
-                    self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
-            except:
-                print ("skill 2 not used yet")
+            if self.character_object.cooldown == self.guess.current_level:
+                # unbind to the notification
+                self.character_object.lbl_skill_2.unbind("<Button-1>")
+                self.character_object.lbl_skill_2.bind("<Button-1>", self.character_object.skill_2)
+                self.character_object.logo_skill_2 = CTkImage(light_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), dark_image=Image.open("./assets/Characters/allan/skills_icon/skill_2.png"), size=(85, 85))
+                self.character_object.lbl_skill_2.configure(image=self.character_object.logo_skill_2)
+
                     
         if self.character == "zyrus":
             if self.character_object.cooldown == self.guess.current_level:

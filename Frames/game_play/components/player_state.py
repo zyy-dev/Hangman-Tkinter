@@ -36,8 +36,11 @@ class Player(ctk.CTkLabel):
         if i == 0: 
             play_audio.lose()
             self.character_object.time.active = False
-            self.character_object.lbl_skill_1.unbind("<Button-1>")
-            self.character_object.lbl_skill_2.unbind("<Button-1>")
+            try:
+                self.character_object.lbl_skill_1.unbind("<Button-1>")
+                self.character_object.lbl_skill_2.unbind("<Button-1>")
+            except:
+                pass
         if i < len(self.images_path_gameover):
             image = ctk.CTkImage(light_image=Image.open(self.images_path_gameover[i]), dark_image=Image.open(self.images_path_gameover[i]), size=(self.width,self.height))
             self.configure(image=image)

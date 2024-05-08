@@ -47,9 +47,6 @@ class france_character(default_character):
         self.hover_skill_2.destroy()
         
         
-        
-        
-        
         # passive skill
         # this method will be called under certain condition in the time_frame module
     def skill_1(self):

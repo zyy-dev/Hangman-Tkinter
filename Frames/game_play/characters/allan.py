@@ -32,6 +32,7 @@ class allan_character(default_character):
         
         # initialize that the skill 2 wasn't yet activated, this will be used under the keyboard module
         self.skill_2_active = False
+        self.cooldown = False
         
     def on_hover_skill_1(self, event):
         self.hover_skill_1 = hover_frame(self, 400, 90, 1, self.character)
