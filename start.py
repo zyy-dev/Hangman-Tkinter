@@ -23,7 +23,6 @@ class HangmanApp(CTk):
         self.main_menu.pack()
 
     def start_game(self, do_animation: bool):
-        print ("called")
         # remove the current frame
         self.main_menu.pack_forget()
         
