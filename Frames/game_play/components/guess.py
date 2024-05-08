@@ -45,6 +45,20 @@ class Guess(CTkFrame):
                     lbl.pack()
             return True
         return False
+    
+    def reveal_answer(self):
+        for letter, frame in self.frame_address:
+            if letter in self.correct_characters:
+                self.correct_characters.remove(letter)
+                
+                frame.configure(fg_color="#3a002f")
+                lbl = CTkLabel(frame, 
+                            text=letter, 
+                            height=38, 
+                            width=58,
+                            font=("", -17.6, "bold"))
+                lbl.pack()
+                
                     
     def next_level(self):
         self.current_level += 1

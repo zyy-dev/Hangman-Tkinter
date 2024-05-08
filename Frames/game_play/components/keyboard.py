@@ -115,6 +115,7 @@ class Keyboard(CTkFrame):
             if self.mistakes > 5:
                 btn.configure(state="disabled")
                 self.player_state.GameOverAnimation()
+                self.guess.reveal_answer()
                 self.disabled()
                 self.after(2000, lambda: game_over(self.main_tk, self, self.time_callback, self.points, self.character, self.guess, self.main_menu_callback, self.choose_callback))
             else:
@@ -157,6 +158,7 @@ class Keyboard(CTkFrame):
     
     # this means proceed to next level
     def reset(self) -> None:
+        self.time_callback.starting_take_time()
         self.player_state.WrongAnswer(0)
         self.guess.next_level()
         self.main_tk.bind("<Key>", self.key_pressed)
