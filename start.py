@@ -54,4 +54,3 @@ app = HangmanApp()
 
 # Run the application
 app.mainloop()
-
