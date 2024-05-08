@@ -16,29 +16,35 @@ class HangmanApp(CTk):
         self.minsize(self.width, self.height)
         set_appearance_mode("dark")
         self.title("Hangman")
-       
-        self.show_mainmenu()
+        self.main_menu = MainMenu(self, self.width, self.height, self.start_game, self.show_leaderboards)
+        self.main_menu.pack()
 
     def start_game(self):
+        # remove the current frame
         self.main_menu.pack_forget()
-        animation = Animation(self, "./assets/Animation_Start Game", width=self.winfo_width(),
-                              height=self.winfo_height(), delay=20)
-        animation.pack()
-        self.show_choices()
-        self.after(2000, lambda: animation.pack_forget())
+        
+        # animation proceeds
+        # animation = Animation(self, "./assets/Animation_Start Game", width=self.width,
+        #                       height=self.height, delay=20)
+        # animation.pack()
+        
+        # adds the next frame
+        x = Choices(self, self.width, self.height, self.show_mainmenu)
+        x.pack()
+        
+        # remove the animating frame
+        # self.after(2000, lambda: animation.pack_forget())
+        
     def show_mainmenu(self):
         self.main_menu = MainMenu(self, self.width, self.height, self.start_game, self.show_leaderboards)
         self.main_menu.pack()
+        
     def show_leaderboards(self):
         Leaderboards(self)
 
-    def show_choices(self):
-        self.choices = Choices(self, self.winfo_width(), self.winfo_height(), self.show_mainmenu, self.show_choices)
-        self.choices.pack()
 
 # Create an instance of HangmanApp
 app = HangmanApp()
 
 # Run the application
 app.mainloop()
-
