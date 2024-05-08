@@ -44,7 +44,7 @@ class Time(CTkFrame):
             else:
                 self.player_state.GameOverAnimation()
                 self.keyboard.disabled()
-                endScore(self.keyboard.main_tk, self.keyboard, self.keyboard.time_callback, self.keyboard.points, self.keyboard.character, self.mainmenu_callback, self.guess)
+                endScore(self.keyboard.main_tk, self.keyboard, self.keyboard.time_callback, self.keyboard.points, self.keyboard.character, self.mainmenu_callback, self.guess, self.show_choices)
     def starting_take_time(self):
         self.starting_time = self.seconds
 
