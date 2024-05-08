@@ -21,7 +21,7 @@ if data == None:
 
 
 class game_over(CTkFrame):
-    def __init__(self, parent, keyboard, time, storage, character, guess, mainmenu_callback):
+    def __init__(self, parent, keyboard, time, storage, character, guess, mainmenu_callback, character_object, choose_callback):
         super().__init__(master= parent , width= 800, height= 600, border_width= 4, fg_color= "#110320", border_color= "violet")
         self.points = storage
         self.keyboard = keyboard
@@ -30,6 +30,8 @@ class game_over(CTkFrame):
         self.character = character
         self.guess = guess
         self.mainmenu_callback = mainmenu_callback
+        self.character_object = character_object
+        self.choose_callback = choose_callback
         print (self.points)
 
         self.place(relx=0.5, rely=0.5, anchor=CENTER)
@@ -102,13 +104,19 @@ class game_over(CTkFrame):
         self.points.clear()
         self.guess.current_level = 0
         self.keyboard.reset()
+        
+        self.character_object.destroy()
+        
+        # create a new instance again of the character object
+        self.choose_callback.play()
+        
+        # restart timer
         self.time.seconds = 200
         self.time.active = True
         self.time.activate_time()
     def return_to_mainmenu(self):
+        self.destroy()
         self.points.clear()
         self.guess.current_level = 0
         self.keyboard.character_object.destroy()
         self.mainmenu_callback()
-        self.destroy()
-        

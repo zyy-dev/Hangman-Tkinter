@@ -7,8 +7,8 @@ from customtkinter import *
 import random
 
 class zyrus_character(default_character):
-    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str, mainmenu_callback):
-        super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer, character=character, main_menu_callback = mainmenu_callback)
+    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str, mainmenu_callback, choose_callback):
+        super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer, character=character, main_menu_callback = mainmenu_callback, choose_callback=choose_callback)
         self.character = character
         
         # Skill 1
@@ -46,9 +46,6 @@ class zyrus_character(default_character):
             
 
     def skill_1(self, event):
-        # skill's sound effect
-        play_audio.skill(self.character, "1")
-        
         # set this True to make the pressed keys to dont reflect with the count of mistakes
         self.skill_1_state = True
         
@@ -78,6 +75,9 @@ class zyrus_character(default_character):
         
         # to visually show that the skill is on cooldown
         self.lbl_skill_1.bind("<Button-1>", lambda e: self.skill_1_notif(e))
+        
+        # skill's sound effect
+        play_audio.skill(self.character, "1")
         
     def skill_1_notif(self, event):
         notif = CTkLabel(self, text=f"This skill can be used again on Level {self.cooldown}")

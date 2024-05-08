@@ -124,32 +124,32 @@ class Choices(CTkFrame):
         
         if self.index == 0:
             self.character_information_frame.animate_downwards()
-            default = default_character(self.parent, self.width, self.height, "./assets/Characters/default/game_over", "./assets/Characters/default/wrong_answer", "default", self.main_menu_callback)
+            default = default_character(self.parent, self.width, self.height, "./assets/Characters/default/game_over", "./assets/Characters/default/wrong_answer", "default", self.main_menu_callback, self)
             default.pack()
             self.after(500, lambda: self.pack_forget())
         if self.index == 1:
             self.character_information_frame.animate_downwards()
-            allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer", "allan", self.main_menu_callback)
+            allan = allan_character(self.parent, self.width, self.height, "./assets/Characters/allan/game_over", "./assets/Characters/allan/wrong_answer", "allan", self.main_menu_callback, self)
             allan.pack()
             self.after(500, lambda: self.pack_forget())
         if self.index == 2:
             self.character_information_frame.animate_downwards()
-            renzo = renzo_character(self.parent, self.width, self.height, "./assets/Characters/renzo/game_over", "./assets/Characters/renzo/wrong_answer", "renzo", self.main_menu_callback)
+            renzo = renzo_character(self.parent, self.width, self.height, "./assets/Characters/renzo/game_over", "./assets/Characters/renzo/wrong_answer", "renzo", self.main_menu_callback, self)
             renzo.pack()
             self.after(500, lambda: self.pack_forget())
         if self.index == 3:
             self.character_information_frame.animate_downwards()
-            france = france_character(self.parent, self.width, self.height, "./assets/Characters/france/game_over", "./assets/Characters/france/wrong_answer", "france", self.main_menu_callback)
+            france = france_character(self.parent, self.width, self.height, "./assets/Characters/france/game_over", "./assets/Characters/france/wrong_answer", "france", self.main_menu_callback, self)
             france.pack()
             self.after(500, lambda: self.pack_forget())
         if self.index == 4:
             self.character_information_frame.animate_downwards()
-            richard = richard_character(self.parent, self.width, self.height, "./assets/Characters/richard/game_over", "./assets/Characters/richard/wrong_answer", "richard", self.main_menu_callback)
+            richard = richard_character(self.parent, self.width, self.height, "./assets/Characters/richard/game_over", "./assets/Characters/richard/wrong_answer", "richard", self.main_menu_callback, self)
             richard.pack()
             self.pack_forget()
         if self.index == 5:
             self.character_information_frame.animate_downwards()
-            zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer", "zyrus", self.main_menu_callback)
+            zyrus = zyrus_character(self.parent, self.width, self.height, "./assets/Characters/zyrus/game_over", "./assets/Characters/zyrus/wrong_answer", "zyrus", self.main_menu_callback, self)
             zyrus.pack()
             self.after(500, lambda: self.pack_forget())
             
