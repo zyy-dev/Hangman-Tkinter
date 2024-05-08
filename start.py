@@ -2,7 +2,7 @@ from customtkinter import *
 from Frames.choose_character import Choices
 from Frames.main_menu import MainMenu
 from animation import Animation
-from Frames.leaderboards import Leaderboards
+from Frames.leaderboards.leaderboards import Leaderboards
 # main window
 class HangmanApp(CTk):
     def __init__(self):
