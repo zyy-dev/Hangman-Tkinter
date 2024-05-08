@@ -7,8 +7,8 @@ from customtkinter import *
 import random
 
 class zyrus_character(default_character):
-    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str):
-        super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer, character=character)
+    def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str, mainmenu_callback):
+        super().__init__(parent=parent, width=width, height=height, path_game_over=path_game_over, path_wrong_answer=path_wrong_answer, character=character, main_menu_callback = mainmenu_callback)
         self.character = character
         
         # Skill 1
@@ -57,7 +57,9 @@ class zyrus_character(default_character):
         # algorithm to disable wrong keys from the keybaord module
         available_characters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         for char in available_characters.copy():
-            if char in self.keyboard.key_already_pressed or char in self.guess.word_to_guess:
+            if char in self.keyboard.key_already_pressed:
+                available_characters.remove(char)
+            if char in self.guess.word_to_guess:
                 available_characters.remove(char)
         for _ in range(5):
             random_letter = random.choice(available_characters)[0]

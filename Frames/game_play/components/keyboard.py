@@ -1,9 +1,9 @@
 from customtkinter import *
 from PIL import Image
 from Frames.game_play.components.audio import play_audio
-
+from Frames.game_over import endScore
 class Keyboard(CTkFrame):
-    def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object, time_callback) -> None:
+    def __init__ (self, parent: object, guess: object, player_state: object, main_tk: object, character: str, character_object: object, time_callback, main_menu_callback) -> None:
         super().__init__(master=parent, fg_color="transparent")
         self.parent = parent
         self.guess = guess
@@ -11,12 +11,14 @@ class Keyboard(CTkFrame):
         self.main_tk = main_tk
         self.character = character
         self.character_object = character_object
+        self.main_menu_callback = main_menu_callback
         self.mistakes = 0
         self.correct = 0
         self.button_address = {}
                             # key: character
                             # value: reference address of Button Widgets
         self.key_already_pressed = []
+        self.points = []
         self.time_callback = time_callback
         
         Upper_Button_Frame = CTkFrame(self, fg_color="transparent")
@@ -106,6 +108,7 @@ class Keyboard(CTkFrame):
                 btn.configure(state="disabled")
                 self.player_state.GameOverAnimation()
                 self.disabled()
+                endScore(self.main_tk, self, self.time_callback, self.points, self.character, self.guess, self.main_menu_callback)
             else:
                 play_audio.wrong()
                 self.player_state.WrongAnswer(self.mistakes)
@@ -115,6 +118,8 @@ class Keyboard(CTkFrame):
             self.correct += 1
             if self.correct == len(set(self.guess.word_to_guess)):
                 play_audio.win()
+                self.time_callback.ending_take_time(self.points, self.guess.current_level)
+                print(self.points)
                 self.disabled()
                 self.after(800, self.reset) 
         
@@ -137,7 +142,8 @@ class Keyboard(CTkFrame):
         self.player_state.WrongAnswer(0)
         self.guess.next_level()
         self.main_tk.bind("<Key>", self.key_pressed)
-        self.character_object.lbl_lvl.configure(text=f"Level: {self.guess.current_level}")
+        self.finished = "Game Finished!"
+        self.character_object.lbl_lvl.configure(text=f"Level: {self.guess.current_level if self.guess.current_level < 21 else self.finished}")
         self.mistakes = 0
         self.correct = 0
         self.key_already_pressed = []

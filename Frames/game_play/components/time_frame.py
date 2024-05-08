@@ -1,7 +1,7 @@
 from customtkinter import *
-
+from Frames.game_over import endScore
 class Time(CTkFrame):
-    def __init__ (self, parent, start_pos, end_pos, player_state: object, keyboard: object, character: str, character_object: object):
+    def __init__ (self, parent, start_pos, end_pos, player_state: object, keyboard: object, character: str, character_object: object, mainmenu_callback, guess):
         super().__init__(master=parent, width=1000, height=80, corner_radius=0, border_width=5)
         self.player_state = player_state
         self.keyboard = keyboard
@@ -9,7 +9,8 @@ class Time(CTkFrame):
         self.end_pos = end_pos
         self.character = character
         self.character_object = character_object
-        
+        self.mainmenu_callback = mainmenu_callback
+        self.guess = guess
         self.active = True
         self.time_speed = 1000
         self.pack_propagate(False)
@@ -19,6 +20,8 @@ class Time(CTkFrame):
         self.lbl_time.pack(side="right", padx=20)
         
         self.animate()
+        self.starting_time = 0
+        self.starting_take_time()
         self.after(800, self.activate_time)
         
     def animate(self):
@@ -33,7 +36,6 @@ class Time(CTkFrame):
             if self.seconds > 0:
                 self.seconds -= 1
                 self.lbl_time.configure(text=str(self.seconds))
-                
                 if self.character == "france":
             
                     if self.seconds == 0:
@@ -43,4 +45,13 @@ class Time(CTkFrame):
             else:
                 self.player_state.GameOverAnimation()
                 self.keyboard.disabled()
-                
+                endScore(self.keyboard.main_tk, self.keyboard, self.keyboard.time_callback, self.keyboard.points, self.keyboard.character, self.mainmenu_callback, self.guess)
+    def starting_take_time(self):
+        self.starting_time = self.seconds
+
+    def ending_take_time(self, storage, current_lvl):
+        storage.append((self.starting_time - self.seconds) * current_lvl)
+        if current_lvl == 20:
+            storage.append(self.seconds*25)
+            endScore(self.keyboard.main_tk, self.keyboard, self.keyboard.time_callback, self.keyboard.points,
+                     self.keyboard.character, self.mainmenu_callback, self.guess)

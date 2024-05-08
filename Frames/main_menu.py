@@ -3,9 +3,10 @@ from animation import Animation
 from Frames.game_play.components.audio import play_audio
 
 class MainMenu(CTkFrame):
-    def __init__(self, parent: object, width: int, height: int, start_game_callback):
+    def __init__(self, parent: object, width: int, height: int, start_game_callback, leaderboards_callback):
         super().__init__(master=parent, width=width, height=height)
         self.start_game_callback = start_game_callback
+        self.leaderboards_callback = leaderboards_callback
         self.parent = parent
         default = Animation(self, "./assets/Animation_Open App", width, height)
         default.pack()
@@ -76,10 +77,10 @@ class MainMenu(CTkFrame):
     def play(self):
         play_audio.click()
         self.start_game_callback()
-        
+
     def score(self):
         play_audio.click()
-        
+        self.leaderboards_callback()
     def exit(self):
         play_audio.lose()
         self.top_lvl = CTkToplevel(self.parent)
