@@ -1,10 +1,10 @@
 from customtkinter import *
 import sqlite3
 from datetime import datetime
-from PIL import Image, ImageTk
+from PIL import Image
 # from start import app
 date = datetime.now().strftime("%d/%m/%y")
-conn = sqlite3.connect('leaderboards.db')
+conn = sqlite3.connect('./Frames/leaderboards/leaderboards.db')
 cursor = conn.cursor()
 
 cursor.execute('CREATE TABLE IF NOT EXISTS scores ('

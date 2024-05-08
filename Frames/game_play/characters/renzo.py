@@ -30,6 +30,7 @@ class renzo_character(default_character):
         
         # Initialization
         self.skill_1_state = False
+        self.skill_2_state = False
         self.cooldown1 = False
         self.cooldown2 = False
         
@@ -71,8 +72,10 @@ class renzo_character(default_character):
         
         
     def skill_2(self, event):
+        # this will retain the current level by manipulating the keyboard module
+        self.skill_2_state = True
+        
         self.cooldown2 = self.guess.current_level + 4
-        self.keyboard.points.append(-50)
         for _ in range(len(self.guess.correct_characters) // 2):
             # getting the correct key
             random_letter = random.choices(list(self.guess.correct_characters))[0].upper()

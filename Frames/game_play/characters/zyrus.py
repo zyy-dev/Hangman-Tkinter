@@ -29,6 +29,7 @@ class zyrus_character(default_character):
         self.lbl_skill_2.bind("<Leave>", lambda e: self.off_hover_skill_2(e))
         
         self.skill_1_state = False
+        self.skill_2_state = False
         self.cooldown = False
         
     def on_hover_skill_1(self, event):
@@ -86,8 +87,7 @@ class zyrus_character(default_character):
 
         
     def skill_2(self, event):
-        # skill's sound effect
-        play_audio.skill(self.character, "2")
+        self.skill_2_state = True
         
         # disabled the skill button
         self.lbl_skill_2.unbind("<Button-1>")
@@ -99,6 +99,9 @@ class zyrus_character(default_character):
         
         # to visually show that the skill is on cooldown
         self.lbl_skill_2.bind("<Button-1>", lambda e: self.skill_2_notif(e))
+        
+        # skill's sound effect
+        play_audio.skill(self.character, "2")
         
     def skill_2_notif(self, event):
         notif = CTkLabel(self, text=f"This skill can only be used once")

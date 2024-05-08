@@ -1,7 +1,8 @@
 from customtkinter import *
 import sqlite3
-from PIL import Image, ImageTk
-conn = sqlite3.connect('leaderboards.db')
+from PIL import Image
+
+conn = sqlite3.connect('./Frames/leaderboards/leaderboards.db')
 cursor = conn.cursor()
 
 cursor.execute("Select * FROM scores ORDER BY score DESC")
@@ -16,7 +17,7 @@ class Leaderboards(CTkFrame):
         super().__init__(master= parent, width= 800, height= 600,bg_color= "#110320", fg_color= "#110320", border_color= "violet", border_width= 5)
         self.HEIGHT = 600
         self.WIDTH = 800
-        self.place(relx=0.5, rely=0.4, anchor=CENTER)
+        self.place(relx=0.5, rely=0.5, anchor=CENTER)
         self.pack_propagate(False)
 
 

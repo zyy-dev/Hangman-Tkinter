@@ -119,8 +119,16 @@ class Keyboard(CTkFrame):
             if self.correct == len(set(self.guess.word_to_guess)):
                 play_audio.win()
                 self.time_callback.ending_take_time(self.points, self.guess.current_level)
-                print(self.points)
                 self.disabled()
+                
+                if self.character == "zyrus":
+                    if self.character_object.skill_2_state:
+                        self.points.pop()
+                        
+                if self.character == "renzo":
+                    if self.character_object.skill_2_state:
+                        self.points[-1] /= 2
+                        
                 self.after(800, self.reset) 
         
         
