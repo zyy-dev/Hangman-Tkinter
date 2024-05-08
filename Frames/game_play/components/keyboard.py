@@ -104,7 +104,6 @@ class Keyboard(CTkFrame):
             self.mistakes += 1    
             if self.mistakes > 5:
                 btn.configure(state="disabled")
-                self.guess.reveal_answer()
                 self.player_state.GameOverAnimation()
                 self.disabled()
             else:
