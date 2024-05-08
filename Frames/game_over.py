@@ -20,7 +20,7 @@ if data == None:
     data = [(0)]
 
 
-class endScore(CTkFrame):
+class game_over(CTkFrame):
     def __init__(self, parent, keyboard, time, storage, character, guess, mainmenu_callback, show_choices):
         super().__init__(master= parent , width= 800, height= 600, border_width= 4, fg_color= "#110320", border_color= "violet")
         self.points = storage

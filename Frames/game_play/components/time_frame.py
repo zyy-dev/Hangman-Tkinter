@@ -1,3 +1,5 @@
+from customtkinter import *
+from Frames.game_over import game_over
 class Time(CTkFrame):
     def __init__ (self, parent, start_pos, end_pos, player_state: object, keyboard: object, character: str, character_object: object, mainmenu_callback, guess, show_choices):
         super().__init__(master=parent, width=1000, height=80, corner_radius=0, border_width=5)
