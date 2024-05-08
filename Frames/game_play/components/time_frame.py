@@ -35,8 +35,8 @@ class Time(CTkFrame):
     def activate_time(self):
         if self.active:
             if self.seconds > 0:
-                self.seconds -= 1
                 self.lbl_time.configure(text=str(self.seconds))
+                self.seconds -= 1
                 if self.character == "france":
             
                     if self.seconds == 0:
