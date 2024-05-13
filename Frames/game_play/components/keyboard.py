@@ -132,17 +132,16 @@ class Keyboard(CTkFrame):
             self.correct += 1
             if self.correct == len(set(self.guess.word_to_guess)):
                 play_audio.win()
+                # add points
                 self.time_callback.ending_take_time(self.points, self.guess.current_level)
                 self.disabled()
                 
-                if self.character == "zyrus":
-                    if self.character_object.skill_2_state:
-                        self.points.pop()
                         
                 if self.character == "renzo":
                     if self.character_object.skill_2_state:
                         self.points[-1] /= 2
                         
+                print (self.points)
                 self.after(800, self.reset) 
         
     # for key binding or using the physical keyboard
@@ -167,7 +166,7 @@ class Keyboard(CTkFrame):
         self.guess.next_level()
         self.main_tk.bind("<Key>", self.key_pressed)
         self.finished = "Game Finished!"
-        self.character_object.lbl_lvl.configure(text=f"{self.guess.current_level if self.guess.current_level < 21 else self.finished}")
+        self.character_object.lbl_lvl.configure(text=f"Level: {self.guess.current_level if self.guess.current_level < 21 else self.finished}")
         self.mistakes = 0
         self.correct = 0
         self.key_already_pressed = []

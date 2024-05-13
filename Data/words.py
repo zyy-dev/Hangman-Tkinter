@@ -71,7 +71,7 @@ class Words:
         "Mythical Creatures": ["unicorn","phoenix","centaur","cyclops","minataur","medusa","werewolf"]},
          20: {
         "Historical Events": ["holocaust","enlightenment","colonialism","revolution","exploration","crusades"],
-        "Social Problems": ["marginalization","Stigmatization","exploitation","discrimination","degradation"]},
+        "Social Problems": ["marginalization","stigmatization","exploitation","discrimination","degradation"]},
         }
         
     def random_word(self, level: int) -> tuple[str, str]:

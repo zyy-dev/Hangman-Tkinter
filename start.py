@@ -45,7 +45,7 @@ class HangmanApp(CTk):
     def show_leaderboards(self):
         leaderboards = Leaderboards(self)
         leaderboards.place(relx=0.5, rely=0.5, anchor=CENTER)
-
+        
 # Create an instance of HangmanApp
 app = HangmanApp()
 
