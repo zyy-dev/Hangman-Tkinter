@@ -20,6 +20,7 @@ In our game, the developers themselves are the characters with unique abilities 
 ![image](https://github.com/ZyyAlvez/Hangman-Tkinter/assets/144290810/85751f4e-332b-456c-8f49-008f47a2b9e1)
 
 **Downside:**
-* I was still practicing folder structure and OOP based blueprint so the object's attributes and methods are not in their best form
-* Tkinter is not actually good when it comes to image rendering and ms configuration thus building a game using this library is really slow
+* I was still practicing folder structure and OOP based blueprint so the object's attributes and methods are not in their best form.
+* Tkinter is not actually good when it comes to image rendering and ms configuration thus building a game using this library is really slow.
+* Elements and widgets proportion and position depends on device's screen size.
 * The animation performance highly differs on the users/players device.
