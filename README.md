@@ -1,16 +1,20 @@
 # Save US 
 
-**Progress:**
-* "Save Us" is the title that is on my mind since the twist of the game is each members of the group will be the one who's in the death row.
-* Default Animation and Assets
-* Keyboard and binding
-* A frame widget that will display the word to guess.
+This game is not like with any traditional Hangman game
+The twist of this game is that it has different characters that has unique set of abilities to help the players/users to complete the game.
+to make it even crazier, those "characters" are the developers of this game.
 
-**Currently Working on:**
-* background
-* transition settings
-* main menu
-* game system
+**Downside:**
+* I was still practicing folder structure and OOP based blueprint so the object's attributes and methods are not in their best form
+* Tkinter is not actually good when it comes to image rendering and ms configuration thus building a game using this library is really slow
+* The animation performance highly differs on the users/players device.
 
-![image](https://github.com/ZyyAlvez/hangman_project/assets/144290810/be34191d-9196-4e5d-a381-d2dee0b2ff19)
-
+**Contents:**
+* Image animation
+* Key binds
+* Custom graphics and graphical elements
+* Sounds
+* Comedic names and descriptions
+* Point system
+* Skill system
+* Leaderboards using sqlite3
