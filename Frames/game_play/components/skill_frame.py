@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import CTkFrame
 
 class skill_frame(CTkFrame):
     def __init__ (self, parent: object, pos_y: int, start_pos_x = 1, end_pos_x = 0.928):

@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import CTkFrame, CTkButton, CTkLabel, CTkScrollableFrame, CTkImage
 import sqlite3
 from PIL import Image
 
@@ -26,7 +26,7 @@ class Leaderboards(CTkFrame):
 
 
         frame5 = CTkScrollableFrame(self, width=340, height=350, fg_color="#110320" )
-        frame5.pack(padx=10, pady=10,fill = "x", expand = TRUE, anchor = CENTER)
+        frame5.pack(padx=10, pady=10,fill="x", expand=True, anchor="center")
 
         lbl_frame5_rank = CTkLabel(frame5, text="Rank", font=("courier", 20, "bold"))
         lbl_frame5_rank.grid(row=0, column=0, padx=20)

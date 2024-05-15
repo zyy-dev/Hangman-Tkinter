@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import CTkFrame, CTkButton, CTkLabel, CTkToplevel
 from animation import Animation
 from Frames.game_play.components.audio import play_audio
 

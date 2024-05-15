@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import CTkFrame, CTkLabel, CTkImage
 from Data.words import words
 from PIL import Image
 

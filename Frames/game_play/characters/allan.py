@@ -3,7 +3,7 @@ from Frames.game_play.components.skill_frame import skill_frame
 from Frames.game_play.components.hover_frame import hover_frame
 from Frames.game_play.components.audio import play_audio
 from PIL import Image
-from customtkinter import *
+from customtkinter import CTkImage, CTkLabel
 import random
 
 class allan_character(default_character):

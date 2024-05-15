@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import CTkFrame, CTkLabel
 from Frames.game_over import game_over
 class Time(CTkFrame):
     def __init__ (self, parent, start_pos, end_pos, player_state: object, keyboard: object, character: str, character_object: object, mainmenu_callback, guess, choose_callback: object):

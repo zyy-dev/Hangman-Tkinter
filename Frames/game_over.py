@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import CTkFrame, CTkButton, CTkImage, CTkLabel, CTkEntry
 import sqlite3
 from datetime import datetime
 from PIL import Image
@@ -33,7 +33,7 @@ class game_over(CTkFrame):
         self.choose_callback = choose_callback
         print (self.points)
 
-        self.place(relx=0.5, rely=0.5, anchor=CENTER)
+        self.place(relx=0.5, rely=0.5, anchor="center")
         self.pack_propagate(False)
         
 
@@ -67,12 +67,12 @@ class game_over(CTkFrame):
         self.icon = Image.open("./assets/Icons/reload.png")
         self.python_icon = CTkImage(light_image=self.icon, dark_image=self.icon)
         self.icon_btn = CTkButton(self.interactable_frame, text="", image=self.python_icon, bg_color="#110320", fg_color="#110320", width=20, command=self.restart)
-        self.icon_btn.pack(side= LEFT, padx = 50)
+        self.icon_btn.pack(side="left", padx = 50)
 
         self.icon2 = Image.open("./assets/Icons/menu-button.png")
         self.python_icon2 = CTkImage(light_image=self.icon2, dark_image=self.icon2)
         self.icon_btn2 = CTkButton(self.interactable_frame, text="", image=self.python_icon2, bg_color="#110320", fg_color="#110320", width=10, command=self.return_to_mainmenu)
-        self.icon_btn2.pack(side= LEFT, padx = 50)
+        self.icon_btn2.pack(side="left", padx = 50)
         
         
     def on_hover(self, e):

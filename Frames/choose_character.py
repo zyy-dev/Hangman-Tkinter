@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import CTkFrame, CTkImage, CTkLabel, CTkButton
 from PIL import Image
 from Frames.game_play.characters.default import default_character, slide_frame
 from Frames.game_play.characters.allan import allan_character

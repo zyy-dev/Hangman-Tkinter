@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import CTkFrame, CTkButton, CTkImage
 from PIL import Image
 from Frames.game_play.components.audio import play_audio
 from Frames.game_over import game_over

@@ -3,7 +3,7 @@ from Frames.game_play.components.skill_frame import skill_frame
 from Frames.game_play.components.hover_frame import hover_frame
 from Frames.game_play.components.audio import play_audio
 from PIL import Image
-from customtkinter import *
+from customtkinter import CTkImage, CTkLabel
 
 class france_character(default_character):
     def __init__(self, parent: object, width: int, height: int, path_game_over:str, path_wrong_answer: str, character: str, mainmenu_callback, choose_callback):

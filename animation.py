@@ -1,8 +1,8 @@
-import customtkinter as ctk
+from customtkinter import CTkLabel, CTkImage
 from PIL import Image
 import os
 
-class Animation(ctk.CTkLabel):
+class Animation(CTkLabel):
     def __init__(self, parent: object, folder_path :str, width=640, height=360, delay = 11) -> None:
         super().__init__(master = parent, text="")
         self.folder_path = folder_path
@@ -24,7 +24,7 @@ class Animation(ctk.CTkLabel):
     def animate(self, i = 0):
         if i == len(self.frames):
             return
-        image = ctk.CTkImage(light_image=Image.open(self.frames[i]), dark_image=Image.open(self.frames[i]), size=(self.width,self.height))
+        image = CTkImage(light_image=Image.open(self.frames[i]), dark_image=Image.open(self.frames[i]), size=(self.width,self.height))
         self.configure(image=image)
         self.image = image
         self.parent.after(self.delay, lambda: self.animate((i + 1)))
